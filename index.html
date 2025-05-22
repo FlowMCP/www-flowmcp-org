@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FlowMCP – Adaptive API Integration for AI</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 0; padding: 0; line-height: 1.6; color: #333; }
+    header { background: #2c3e50; color: #ecf0f1; padding: 1rem 2rem; }
+    header h1 { margin: 0; font-size: 1.75rem; }
+    header p { margin: 0.25rem 0 0; font-size: 1rem; opacity: 0.8; }
+    nav { margin-top: 0.5rem; }
+    nav a { color: #ecf0f1; text-decoration: none; margin-right: 1rem; font-size: 0.9rem; }
+    nav a:hover { text-decoration: underline; }
+    main { padding: 2rem; max-width: 800px; margin: 0 auto; }
+    section { margin-bottom: 2rem; }
+    section h2 { border-bottom: 2px solid #eee; padding-bottom: 0.25rem; }
+    ul { list-style: disc inside; margin: 0.5rem 0 1rem 0; padding-left: 1rem; }
+    footer { background: #f4f4f4; text-align: center; padding: 1rem; font-size: 0.9rem; color: #555; }
+    footer a { color: #555; text-decoration: none; }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>FlowMCP</h1>
+  <p>Adaptive API Integration for AI – bridging web APIs and AI systems via the Model Context Protocol</p>
+  <nav>
+    <a href="#about">About</a>
+    <a href="#features">Features</a>
+    <a href="#usage">Usage</a>
+    <a href="#contribute">Contribute</a>
+    <a href="https://github.com/flowmcp/flowmcp" target="_blank">GitHub</a>
+  </nav>
+</header>
+
+<main>
+  <!-- About Section -->
+  <section id="about">
+    <h2>What is FlowMCP?</h2>
+    <p><strong>FlowMCP</strong> is an open-source framework for turning existing web APIs into a standardized <em>Model Context Protocol (MCP)</em> interface. It allows AI assistants and applications to access web API data and services in a structured, consistent manner. By acting as a <q>universal adapter</q> between AI and external APIs, FlowMCP makes it easier to bring real-world data (especially from Web3/blockchain services) into AI-driven conversations and tools.</p>
+    <p>In practical terms, FlowMCP provides a declarative schema system: each API integration is defined by a schema that describes the API’s endpoints, parameters, and how to handle responses. These schemas enable an MCP-compatible server to present API calls as “tools” that an AI can invoke. The result is seamless and testable AI integration for hundreds of routes across various services.</p>
+  </section>
+
+  <!-- Features Section -->
+  <section id="features">
+    <h2>Key Features</h2>
+    <ul>
+      <li><strong>Declarative Schemas for APIs:</strong> Each API route is defined in a schema file (module) with its endpoint, parameters, and description. This ensures all tools are self-documented and AI-readable.</li>
+      <li><strong>Pre/Post Processing Hooks:</strong> Schemas can include optional modifiers that run before or after the API call. These allow data normalization or custom logic (e.g. formatting responses) without altering the core API.</li>
+      <li><strong>Built-in Testing:</strong> Every schema can contain test cases for its routes. This automated testing guarantees that tools function as expected and helps catch issues early when APIs change.</li>
+      <li><strong>Human-Readable Results:</strong> API responses are returned as clean, text-based outputs. Even error messages are descriptive, which helps the AI (and developers) understand the results easily.</li>
+    </ul>
+  </section>
+
+  <!-- Usage/Schema Library Section -->
+  <section id="usage">
+    <h2>Usage &amp; Schema Library</h2>
+    <p><strong>Using FlowMCP:</strong> To use FlowMCP, you run an MCP server (local or remote) and load the desired API schemas into it. The FlowMCP library provides utilities to activate schemas on a server instance with minimal code. Once the server is running, any AI client that supports MCP can connect to it and start calling the available tools.</p>
+    <p><strong>Example:</strong> A developer can run a local MCP server and activate the CoinGecko schema. The AI assistant could then answer questions like “What’s the price of Bitcoin?” by invoking the <code>getCoinPrice</code> tool from the CoinGecko schema, fetching live data and returning it as a friendly text answer. The developer didn’t need to manually code how to call CoinGecko – FlowMCP’s schema handled it.</p>
+    <p><strong>Schema Library:</strong> FlowMCP comes with a rich library of schemas (over 200 API endpoints) covering many popular Web3 and crypto data providers. These include:<br>
+      <em>Blockchain data &amp; analytics</em> (e.g. Etherscan, Moralis, Dune Analytics), <em>Cryptocurrency info</em> (e.g. CoinGecko, CoinMarketCap, CoinCap), <em>DeFi and NFT data</em> (e.g. Chainlink feeds, Dexscreener, The Graph), and more. By leveraging this library, you can immediately empower your AI with knowledge of these services. And if something’s missing, you can add your own schema!</p>
+    <p><em>Note:</em> FlowMCP is in active development. In upcoming releases, we plan to provide a one-command setup for a local server and a hosted remote server option for convenience (see below).</p>
+  </section>
+
+  <!-- Contribute/Future Section -->
+  <section id="contribute">
+    <h2>Contributing &amp; Future Plans</h2>
+    <p><strong>Contributing:</strong> We welcome contributions from developers and enthusiasts. If you have an idea for a new schema or improvement, please visit our GitHub repositories. You can fork the <a href="https://github.com/flowmcp/flowmcp-schemas" target="_blank">FlowMCP-schemas</a> repo to add new API schemas – just drop in a new <code>.mjs</code> file for your provider and submit a pull request. For changes to the core framework or for reporting issues, head to the <a href="https://github.com/flowmcp/flowmcp" target="_blank">FlowMCP core</a> repo. We appreciate tests and documentation with contributions to maintain quality.</p>
+    <p><strong>Future Roadmap:</strong> The project is gearing up to introduce a user-friendly <em>Local Server</em> package, allowing anyone (even non-developers) to run FlowMCP tools on their own machine with minimal setup. Additionally, a secure <em>Remote Server</em> deployment is planned, so that a cloud-based FlowMCP service could serve multiple clients over the internet. These enhancements will broaden the ways FlowMCP can be used – from personal offline setups to shared online services. Stay tuned for updates!</p>
+  </section>
+</main>
+
+<footer>
+  <p>© 2025 FlowMCP Project – <a href="https://github.com/flowmcp/flowmcp" target="_blank">GitHub</a> | <a href="https://github.com/flowmcp/flowmcp-schemas" target="_blank">Schema Library</a> | Created with ❤️ by the FlowMCP community</p>
+</footer>
+
+</body>
+</html>
