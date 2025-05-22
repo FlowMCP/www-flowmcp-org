@@ -1,183 +1,100 @@
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="dark">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>FlowMCP – Adaptive API Integration for AI</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
   <style>
-    :root {
-      color-scheme: dark;
-    }
-
     body {
       margin: 0;
-      padding: 0;
-      font-family: system-ui, sans-serif;
-      background-color: #121212;
-      color: #e0e0e0;
+      font-family: 'Inter', sans-serif;
+      background-color: #0f172a;
+      color: #e2e8f0;
+      padding: 2rem;
       line-height: 1.6;
     }
-
-    header {
-      background: #1f1f1f;
-      padding: 2rem 1rem;
+    .container {
+      max-width: 800px;
+      margin: auto;
+      padding: 2rem;
+      background-color: #1e293b;
+      border-radius: 12px;
+      box-shadow: 0 0 0 1px #334155;
+    }
+    h1 {
+      font-size: 2rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
       text-align: center;
     }
-
-    header h1 {
-      margin: 0;
-      font-size: 2rem;
-      color: #ffffff;
-    }
-
-    header p {
-      margin: 0.5rem 0 0;
-      color: #bbbbbb;
-      font-size: 1rem;
-    }
-
-    nav {
-      margin-top: 1rem;
-    }
-
-    nav a {
-      margin: 0 0.5rem;
-      text-decoration: none;
-      color: #66ccff;
-      font-size: 0.95rem;
-    }
-
-    nav a:hover {
-      text-decoration: underline;
-    }
-
-    main {
-      max-width: 900px;
-      margin: 2rem auto;
-      padding: 0 1rem;
-    }
-
-    section {
-      margin-bottom: 2.5rem;
-    }
-
-    section h2 {
+    h2 {
       font-size: 1.5rem;
-      margin-bottom: 0.5rem;
-      border-bottom: 1px solid #333;
-      padding-bottom: 0.25rem;
+      margin-top: 2rem;
+      border-bottom: 1px solid #334155;
+      padding-bottom: 0.5rem;
     }
-
+    p {
+      margin: 0.5rem 0;
+    }
     ul {
       padding-left: 1.5rem;
     }
-
-    code {
-      background-color: #1e1e1e;
-      padding: 0.2rem 0.4rem;
-      border-radius: 4px;
-      color: #ffcc66;
-    }
-
-    footer {
-      text-align: center;
-      padding: 2rem 1rem;
-      background: #1f1f1f;
-      font-size: 0.85rem;
-      color: #888;
-    }
-
-    footer a {
-      color: #888;
+    a {
+      color: #38bdf8;
       text-decoration: none;
     }
-
-    footer a:hover {
+    a:hover {
       text-decoration: underline;
     }
-
-    /* Central GitHub Button */
-    .github-link {
+    .cta {
       display: flex;
       justify-content: center;
-      margin: 2rem 0;
+      margin-top: 2rem;
     }
-
-    .github-link a {
-      background-color: #222;
-      color: #66ccff;
-      text-decoration: none;
-      font-weight: bold;
-      padding: 1rem 2rem;
+    .cta a {
+      background-color: #0ea5e9;
+      color: white;
+      padding: 0.75rem 1.5rem;
       border-radius: 8px;
-      font-size: 1.1rem;
-      border: 1px solid #333;
-      transition: background 0.3s, transform 0.2s;
+      font-weight: 600;
+      transition: background 0.3s;
     }
-
-    .github-link a:hover {
-      background-color: #333;
-      transform: scale(1.03);
-    }
-
-    @media (max-width: 600px) {
-      header h1 {
-        font-size: 1.5rem;
-      }
-      .github-link a {
-        padding: 0.8rem 1.5rem;
-        font-size: 1rem;
-      }
+    .cta a:hover {
+      background-color: #0284c7;
     }
   </style>
 </head>
 <body>
+  <div class="container">
+    <h1>FlowMCP – Adaptive API Integration for AI</h1>
 
-  <header>
-    <h1>FlowMCP</h1>
-    <p>Adaptive API Integration for AI via the Model Context Protocol</p>
-    <nav>
-      <a href="#about">About</a>
-      <a href="#features">Features</a>
-      <a href="#usage">Usage</a>
-      <a href="#contribute">Contribute</a>
-    </nav>
-  </header>
-
-  <main>
-    <div class="github-link">
-      <a href="https://github.com/flowmcp/flowmcp" target="_blank">🌐 View on GitHub</a>
+    <div class="cta">
+      <a href="https://github.com/flowmcp/flowmcp" target="_blank">🌐 View FlowMCP on GitHub</a>
     </div>
 
-    <section id="about">
-      <h2>What is FlowMCP?</h2>
-      <p><strong>FlowMCP</strong> is an open-source framework for exposing REST APIs through a consistent <em>Model Context Protocol (MCP)</em> interface, optimized for AI agents and assistants.</p>
-    </section>
+    <h2>What is FlowMCP?</h2>
+    <p><strong>FlowMCP</strong> is an open-source framework for turning existing web APIs into a standardized <em>Model Context Protocol (MCP)</em> interface. It allows AI assistants and applications to access web API data and services in a structured, consistent manner.</p>
+    <p>By acting as a “universal adapter” between AI and external APIs, FlowMCP makes it easier to bring real-world data (especially from Web3/blockchain services) into AI-driven tools.</p>
 
-    <section id="features">
-      <h2>Key Features</h2>
-      <ul>
-        <li><strong>Declarative schemas:</strong> Define APIs without custom code.</li>
-        <li><strong>Pre/Post processing:</strong> Normalize and customize request/response data.</li>
-        <li><strong>Built-in testing:</strong> Each tool includes test cases.</li>
-        <li><strong>Text output:</strong> All responses are optimized for AI-readable text.</li>
-      </ul>
-    </section>
+    <h2>Key Features</h2>
+    <ul>
+      <li><strong>Declarative schemas:</strong> APIs are defined in modular files describing endpoints, parameters, and expected results.</li>
+      <li><strong>Pre/Post processors:</strong> Normalize data, format responses, or modify inputs as needed.</li>
+      <li><strong>Test coverage:</strong> Each schema includes automated test cases to verify functionality.</li>
+      <li><strong>AI-friendly text output:</strong> Structured and natural-language responses are returned for easy LLM integration.</li>
+    </ul>
 
-    <section id="usage">
-      <h2>Usage</h2>
-      <p>Run a local or remote MCP server and load schema modules to expose APIs as tools for AI clients.</p>
-    </section>
+    <h2>Usage & Schema Library</h2>
+    <p>Run a local or remote MCP server and load schemas from the official <a href="https://github.com/flowmcp/flowmcp-schemas" target="_blank">schema repository</a>. The server exposes API routes as named “tools” an AI can invoke.</p>
+    <p>Over 200+ tools are available out of the box, covering CoinGecko, Chainlink, Moralis, Etherscan and more.</p>
 
-    <section id="contribute">
-      <h2>Contributing</h2>
-      <p>We welcome contributions! Add new schemas, improve tools, or help expand the core. Start here: <a href="https://github.com/flowmcp/flowmcp-schemas" target="_blank">Schema Repository</a></p>
-    </section>
-  </main>
-
-  <footer>
-    <p>© 2025 FlowMCP – <a href="https://flowmcp.org">flowmcp.org</a> | <a href="https://github.com/flowmcp">GitHub</a></p>
-  </footer>
-
+    <h2>Contributing</h2>
+    <p>FlowMCP is open to contributions. You can submit new schemas or improve existing ones via pull requests.</p>
+    <p>To contribute, visit the <a href="https://github.com/flowmcp/flowmcp" target="_blank">main repository</a> and the <a href="https://github.com/flowmcp/flowmcp-schemas" target="_blank">schema repository</a>.</p>
+  </div>
 </body>
 </html>
