@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FlowMCP - Adaptive API Integration for AI</title>
+    <title>Namespace & Route Manager</title>
     <style>
         * {
             margin: 0;
@@ -11,367 +11,857 @@
             box-sizing: border-box;
         }
 
-        :root {
-            --primary-color: #3b82f6;
-            --secondary-color: #60a5fa;
-            --accent-color: #818cf8;
-            --bg-dark: #0f172a;
-            --bg-dark-secondary: #1e293b;
-            --bg-dark-tertiary: #334155;
-            --text-primary: #f1f5f9;
-            --text-secondary: #cbd5e1;
-            --text-muted: #94a3b8;
-            --border-color: #334155;
-            --gradient-start: #3b82f6;
-            --gradient-end: #8b5cf6;
-        }
-
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-            line-height: 1.6;
-            color: var(--text-primary);
-            background-color: var(--bg-dark);
-            overflow-x: hidden;
-        }
-
-        /* Navigation */
-        nav {
-            background-color: rgba(15, 23, 42, 0.8);
-            backdrop-filter: blur(10px);
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-            border-bottom: 1px solid var(--border-color);
-        }
-
-        .nav-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 1rem 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            font-size: 1.5rem;
-            font-weight: bold;
-            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            text-decoration: none;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-            list-style: none;
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            color: var(--text-secondary);
-            font-weight: 500;
-            transition: color 0.3s ease;
-        }
-
-        .nav-links a:hover {
-            color: var(--secondary-color);
-        }
-
-        /* Hero Section */
-        .hero {
-            background: linear-gradient(180deg, var(--bg-dark) 0%, var(--bg-dark-secondary) 100%);
-            padding: 8rem 2rem 4rem;
-            text-align: center;
-            margin-top: 60px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-image: radial-gradient(circle at 20% 50%, rgba(59, 130, 246, 0.1) 0%, transparent 50%),
-                              radial-gradient(circle at 80% 50%, rgba(139, 92, 246, 0.1) 0%, transparent 50%);
-            pointer-events: none;
-        }
-
-        /* Animated Background Canvas */
-        #hero-canvas {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            opacity: 0.3;
-            z-index: 0;
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 1;
-        }
-
-        .hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 1rem;
-            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            animation: fadeInUp 0.8s ease-out;
-        }
-
-        .hero .subtitle {
-            font-size: 1.5rem;
-            color: var(--text-secondary);
-            margin-bottom: 2rem;
-            animation: fadeInUp 0.8s ease-out 0.2s;
-            animation-fill-mode: both;
-        }
-
-        .hero p {
-            font-size: 1.1rem;
-            color: var(--text-muted);
-            max-width: 600px;
-            margin: 0 auto 2rem;
-            animation: fadeInUp 0.8s ease-out 0.3s;
-            animation-fill-mode: both;
-        }
-
-        .btn-primary {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
-            color: white;
-            padding: 0.75rem 2rem;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            animation: fadeInUp 0.8s ease-out 0.4s;
-            animation-fill-mode: both;
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 30px rgba(59, 130, 246, 0.3);
-        }
-
-        /* Features Section */
-        .features {
-            padding: 4rem 2rem;
-            background-color: var(--bg-dark-secondary);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
         }
 
         .container {
             max-width: 1200px;
             margin: 0 auto;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
         }
 
-        .section-title {
+        h1 {
             text-align: center;
+            color: #2d3748;
+            margin-bottom: 20px;
             font-size: 2.5rem;
-            margin-bottom: 3rem;
-            color: var(--text-primary);
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
-        .features-grid {
+        .sticky-header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 25px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 15px;
+            color: white;
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+            margin-bottom: 30px;
+            backdrop-filter: blur(10px);
+        }
+
+        .header-left {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+        }
+
+        .header-stat {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 10px 20px;
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+            min-width: 100px;
+        }
+
+        .header-stat .stat-number {
+            font-size: 1.8rem;
+            font-weight: bold;
+            display: block;
+            margin-bottom: 2px;
+        }
+
+        .header-stat .stat-label {
+            font-size: 0.8rem;
+            opacity: 0.9;
+            font-weight: 500;
+        }
+
+        .share-btn {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            padding: 10px 20px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .share-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            border-color: rgba(255, 255, 255, 0.5);
+            transform: translateY(-2px);
+        }
+
+        .search-container {
+            margin-bottom: 30px;
+            position: relative;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 15px 20px;
+            border: 2px solid #e2e8f0;
+            border-radius: 50px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            background: white;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .search-input::placeholder {
+            color: #a0aec0;
+        }
+
+        .namespace-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 25px;
+            margin-bottom: 30px;
         }
 
-        .feature-card {
-            background-color: var(--bg-dark);
-            padding: 2rem;
-            border-radius: 12px;
-            border: 1px solid var(--border-color);
-            transition: transform 0.3s ease, border-color 0.3s ease;
+        .namespace-card {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
         }
 
-        .feature-card:hover {
+        .namespace-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .namespace-card:hover {
             transform: translateY(-5px);
-            border-color: var(--primary-color);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
         }
 
-        .feature-icon {
-            width: 60px;
-            height: 60px;
-            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+        .namespace-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .namespace-card.selected {
+            border-color: #667eea;
+            background: linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%);
+        }
+
+        .namespace-card.selected::before {
+            transform: scaleX(1);
+        }
+
+        .namespace-description {
+            color: #718096;
+            font-size: 0.9rem;
+            line-height: 1.4;
+            margin-bottom: 15px;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .credential-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            padding: 4px 10px;
             border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+
+        .credential-badge.required {
+            background: linear-gradient(45deg, #f56565, #fc8181);
+            color: white;
+        }
+
+        .credential-badge.not-required {
+            background: #e6fffa;
+            color: #00b894;
+            border: 1px solid #81e6d9;
+        }
+
+        .routes-preview {
+            margin-bottom: 15px;
+        }
+
+        .routes-preview-toggle {
+            background: none;
+            border: none;
+            color: #667eea;
+            font-size: 0.85rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-weight: 500;
+            transition: color 0.2s ease;
+        }
+
+        .routes-preview-toggle:hover {
+            color: #5a67d8;
+        }
+
+        .routes-preview-toggle .arrow {
+            transition: transform 0.2s ease;
+        }
+
+        .routes-preview-toggle.expanded .arrow {
+            transform: rotate(90deg);
+        }
+
+        .namespace-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        .namespace-name {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #2d3748;
+            margin: 0;
+        }
+
+        .namespace-toggle {
+            position: relative;
+            width: 90px;
+            height: 35px;
+            background: #e2e8f0;
+            border-radius: 35px;
+            cursor: pointer;
+            transition: all 0.3s ease;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-bottom: 1rem;
-            font-size: 1.5rem;
         }
 
-        .feature-card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            color: var(--text-primary);
+        .toggle-slider {
+            position: absolute;
+            width: 28px;
+            height: 28px;
+            background: white;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+            left: 4px;
+            top: 50%;
+            transform: translateY(-50%);
         }
 
-        .feature-card p {
-            color: var(--text-secondary);
-            line-height: 1.8;
+        .toggle-text {
+            font-size: 11px;
+            font-weight: 600;
+            color: #718096;
+            z-index: 1;
+            transition: all 0.3s ease;
         }
 
-        /* About Section */
-        .about {
-            padding: 4rem 2rem;
-            background-color: var(--bg-dark);
+        .namespace-toggle.disabled {
+            background: #f56565;
         }
 
-        .about-content {
-            max-width: 800px;
-            margin: 0 auto;
+        .namespace-toggle.disabled .toggle-slider {
+            left: 4px;
         }
 
-        .about-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 3rem;
-            margin-top: 3rem;
+        .namespace-toggle.disabled .toggle-text {
+            color: white;
         }
 
-        .about-item {
-            text-align: center;
+        .namespace-toggle.manual {
+            background: linear-gradient(45deg, #ed8936, #f6ad55);
         }
 
-        .about-item h3 {
-            color: var(--secondary-color);
-            font-size: 1.3rem;
-            margin-bottom: 1rem;
+        .namespace-toggle.manual .toggle-slider {
+            left: 50%;
+            transform: translate(-50%, -50%);
         }
 
-        .about-item p {
-            color: var(--text-secondary);
-            line-height: 1.8;
+        .namespace-toggle.manual .toggle-text {
+            color: white;
         }
 
-        .code-block {
-            background-color: var(--bg-dark-tertiary);
-            border: 1px solid var(--border-color);
+        .namespace-toggle.enabled {
+            background: linear-gradient(45deg, #48bb78, #68d391);
+        }
+
+        .namespace-toggle.enabled .toggle-slider {
+            left: calc(100% - 32px);
+        }
+
+        .namespace-toggle.enabled .toggle-text {
+            color: white;
+        }
+
+        .route-count {
+            font-size: 0.9rem;
+            color: #718096;
+            margin-bottom: 15px;
+        }
+
+        .routes-container {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            border-radius: 10px;
+            background: #f8fafc;
+        }
+
+        .routes-container.expanded {
+            max-height: 300px;
+            overflow-y: auto;
+            padding: 10px;
+        }
+
+        .route-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 15px;
+            margin-bottom: 8px;
+            background: white;
             border-radius: 8px;
-            padding: 1rem;
-            margin: 1rem 0;
-            font-family: 'Courier New', monospace;
-            color: var(--secondary-color);
-            overflow-x: auto;
+            transition: all 0.2s ease;
+            border-left: 3px solid transparent;
         }
 
-        /* Stats Section */
-        .stats {
-            background-color: var(--bg-dark-secondary);
-            padding: 3rem 2rem;
+        .route-item:hover {
+            background: #f1f5f9;
+            border-left-color: #667eea;
+        }
+
+        .route-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .route-name {
+            font-weight: 500;
+            color: #2d3748;
+            flex: 1;
+        }
+
+        .route-toggle {
+            position: relative;
+            width: 44px;
+            height: 24px;
+        }
+
+        .route-toggle input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .route-toggle-slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #cbd5e0;
+            transition: 0.3s;
+            border-radius: 24px;
+        }
+
+        .route-toggle-slider:before {
+            position: absolute;
+            content: "";
+            height: 18px;
+            width: 18px;
+            left: 3px;
+            bottom: 3px;
+            background-color: white;
+            transition: 0.3s;
+            border-radius: 50%;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+        }
+
+        .route-toggle input:checked + .route-toggle-slider {
+            background: linear-gradient(45deg, #48bb78, #38a169);
+        }
+
+        .route-toggle input:checked + .route-toggle-slider:before {
+            transform: translateX(20px);
+        }
+
+        .stats-container {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 15px;
+            margin-top: 30px;
             text-align: center;
         }
 
         .stats-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 2rem;
-            max-width: 800px;
-            margin: 0 auto;
+            gap: 20px;
+            margin-top: 20px;
         }
 
         .stat-item {
-            padding: 1.5rem;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
         }
 
         .stat-number {
-            font-size: 2.5rem;
+            font-size: 2rem;
             font-weight: bold;
-            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            display: block;
         }
 
         .stat-label {
-            color: var(--text-secondary);
-            margin-top: 0.5rem;
+            font-size: 0.9rem;
+            opacity: 0.9;
         }
 
-        /* Contributing Section */
-        .contributing {
-            padding: 4rem 2rem;
-            background-color: var(--bg-dark);
+        .hidden {
+            display: none;
+        }
+
+        .no-results {
             text-align: center;
+            padding: 50px;
+            color: #718096;
+            font-size: 1.1rem;
         }
 
-        .contributing-content {
-            max-width: 800px;
-            margin: 0 auto;
+            @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+            }
+            
+            .namespace-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+
+            .export-buttons {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .selected-routes-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+
+            .sticky-header {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
+
+            .header-left {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .header-stat {
+                min-width: auto;
+            }
         }
 
-        .contributing-links {
+        .selected-routes-container {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            margin-top: 30px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+            border: 2px solid #e2e8f0;
+        }
+
+        .selected-routes-header {
             display: flex;
-            gap: 2rem;
-            justify-content: center;
-            margin-top: 2rem;
-            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #f1f5f9;
         }
 
-        .repo-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 0.75rem 1.5rem;
-            background-color: var(--bg-dark-secondary);
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            color: var(--text-primary);
-            text-decoration: none;
+        .selected-routes-header h2 {
+            color: #2d3748;
+            margin: 0;
+            font-size: 1.8rem;
+        }
+
+        .export-buttons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .export-btn {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+        }
+
+        .export-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        .export-btn:active {
+            transform: translateY(0);
+        }
+
+        .selected-routes-content {
+            min-height: 100px;
+        }
+
+        .no-selection {
+            text-align: center;
+            padding: 40px;
+            color: #718096;
+        }
+
+        .no-selection p {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+
+        .no-selection small {
+            color: #a0aec0;
+            font-size: 0.9rem;
+        }
+
+        .namespace-group {
+            margin-bottom: 30px;
+            background: #f8fafc;
+            border-radius: 12px;
+            padding: 20px;
+            border-left: 4px solid transparent;
             transition: all 0.3s ease;
         }
 
-        .repo-link:hover {
-            border-color: var(--primary-color);
+        .namespace-group.enabled {
+            border-left-color: #48bb78;
+            background: linear-gradient(135deg, #f0fff4 0%, #e6fffa 100%);
+        }
+
+        .namespace-group.manual {
+            border-left-color: #ed8936;
+            background: linear-gradient(135deg, #fffaf0 0%, #fef5e7 100%);
+        }
+
+        .namespace-group-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .namespace-group-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #2d3748;
+            margin: 0;
+        }
+
+        .namespace-status-badge {
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .namespace-status-badge.enabled {
+            background: #48bb78;
+            color: white;
+        }
+
+        .namespace-status-badge.manual {
+            background: #ed8936;
+            color: white;
+        }
+
+        .routes-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 10px;
+        }
+
+        .route-badge {
+            background: white;
+            padding: 12px 16px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            font-size: 13px;
+            color: #2d3748;
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            transition: all 0.2s ease;
+        }
+
+        .route-badge:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .route-method {
+            font-weight: bold;
+            margin-right: 8px;
+        }
+
+        .route-method.get { color: #48bb78; }
+        .route-method.post { color: #4299e1; }
+        .route-method.put { color: #ed8936; }
+        .route-method.delete { color: #f56565; }
+
+        .config-generator-container {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            margin-top: 30px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+            border: 2px solid #e2e8f0;
+        }
+
+        .config-generator-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #f1f5f9;
+        }
+
+        .config-generator-header h2 {
+            color: #2d3748;
+            margin: 0;
+            font-size: 1.8rem;
+        }
+
+        .config-buttons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .config-btn {
+            border: none;
+            padding: 12px 20px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            background: #f7fafc;
+            color: #4a5568;
+            border: 2px solid #e2e8f0;
+        }
+
+        .config-btn.primary {
+            background: linear-gradient(45deg, #38a169, #48bb78);
+            color: white;
+            border-color: transparent;
+            box-shadow: 0 4px 12px rgba(56, 161, 105, 0.3);
+        }
+
+        .config-btn:hover {
             transform: translateY(-2px);
         }
 
-        /* Footer */
-        footer {
-            background-color: var(--bg-dark-secondary);
-            color: var(--text-secondary);
-            padding: 2rem;
+        .config-btn.primary:hover {
+            box-shadow: 0 6px 20px rgba(56, 161, 105, 0.4);
+        }
+
+        .config-btn:not(.primary):hover {
+            background: #edf2f7;
+            border-color: #cbd5e0;
+        }
+
+        .config-btn:active {
+            transform: translateY(0);
+        }
+
+        .config-content {
+            position: relative;
+        }
+
+        .config-preview {
+            background: #1a202c;
+            border-radius: 12px;
+            padding: 25px;
+            font-family: 'Courier New', monospace;
+            font-size: 13px;
+            line-height: 1.6;
+            color: #e2e8f0;
+            max-height: 500px;
+            overflow-y: auto;
+            border: 1px solid #2d3748;
+            position: relative;
+        }
+
+        .config-placeholder {
             text-align: center;
-            border-top: 1px solid var(--border-color);
+            padding: 40px;
+            color: #a0aec0;
         }
 
-        .footer-links {
+        .config-placeholder p {
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        .config-placeholder small {
+            color: #718096;
+            font-size: 0.9rem;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        .json-content {
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+
+        .json-key {
+            color: #63b3ed;
+        }
+
+        .json-string {
+            color: #68d391;
+        }
+
+        .json-number {
+            color: #f6ad55;
+        }
+
+        .json-boolean {
+            color: #fc8181;
+        }
+
+        .config-btn.share,
+        .export-btn.share {
+            background: linear-gradient(45deg, #9f7aea, #b794f6);
+            color: white;
+            border-color: transparent;
+            box-shadow: 0 4px 12px rgba(159, 122, 234, 0.3);
+        }
+
+        .config-btn.share:hover,
+        .export-btn.share:hover {
+            box-shadow: 0 6px 20px rgba(159, 122, 234, 0.4);
+        }
+
+        .url-notification {
+            position: sticky;
+            top: 10px;
+            left: 50%;
+            transform: translateX(-50%) translateY(-100px);
+            background: linear-gradient(45deg, #48bb78, #68d391);
+            color: white;
+            padding: 15px 25px;
+            border-radius: 10px;
+            box-shadow: 0 8px 25px rgba(72, 187, 120, 0.3);
+            z-index: 9999;
+            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            max-width: 90vw;
+            text-align: center;
+            margin: 0 auto;
+            width: fit-content;
+        }
+
+        .url-notification.show {
+            transform: translateX(-50%) translateY(0);
+        }
+
+        .url-notification .close-btn {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 18px;
+            cursor: pointer;
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            padding: 0;
+            line-height: 1;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
             display: flex;
+            align-items: center;
             justify-content: center;
-            gap: 2rem;
-            margin-bottom: 1rem;
+            transition: background 0.2s ease;
         }
 
-        .footer-links a {
-            color: var(--text-secondary);
-            text-decoration: none;
-            transition: color 0.3s ease;
+        .url-notification .close-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
         }
 
-        .footer-links a:hover {
-            color: var(--secondary-color);
+        .config-restored-banner {
+            background: linear-gradient(45deg, #4299e1, #63b3ed);
+            color: white;
+            padding: 15px;
+            text-align: center;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            display: none;
+            animation: slideInDown 0.5s ease;
         }
 
-        /* Animations */
-        @keyframes fadeInUp {
+        @keyframes slideInDown {
             from {
                 opacity: 0;
-                transform: translateY(30px);
+                transform: translateY(-20px);
             }
             to {
                 opacity: 1;
@@ -379,239 +869,961 @@
             }
         }
 
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-            }
+        .config-restored-banner .dismiss-btn {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 15px;
+            cursor: pointer;
+            margin-left: 15px;
+            font-size: 12px;
+            transition: background 0.2s ease;
+        }
 
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-
-            .hero .subtitle {
-                font-size: 1.2rem;
-            }
-
-            .features-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .contributing-links {
-                flex-direction: column;
-                align-items: center;
-            }
+        .config-restored-banner .dismiss-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
         }
     </style>
 </head>
 <body>
-    <!-- Navigation -->
-    <nav>
-        <div class="nav-container">
-            <a href="#" class="logo">FlowMCP</a>
-            <ul class="nav-links">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#features">Features</a></li>
-                <li><a href="#usage">Usage</a></li>
-                <li><a href="#contributing">Contributing</a></li>
-                <li><a href="https://github.com/flowmcp/flowmcp">GitHub</a></li>
-            </ul>
+    <div class="container">
+        <div id="configRestoredBanner" class="config-restored-banner">
+            <span>✨ Konfiguration aus geteiltem Link geladen!</span>
+            <button class="dismiss-btn" onclick="dismissRestoredBanner()">Verstanden</button>
         </div>
-    </nav>
-
-    <!-- Hero Section -->
-    <section class="hero" id="home">
-        <div class="hero-content">
-            <h1>FlowMCP</h1>
-            <p class="subtitle">Adaptive API Integration for AI</p>
-            <p>
-                An open-source framework for turning existing web APIs into a standardized 
-                Model Context Protocol (MCP) interface, enabling AI assistants to access 
-                web API data and services in a structured, consistent manner.
-            </p>
-            <a href="https://github.com/flowmcp/flowmcp" class="btn-primary">
-                🌐 View on GitHub
-            </a>
-        </div>
-    </section>
-
-    <!-- What is FlowMCP Section -->
-    <section class="features" id="about">
-        <div class="container">
-            <h2 class="section-title">What is FlowMCP?</h2>
-            <div class="about-content">
-                <p style="text-align: center; font-size: 1.2rem; margin-bottom: 3rem; color: var(--text-secondary);">
-                    <strong>FlowMCP</strong> acts as a "universal adapter" between AI and external APIs, 
-                    making it easier to bring real-world data (especially from Web3/blockchain services) 
-                    into AI-driven tools.
-                </p>
+        
+        <h1>Namespace & Route Manager</h1>
+        
+        <div class="sticky-header">
+            <div class="header-left">
+                <div class="header-stat">
+                    <span id="topActiveNamespaces" class="stat-number">0</span>
+                    <span class="stat-label">Aktive Namespaces</span>
+                </div>
+                <div class="header-stat">
+                    <span id="topActiveRoutes" class="stat-number">0</span>
+                    <span class="stat-label">Aktive Routen</span>
+                </div>
+            </div>
+            <div class="header-right">
+                <button id="shareConfigBtn" class="share-btn">URL teilen</button>
             </div>
         </div>
-    </section>
+        
+        <div class="search-container">
+            <input type="text" id="searchInput" class="search-input" placeholder="🔍 Nach Namespace suchen...">
+        </div>
 
-    <!-- Key Features Section -->
-    <section class="about" id="features">
-        <div class="container">
-            <h2 class="section-title">Key Features</h2>
-            <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon">📄</div>
-                    <h3>Declarative Schemas</h3>
-                    <p>APIs are defined in modular files describing endpoints, parameters, and expected results.</p>
+        <div id="namespaceContainer" class="namespace-grid"></div>
+        
+        <div id="noResults" class="no-results hidden">
+            <p>Keine Namespaces gefunden 🤷‍♂️</p>
+        </div>
+
+
+        <div class="selected-routes-container">
+            <div class="selected-routes-header">
+                <h2>Ausgewählte Routen</h2>
+                <div class="export-buttons">
+                    <button id="copyListBtn" class="export-btn">📋 Liste kopieren</button>
                 </div>
-                <div class="feature-card">
-                    <div class="feature-icon">⚙️</div>
-                    <h3>Pre/Post Processors</h3>
-                    <p>Normalize data, format responses, or modify inputs as needed for seamless integration.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">✅</div>
-                    <h3>Test Coverage</h3>
-                    <p>Each schema includes automated test cases to verify functionality and ensure reliability.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🤖</div>
-                    <h3>AI-Friendly Output</h3>
-                    <p>Structured and natural-language responses are returned for easy LLM integration.</p>
+            </div>
+            <div id="selectedRoutesContent" class="selected-routes-content">
+                <div class="no-selection">
+                    <p>🤷‍♂️ Keine Routen ausgewählt</p>
+                    <small>Aktivieren Sie Namespaces oder einzelne Routen, um sie hier zu sehen.</small>
                 </div>
             </div>
         </div>
-    </section>
 
-    <!-- Stats Section -->
-    <section class="stats">
-        <div class="container">
-            <div class="stats-grid">
-                <div class="stat-item">
-                    <div class="stat-number">200+</div>
-                    <div class="stat-label">Available Tools</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-number">Open Source</div>
-                    <div class="stat-label">Community Driven</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-number">Web3 Ready</div>
-                    <div class="stat-label">Blockchain Integration</div>
+        <div class="config-generator-container">
+            <div class="config-generator-header">
+                <h2>MCP Server Konfiguration</h2>
+                <div class="config-buttons">
+                    <button id="copyConfigBtn" class="config-btn">📋 Config kopieren</button>
+                    <button id="shareUrlBtn" class="config-btn share">🔗 URL teilen</button>
                 </div>
             </div>
-        </div>
-    </section>
-
-    <!-- Usage Section -->
-    <section class="features" id="usage">
-        <div class="container">
-            <h2 class="section-title">Usage & Schema Library</h2>
-            <div class="about-content">
-                <p style="text-align: center; margin-bottom: 2rem; color: var(--text-secondary);">
-                    Run a local or remote MCP server and load schemas from the official schema repository. 
-                    The server exposes API routes as named "tools" an AI can invoke.
-                </p>
-                <div class="code-block">
-                    # Install and run FlowMCP<br>
-                    npm install -g flowmcp<br>
-                    flowmcp start
-                </div>
-                <p style="text-align: center; margin-top: 2rem; color: var(--text-secondary);">
-                    Over <strong>200+ tools</strong> are available out of the box, covering:
-                </p>
-                <div class="about-grid" style="margin-top: 2rem;">
-                    <div class="about-item">
-                        <h3>CoinGecko</h3>
-                        <p>Cryptocurrency market data</p>
-                    </div>
-                    <div class="about-item">
-                        <h3>Chainlink</h3>
-                        <p>Oracle price feeds</p>
-                    </div>
-                    <div class="about-item">
-                        <h3>Moralis</h3>
-                        <p>Web3 data APIs</p>
-                    </div>
-                    <div class="about-item">
-                        <h3>Etherscan</h3>
-                        <p>Blockchain explorer data</p>
+            <div class="config-content">
+                <div class="config-preview" id="configPreview">
+                    <div class="config-placeholder">
+                        <p>🔧 Klicken Sie auf "Konfiguration generieren" um die MCP Server Config zu erstellen</p>
+                        <small>Die Konfiguration wird basierend auf Ihren ausgewählten Namespaces automatisch generiert.</small>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
-
-    <!-- Contributing Section -->
-    <section class="contributing" id="contributing">
-        <div class="container">
-            <h2 class="section-title">Contributing</h2>
-            <div class="contributing-content">
-                <p style="color: var(--text-secondary); margin-bottom: 2rem;">
-                    FlowMCP is open to contributions. You can submit new schemas or improve 
-                    existing ones via pull requests. Join our community in building the future 
-                    of AI-API integration.
-                </p>
-                <div class="contributing-links">
-                    <a href="https://github.com/flowmcp/flowmcp" class="repo-link">
-                        📦 Main Repository
-                    </a>
-                    <a href="https://github.com/flowmcp/flowmcp-schemas" class="repo-link">
-                        📚 Schema Repository
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer>
-        <div class="footer-links">
-            <a href="https://github.com/flowmcp/flowmcp">GitHub</a>
-            <a href="https://github.com/flowmcp/flowmcp-schemas">Schemas</a>
-            <a href="#contributing">Contribute</a>
-            <a href="https://github.com/flowmcp/flowmcp/issues">Support</a>
-        </div>
-        <p>&copy; 2024 FlowMCP. Open source project.</p>
-    </footer>
+    </div>
 
     <script>
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
-
-        // Add scroll effect to navigation
-        window.addEventListener('scroll', function() {
-            const nav = document.querySelector('nav');
-            if (window.scrollY > 50) {
-                nav.style.backgroundColor = 'rgba(15, 23, 42, 0.95)';
-            } else {
-                nav.style.backgroundColor = 'rgba(15, 23, 42, 0.8)';
+        // Beispiel-Daten für Namespaces und Routen
+        const namespacesData = [
+            {
+                name: "api/v1/users",
+                description: "Benutzerverwaltung - Erstellung, Bearbeitung und Verwaltung von Benutzerkonten",
+                requiresCredential: false,
+                credentialKey: null,
+                routes: ["GET /users", "POST /users", "PUT /users/:id", "DELETE /users/:id", "GET /users/:id/profile"]
+            },
+            {
+                name: "api/v1/products",
+                description: "Produktkatalog - Verwaltung von Produkten, Kategorien und Suchfunktionen",
+                requiresCredential: false,
+                credentialKey: null,
+                routes: ["GET /products", "POST /products", "PUT /products/:id", "DELETE /products/:id", "GET /products/search"]
+            },
+            {
+                name: "api/v1/orders",
+                description: "Bestellsystem - Komplette Bestellabwicklung und Zahlungsverarbeitung",
+                requiresCredential: true,
+                credentialKey: "PAYMENT_API_KEY",
+                routes: ["GET /orders", "POST /orders", "PUT /orders/:id", "DELETE /orders/:id", "GET /orders/:id/items", "POST /orders/:id/payment"]
+            },
+            {
+                name: "api/v2/auth",
+                description: "Authentifizierung - Login, Registrierung und Sitzungsverwaltung",
+                requiresCredential: true,
+                credentialKey: "AUTH_SECRET_KEY",
+                routes: ["POST /login", "POST /logout", "POST /refresh", "POST /register", "GET /profile"]
+            },
+            {
+                name: "api/v2/analytics",
+                description: "Datenanalytik - Berichte, Metriken und Event-Tracking für Business Intelligence",
+                requiresCredential: true,
+                credentialKey: "ANALYTICS_API_KEY",
+                routes: ["GET /analytics/dashboard", "GET /analytics/reports", "POST /analytics/events", "GET /analytics/metrics"]
+            },
+            {
+                name: "admin/dashboard",
+                description: "Administrationsbereich - Systemverwaltung und Konfigurationseinstellungen",
+                requiresCredential: false,
+                credentialKey: null,
+                routes: ["GET /admin", "GET /admin/users", "GET /admin/settings", "POST /admin/config"]
+            },
+            {
+                name: "webhooks/external",
+                description: "Externe Integrationen - Webhooks für Zahlungsanbieter und Drittdienste",
+                requiresCredential: true,
+                credentialKey: "WEBHOOK_SECRET",
+                routes: ["POST /webhooks/stripe", "POST /webhooks/paypal", "POST /webhooks/github"]
+            },
+            {
+                name: "blockchain/ethereum",
+                description: "Ethereum Blockchain Integration - Smart Contract Interaktion und Transaktionen",
+                requiresCredential: true,
+                credentialKey: "ETHERSCAN_API_KEY",
+                routes: ["GET /ethereum/balance", "POST /ethereum/transaction", "GET /ethereum/contracts"]
+            },
+            {
+                name: "social/twitter",
+                description: "Twitter API Integration - Social Media Monitoring und Posting",
+                requiresCredential: true,
+                credentialKey: "TWITTER_BEARER_TOKEN",
+                routes: ["GET /twitter/tweets", "POST /twitter/post", "GET /twitter/trends"]
             }
-        });
+        ];
 
-        // Animate stats on scroll
-        const observerOptions = {
-            threshold: 0.5,
-            rootMargin: '0px'
+        // Zustand für jeden Namespace und seine Routen
+        let namespaceStates = {};
+
+        // Namespace-Zustandstypen
+        const NAMESPACE_STATES = {
+            DISABLED: 'disabled',
+            MANUAL: 'manual', 
+            ENABLED: 'enabled'
         };
 
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.animation = 'fadeInUp 0.8s ease-out';
+        // Initialisierung der Zustände
+        function initializeStates() {
+            namespacesData.forEach(namespace => {
+                namespaceStates[namespace.name] = {
+                    state: NAMESPACE_STATES.DISABLED,
+                    routes: {}
+                };
+                namespace.routes.forEach(route => {
+                    namespaceStates[namespace.name].routes[route] = false;
+                });
+            });
+        }
+
+        // Namespace-State bestimmen basierend auf Route-Zuständen
+        function determineNamespaceState(namespaceName) {
+            const routes = namespaceStates[namespaceName].routes;
+            const routeValues = Object.values(routes);
+            const enabledCount = routeValues.filter(enabled => enabled).length;
+            
+            if (enabledCount === 0) {
+                return NAMESPACE_STATES.DISABLED;
+            } else if (enabledCount === routeValues.length) {
+                return NAMESPACE_STATES.ENABLED;
+            } else {
+                return NAMESPACE_STATES.MANUAL;
+            }
+        }
+
+        // Namespace-Toggle Handler (Zyklus durch die 3 Zustände)
+        function toggleNamespace(namespaceName) {
+            const currentState = namespaceStates[namespaceName].state;
+            let newState;
+            
+            switch (currentState) {
+                case NAMESPACE_STATES.DISABLED:
+                    newState = NAMESPACE_STATES.ENABLED;
+                    // Alle Routen aktivieren
+                    Object.keys(namespaceStates[namespaceName].routes).forEach(route => {
+                        namespaceStates[namespaceName].routes[route] = true;
+                    });
+                    break;
+                case NAMESPACE_STATES.ENABLED:
+                    newState = NAMESPACE_STATES.DISABLED;
+                    // Alle Routen deaktivieren
+                    Object.keys(namespaceStates[namespaceName].routes).forEach(route => {
+                        namespaceStates[namespaceName].routes[route] = false;
+                    });
+                    break;
+                case NAMESPACE_STATES.MANUAL:
+                    newState = NAMESPACE_STATES.DISABLED;
+                    // Alle Routen deaktivieren
+                    Object.keys(namespaceStates[namespaceName].routes).forEach(route => {
+                        namespaceStates[namespaceName].routes[route] = false;
+                    });
+                    break;
+            }
+            
+            namespaceStates[namespaceName].state = newState;
+            updateDisplay();
+            updateStats();
+        }
+
+        // Route-Toggle Handler
+        function toggleRoute(namespaceName, routeName) {
+            namespaceStates[namespaceName].routes[routeName] = !namespaceStates[namespaceName].routes[routeName];
+            
+            // Namespace-State automatisch bestimmen
+            namespaceStates[namespaceName].state = determineNamespaceState(namespaceName);
+            
+            updateDisplay();
+            updateStats();
+        }
+
+        // Namespace-Karte erstellen
+        function createNamespaceCard(namespace) {
+            const state = namespaceStates[namespace.name].state;
+            const activeRoutes = Object.values(namespaceStates[namespace.name].routes).filter(enabled => enabled).length;
+            
+            let stateText = '';
+            let stateClass = '';
+            
+            switch (state) {
+                case NAMESPACE_STATES.DISABLED:
+                    stateText = 'AUS';
+                    stateClass = 'disabled';
+                    break;
+                case NAMESPACE_STATES.MANUAL:
+                    stateText = 'MANUELL';
+                    stateClass = 'manual';
+                    break;
+                case NAMESPACE_STATES.ENABLED:
+                    stateText = 'AN';
+                    stateClass = 'enabled';
+                    break;
+            }
+
+            const credentialBadge = namespace.requiresCredential 
+                ? `<div class="credential-badge required">🔐 Credential erforderlich</div>`
+                : `<div class="credential-badge not-required">🔓 Kein Credential</div>`;
+            
+            return `
+                <div class="namespace-card ${state !== NAMESPACE_STATES.DISABLED ? 'selected' : ''}" data-namespace="${namespace.name}">
+                    <div class="namespace-header">
+                        <h3 class="namespace-name">${namespace.name}</h3>
+                        <div class="namespace-toggle ${stateClass}" onclick="toggleNamespace('${namespace.name}')">
+                            <div class="toggle-slider"></div>
+                            <span class="toggle-text">${stateText}</span>
+                        </div>
+                    </div>
+                    <div class="namespace-description">${namespace.description}</div>
+                    ${credentialBadge}
+                    <div class="route-count">
+                        ${activeRoutes}/${namespace.routes.length} Routen aktiviert
+                    </div>
+                    <div class="routes-preview">
+                        <button class="routes-preview-toggle" onclick="toggleRoutesPreview(event, '${namespace.name}')">
+                            <span class="arrow">▶</span>
+                            <span>Routen anzeigen</span>
+                        </button>
+                    </div>
+                    <div class="routes-container" id="routes-${namespace.name}">
+                        ${namespace.routes.map(route => `
+                            <div class="route-item">
+                                <span class="route-name">${route}</span>
+                                <label class="route-toggle">
+                                    <input type="checkbox" ${namespaceStates[namespace.name].routes[route] ? 'checked' : ''} 
+                                           onchange="toggleRoute('${namespace.name}', '${route}')">
+                                    <span class="route-toggle-slider"></span>
+                                </label>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+            `;
+        }
+
+        // Toggle für Routen-Preview
+        function toggleRoutesPreview(event, namespaceName) {
+            event.stopPropagation();
+            const container = document.getElementById(`routes-${namespaceName}`);
+            const button = event.currentTarget;
+            const arrow = button.querySelector('.arrow');
+            const text = button.querySelector('span:last-child');
+            
+            if (container.classList.contains('expanded')) {
+                container.classList.remove('expanded');
+                button.classList.remove('expanded');
+                arrow.style.transform = 'rotate(0deg)';
+                text.textContent = 'Routen anzeigen';
+            } else {
+                container.classList.add('expanded');
+                button.classList.add('expanded');
+                arrow.style.transform = 'rotate(90deg)';
+                text.textContent = 'Routen ausblenden';
+            }
+        }
+
+        // Anzeige aktualisieren
+        function updateDisplay() {
+            const container = document.getElementById('namespaceContainer');
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            
+            let filteredNamespaces = namespacesData.filter(namespace => 
+                namespace.name.toLowerCase().includes(searchTerm)
+            );
+            
+            if (filteredNamespaces.length === 0) {
+                container.innerHTML = '';
+                document.getElementById('noResults').classList.remove('hidden');
+            } else {
+                document.getElementById('noResults').classList.add('hidden');
+                container.innerHTML = filteredNamespaces.map(createNamespaceCard).join('');
+            }
+        }
+
+        // Statistiken aktualisieren
+        function updateStats() {
+            const totalNamespaces = namespacesData.length;
+            const enabledNamespaces = Object.values(namespaceStates).filter(ns => ns.state === NAMESPACE_STATES.ENABLED).length;
+            const manualNamespaces = Object.values(namespaceStates).filter(ns => ns.state === NAMESPACE_STATES.MANUAL).length;
+            const activeNamespaces = enabledNamespaces + manualNamespaces;
+            
+            let totalRoutes = 0;
+            let activeRoutes = 0;
+            
+            namespacesData.forEach(namespace => {
+                totalRoutes += namespace.routes.length;
+                activeRoutes += Object.values(namespaceStates[namespace.name].routes).filter(enabled => enabled).length;
+            });
+            
+            // Header-Statistiken aktualisieren
+            document.getElementById('topActiveNamespaces').textContent = activeNamespaces;
+            document.getElementById('topActiveRoutes').textContent = activeRoutes;
+            
+            // Ausgewählte Routen aktualisieren
+            updateSelectedRoutes();
+            
+            // MCP Konfiguration automatisch generieren
+            autoGenerateMcpConfig();
+            
+            // URL automatisch aktualisieren
+            autoUpdateUrl();
+        }
+
+        // Ausgewählte Routen anzeigen
+        function updateSelectedRoutes() {
+            const container = document.getElementById('selectedRoutesContent');
+            
+            // Sicherheitscheck
+            if (!container) {
+                console.error('Selected routes container not found');
+                return;
+            }
+            
+            const selectedRoutes = getSelectedRoutes();
+            
+            if (selectedRoutes.length === 0) {
+                container.innerHTML = `
+                    <div class="no-selection">
+                        <p>🤷‍♂️ Keine Routen ausgewählt</p>
+                        <small>Aktivieren Sie Namespaces oder einzelne Routen, um sie hier zu sehen.</small>
+                    </div>
+                `;
+                return;
+            }
+
+            // Gruppiere Routen nach Namespace
+            const groupedRoutes = {};
+            selectedRoutes.forEach(item => {
+                if (!groupedRoutes[item.namespace]) {
+                    groupedRoutes[item.namespace] = {
+                        routes: [],
+                        state: namespaceStates[item.namespace].state
+                    };
+                }
+                groupedRoutes[item.namespace].routes.push(item.route);
+            });
+
+            let html = '';
+            Object.entries(groupedRoutes).forEach(([namespace, data]) => {
+                const stateClass = data.state === NAMESPACE_STATES.ENABLED ? 'enabled' : 'manual';
+                const stateText = data.state === NAMESPACE_STATES.ENABLED ? 'Vollständig' : 'Manuell';
+                
+                html += `
+                    <div class="namespace-group ${stateClass}">
+                        <div class="namespace-group-header">
+                            <h3 class="namespace-group-title">${namespace}</h3>
+                            <span class="namespace-status-badge ${stateClass}">${stateText}</span>
+                        </div>
+                        <div class="routes-list">
+                            ${data.routes.map(route => {
+                                const method = route.split(' ')[0];
+                                const path = route.split(' ')[1] || route;
+                                return `
+                                    <div class="route-badge">
+                                        <span class="route-method ${method.toLowerCase()}">${method}</span>
+                                        <span class="route-path">${path}</span>
+                                    </div>
+                                `;
+                            }).join('')}
+                        </div>
+                    </div>
+                `;
+            });
+
+            container.innerHTML = html;
+        }
+
+        // Alle ausgewählten Routen sammeln
+        function getSelectedRoutes() {
+            const selectedRoutes = [];
+            
+            namespacesData.forEach(namespace => {
+                Object.entries(namespaceStates[namespace.name].routes).forEach(([route, enabled]) => {
+                    if (enabled) {
+                        selectedRoutes.push({
+                            namespace: namespace.name,
+                            route: route
+                        });
+                    }
+                });
+            });
+            
+            return selectedRoutes;
+        }
+
+        // JSON Export
+        function exportToJson() {
+            const selectedRoutes = getSelectedRoutes();
+            const exportData = {
+                timestamp: new Date().toISOString(),
+                totalSelected: selectedRoutes.length,
+                namespaces: {}
+            };
+
+            selectedRoutes.forEach(item => {
+                if (!exportData.namespaces[item.namespace]) {
+                    exportData.namespaces[item.namespace] = {
+                        state: namespaceStates[item.namespace].state,
+                        routes: []
+                    };
+                }
+                exportData.namespaces[item.namespace].routes.push(item.route);
+            });
+
+            const jsonString = JSON.stringify(exportData, null, 2);
+            const blob = new Blob([jsonString], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `selected-routes-${new Date().toISOString().split('T')[0]}.json`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+
+        // Liste kopieren
+        function copyToClipboard() {
+            const selectedRoutes = getSelectedRoutes();
+            
+            if (selectedRoutes.length === 0) {
+                alert('Keine Routen zum Kopieren ausgewählt!');
+                return;
+            }
+
+            let text = `Ausgewählte Routen (${selectedRoutes.length}):\n\n`;
+            
+            const groupedRoutes = {};
+            selectedRoutes.forEach(item => {
+                if (!groupedRoutes[item.namespace]) {
+                    groupedRoutes[item.namespace] = [];
+                }
+                groupedRoutes[item.namespace].push(item.route);
+            });
+
+            Object.entries(groupedRoutes).forEach(([namespace, routes]) => {
+                text += `${namespace}:\n`;
+                routes.forEach(route => {
+                    text += `  - ${route}\n`;
+                });
+                text += '\n';
+            });
+
+            navigator.clipboard.writeText(text).then(() => {
+                // Feedback für erfolgreiche Kopie
+                const btn = document.getElementById('copyListBtn');
+                const originalText = btn.textContent;
+                btn.textContent = '✅ Kopiert!';
+                btn.style.background = '#48bb78';
+                
+                setTimeout(() => {
+                    btn.textContent = originalText;
+                    btn.style.background = '';
+                }, 2000);
+            }).catch(() => {
+                alert('Fehler beim Kopieren in die Zwischenablage');
+            });
+        }
+
+        // ============= URL SHARING FUNKTIONEN =============
+
+        // Aktuellen Zustand in URL kodieren
+        function encodeStateToUrl() {
+            const state = {
+                namespaces: {},
+                version: 1 // Für zukünftige Kompatibilität
+            };
+
+            // Namespace-Zustände sammeln
+            namespacesData.forEach(namespace => {
+                const nsState = namespaceStates[namespace.name];
+                if (nsState.state !== NAMESPACE_STATES.DISABLED) {
+                    state.namespaces[namespace.name] = {
+                        state: nsState.state,
+                        routes: nsState.routes
+                    };
                 }
             });
-        }, observerOptions);
 
-        document.querySelectorAll('.stat-item').forEach(el => {
-            observer.observe(el);
-        });
+            // JSON zu Base64 kodieren
+            const jsonString = JSON.stringify(state);
+            const base64String = btoa(unescape(encodeURIComponent(jsonString)));
+            
+            return base64String;
+        }
+
+        // Zustand aus URL dekodieren
+        function decodeStateFromUrl(encodedState) {
+            try {
+                const jsonString = decodeURIComponent(escape(atob(encodedState)));
+                const state = JSON.parse(jsonString);
+                
+                // Validierung
+                if (!state.namespaces || typeof state.namespaces !== 'object') {
+                    throw new Error('Invalid state format');
+                }
+
+                return state;
+            } catch (error) {
+                console.error('Error decoding state from URL:', error);
+                return null;
+            }
+        }
+
+        // Zustand aus URL laden
+        function loadStateFromUrl() {
+            const hash = window.location.hash;
+            
+            if (hash.startsWith('#config=')) {
+                const encodedState = hash.substring(8); // Remove '#config='
+                const state = decodeStateFromUrl(encodedState);
+                
+                if (state) {
+                    applyStateFromUrl(state);
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        // Zustand auf Interface anwenden
+        function applyStateFromUrl(state) {
+            // Erst alle Zustände zurücksetzen
+            initializeStates();
+            
+            // Dann die geladenen Zustände anwenden
+            Object.entries(state.namespaces).forEach(([namespaceName, nsState]) => {
+                if (namespaceStates[namespaceName]) {
+                    namespaceStates[namespaceName].state = nsState.state;
+                    Object.assign(namespaceStates[namespaceName].routes, nsState.routes);
+                }
+            });
+
+            // Interface aktualisieren
+            updateDisplay();
+            updateStats();
+            
+            // Banner anzeigen
+            showRestoredBanner();
+        }
+
+        // URL in Zwischenablage kopieren und aktualisieren
+        function updateUrlAndShare(showNotification = true) {
+            const encodedState = encodeStateToUrl();
+            const currentUrl = window.location.href.split('#')[0];
+            const shareUrl = `${currentUrl}#config=${encodedState}`;
+            
+            // URL aktualisieren ohne Reload
+            window.history.replaceState(null, null, shareUrl);
+            
+            if (showNotification) {
+                return shareUrl;
+            }
+        }
+
+        // Konfiguration teilen (für Routen-Bereich)
+        function shareConfiguration() {
+            const activeNamespaces = getActiveNamespaces();
+            
+            if (activeNamespaces.length === 0) {
+                showUrlNotification('⚠️ Keine Namespaces ausgewählt!', 'Bitte wählen Sie mindestens einen Namespace aus, um einen Link zu generieren.');
+                return;
+            }
+
+            const shareUrl = updateUrlAndShare();
+            
+            navigator.clipboard.writeText(shareUrl).then(() => {
+                showUrlNotification('🔗 Link kopiert!', 'Der teilbare Link wurde in Ihre Zwischenablage kopiert.');
+            }).catch(() => {
+                showUrlNotification('🔗 Link generiert!', shareUrl);
+            });
+        }
+
+        // URL teilen (für Config-Bereich)
+        function shareUrlConfiguration() {
+            const activeNamespaces = getActiveNamespaces();
+            
+            if (activeNamespaces.length === 0) {
+                showUrlNotification('⚠️ Keine Namespaces ausgewählt!', 'Bitte wählen Sie mindestens einen Namespace aus, um einen Link zu generieren.');
+                return;
+            }
+
+            const shareUrl = updateUrlAndShare();
+            
+            navigator.clipboard.writeText(shareUrl).then(() => {
+                showUrlNotification('🔗 URL kopiert!', 'Die teilbare URL wurde in Ihre Zwischenablage kopiert.');
+            }).catch(() => {
+                showUrlNotification('🔗 URL generiert!', shareUrl);
+            });
+        }
+
+        // URL-Benachrichtigung anzeigen
+        function showUrlNotification(title, message) {
+            ensureDOMReady(() => {
+                const notification = document.getElementById('urlNotification');
+                const content = document.getElementById('notificationContent');
+                
+                // Sicherheitscheck ob Elemente existieren
+                if (!notification || !content) {
+                    console.warn('Notification elements not found, retrying...');
+                    // Retry nach kurzer Verzögerung
+                    setTimeout(() => showUrlNotification(title, message), 100);
+                    return;
+                }
+                
+                content.innerHTML = `
+                    <div style="font-weight: 600; margin-bottom: 5px; padding-right: 30px;">${title}</div>
+                    <div style="font-size: 13px; opacity: 0.9; padding-right: 30px;">${message}</div>
+                `;
+                
+                notification.classList.add('show');
+                
+                // Auto-Hide nach 4 Sekunden
+                setTimeout(() => {
+                    hideUrlNotification();
+                }, 4000);
+            });
+        }
+
+        // URL-Benachrichtigung verstecken
+        function hideUrlNotification() {
+            ensureDOMReady(() => {
+                const notification = document.getElementById('urlNotification');
+                if (notification) {
+                    notification.classList.remove('show');
+                }
+            });
+        }
+
+        // Banner für geladene Konfiguration anzeigen
+        function showRestoredBanner() {
+            ensureDOMReady(() => {
+                const banner = document.getElementById('configRestoredBanner');
+                if (banner) {
+                    banner.style.display = 'block';
+                }
+            });
+        }
+
+        // Banner für geladene Konfiguration verstecken
+        function dismissRestoredBanner() {
+            const banner = document.getElementById('configRestoredBanner');
+            if (banner) {
+                banner.style.display = 'none';
+            }
+        }
+
+        // URL automatisch bei Änderungen aktualisieren
+        function autoUpdateUrl() {
+            const activeNamespaces = getActiveNamespaces();
+            if (activeNamespaces.length > 0) {
+                updateUrlAndShare(false);
+            }
+        }
+
+        // Event Listeners für Export-Buttons
+        function setupExportButtons() {
+            document.getElementById('copyListBtn').addEventListener('click', copyToClipboard);
+            document.getElementById('copyConfigBtn').addEventListener('click', copyMcpConfig);
+            document.getElementById('shareConfigBtn').addEventListener('click', shareConfiguration);
+            document.getElementById('shareUrlBtn').addEventListener('click', shareUrlConfiguration);
+        }
+
+
+        // Aktive Namespaces sammeln
+        function getActiveNamespaces() {
+            return namespacesData
+                .filter(namespace => {
+                    const state = namespaceStates[namespace.name].state;
+                    return state === NAMESPACE_STATES.ENABLED || state === NAMESPACE_STATES.MANUAL;
+                })
+                .map(namespace => namespace.name);
+        }
+
+        // Benötigte Credentials sammeln (nur die tatsächlich erforderlichen)
+        function getRequiredCredentials() {
+            const credentials = {};
+
+            // Nur Namespace-spezifische Credentials hinzufügen, die tatsächlich aktiv sind
+            namespacesData.forEach(namespace => {
+                const state = namespaceStates[namespace.name].state;
+                if ((state === NAMESPACE_STATES.ENABLED || state === NAMESPACE_STATES.MANUAL) && 
+                    namespace.requiresCredential && 
+                    namespace.credentialKey) {
+                    credentials[namespace.credentialKey] = "";
+                }
+            });
+
+            return credentials;
+        }
+
+        // Automatische MCP Konfiguration (wird bei jeder Änderung aufgerufen)
+        function autoGenerateMcpConfig() {
+            const activeNamespaces = getActiveNamespaces();
+            const requiredCredentials = getRequiredCredentials();
+            
+            const config = {
+                "globalShortcut": "",
+                "mcpServers": {
+                    "FlowMCP": {
+                        "command": "node",
+                        "args": [
+                            "./path/to/your/file.mjs",
+                            "--launched-by=claude",
+                            `--includeNamespaces=${activeNamespaces.join(',')}`,
+                            "--excludeNamespaces=",
+                            "--activateTags="
+                        ],
+                        "env": requiredCredentials
+                    }
+                }
+            };
+
+            displayConfig(config);
+        }
+
+        // Konfiguration anzeigen
+        function displayConfig(config) {
+            const preview = document.getElementById('configPreview');
+            
+            // Sicherheitscheck
+            if (!preview) {
+                console.error('Config preview element not found');
+                return;
+            }
+            
+            // Prüfen ob es aktive Namespaces gibt
+            if (config.mcpServers.FlowMCP.args[2] === '--includeNamespaces=') {
+                preview.innerHTML = `
+                    <div class="config-placeholder">
+                        <p>🔧 Keine Namespaces ausgewählt</p>
+                        <small>Wählen Sie Namespaces aus, um die MCP Server Konfiguration zu generieren.</small>
+                    </div>
+                `;
+                return;
+            }
+            
+            const jsonString = JSON.stringify(config, null, 4);
+            const highlightedJson = highlightJson(jsonString);
+            
+            preview.innerHTML = `<div class="json-content">${highlightedJson}</div>`;
+        }
+
+        // JSON Syntax Highlighting
+        function highlightJson(json) {
+            return json
+                .replace(/(".*?")(\s*:)/g, '<span class="json-key">$1</span>$2')
+                .replace(/:\s*(".*?")/g, ': <span class="json-string">$1</span>')
+                .replace(/:\s*(\d+)/g, ': <span class="json-number">$1</span>')
+                .replace(/:\s*(true|false)/g, ': <span class="json-boolean">$1</span>')
+                .replace(/:\s*(null)/g, ': <span class="json-null">$1</span>');
+        }
+
+        // Konfiguration downloaden
+        function downloadMcpConfig() {
+            const activeNamespaces = getActiveNamespaces();
+            
+            if (activeNamespaces.length === 0) {
+                alert('Keine Namespaces ausgewählt! Bitte wählen Sie mindestens einen Namespace aus.');
+                return;
+            }
+
+            const requiredCredentials = getRequiredCredentials();
+            
+            const config = {
+                "globalShortcut": "",
+                "mcpServers": {
+                    "FlowMCP": {
+                        "command": "node",
+                        "args": [
+                            "./path/to/your/file.mjs",
+                            "--launched-by=claude",
+                            `--includeNamespaces=${activeNamespaces.join(',')}`,
+                            "--excludeNamespaces=",
+                            "--activateTags="
+                        ],
+                        "env": requiredCredentials
+                    }
+                }
+            };
+
+            const jsonString = JSON.stringify(config, null, 4);
+            const blob = new Blob([jsonString], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `mcp-server-config-${new Date().toISOString().split('T')[0]}.json`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+
+        // Konfiguration kopieren
+        function copyMcpConfig() {
+            const activeNamespaces = getActiveNamespaces();
+            
+            if (activeNamespaces.length === 0) {
+                alert('Keine Namespaces ausgewählt! Bitte wählen Sie mindestens einen Namespace aus.');
+                return;
+            }
+
+            const requiredCredentials = getRequiredCredentials();
+            
+            const config = {
+                "globalShortcut": "",
+                "mcpServers": {
+                    "FlowMCP": {
+                        "command": "node",
+                        "args": [
+                            "./path/to/your/file.mjs",
+                            "--launched-by=claude",
+                            `--includeNamespaces=${activeNamespaces.join(',')}`,
+                            "--excludeNamespaces=",
+                            "--activateTags="
+                        ],
+                        "env": requiredCredentials
+                    }
+                }
+            };
+
+            const jsonString = JSON.stringify(config, null, 4);
+            
+            navigator.clipboard.writeText(jsonString).then(() => {
+                const btn = document.getElementById('copyConfigBtn');
+                const originalText = btn.textContent;
+                btn.textContent = '✅ Kopiert!';
+                btn.style.background = '#48bb78';
+                btn.style.color = 'white';
+                
+                setTimeout(() => {
+                    btn.textContent = originalText;
+                    btn.style.background = '';
+                    btn.style.color = '';
+                }, 2000);
+            }).catch(() => {
+                alert('Fehler beim Kopieren in die Zwischenablage');
+            });
+        }
+
+        // Suchfunktion
+        function setupSearch() {
+            const searchInput = document.getElementById('searchInput');
+            searchInput.addEventListener('input', () => {
+                updateDisplay();
+            });
+        }
+
+        // Initialisierung
+        function init() {
+            // Warten bis DOM vollständig geladen ist
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', init);
+                return;
+            }
+
+            initializeStates();
+            setupSearch();
+            setupExportButtons();
+            
+            // Versuche Zustand aus URL zu laden
+            const configLoaded = loadStateFromUrl();
+            
+            updateDisplay();
+            updateStats();
+            
+            // Wenn keine Config aus URL geladen wurde, initiale leere Konfiguration anzeigen
+            if (!configLoaded) {
+                autoGenerateMcpConfig();
+            }
+        }
+
+        // DOM-ready Check für alle Funktionen die DOM-Elemente brauchen
+        function ensureDOMReady(callback) {
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', callback);
+            } else {
+                callback();
+            }
+        }
+
+        // Beim Laden der Seite initialisieren - mit robustem DOM-Loading
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', init);
+        } else {
+            init();
+        }
     </script>
 </body>
 </html>
