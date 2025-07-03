@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-This is a static website for FlowMCP (MCP Server configuration tool) hosted at www.flowmcp.org. The site provides a German-language web interface for managing FlowMCP namespaces and routes with the following key features:
+This is a static website for FlowMCP (MCP Server configuration tool) hosted at www.flowmcp.org. The site provides a English-language web interface for managing FlowMCP namespaces and routes with the following key features:
 
 ### Core Functionality
 - **Namespace & Route Selection**: Users can select from a hierarchical list of API namespaces, each containing multiple routes

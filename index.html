@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Namespace & Route Manager</title>
+    <title>FlowMCP Configurator - Your Agent's Gateway to the World</title>
     <style>
         * {
             margin: 0;
@@ -13,30 +13,26 @@
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: #0a0a0a;
             min-height: 100vh;
             padding: 20px;
+            color: #e2e8f0;
         }
 
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            background: rgba(255, 255, 255, 0.95);
+            background: transparent;
             border-radius: 20px;
             padding: 30px;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-            backdrop-filter: blur(10px);
         }
 
         h1 {
             text-align: center;
-            color: #2d3748;
-            margin-bottom: 20px;
-            font-size: 2.5rem;
-            background: linear-gradient(45deg, #667eea, #764ba2);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            color: #ffffff;
+            margin-bottom: 40px;
+            font-size: 2.8rem;
+            font-weight: 700;
         }
 
         .sticky-header {
@@ -46,13 +42,76 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 10px 20px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 15px 25px;
+            background: #1a1a1a;
             border-radius: 12px;
             color: white;
-            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.3);
-            margin-bottom: 25px;
-            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            margin-bottom: 30px;
+            border: 1px solid #2d2d2d;
+            /* Safari 16.4 specific fixes */
+            -webkit-transform: translateZ(0);
+            -webkit-backface-visibility: hidden;
+            -webkit-perspective: 1000;
+            transform: translateZ(0);
+            backface-visibility: hidden;
+            perspective: 1000px;
+            /* Smooth transitions for Safari */
+            -webkit-transition: background-color 0.25s ease-out,
+                               border-radius 0.25s ease-out,
+                               padding 0.25s ease-out,
+                               box-shadow 0.25s ease-out;
+            transition: background-color 0.25s ease-out,
+                       border-radius 0.25s ease-out,
+                       padding 0.25s ease-out,
+                       box-shadow 0.25s ease-out;
+        }
+
+        .sticky-header.scrolled {
+            background: #0a0a0a;
+            border-radius: 0;
+            margin-bottom: 0;
+            padding: 12px 25px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Safari specific optimizations */
+        @supports (-webkit-backdrop-filter: blur(10px)) {
+            .sticky-header {
+                -webkit-font-smoothing: antialiased;
+                -moz-osx-font-smoothing: grayscale;
+            }
+        }
+
+        .sticky-header.scrolled .header-search {
+            display: flex;
+            opacity: 1;
+            flex: 1;
+            max-width: 400px;
+            margin: 0 20px;
+        }
+
+        .header-search {
+            display: none;
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+
+        .header-search .search-input {
+            width: 100%;
+            padding: 10px 15px;
+            border: 1px solid #2d2d2d;
+            border-radius: 25px;
+            font-size: 14px;
+            background: #1a1a1a;
+            color: #e2e8f0;
+            transition: all 0.3s ease;
+        }
+
+        .header-search .search-input:focus {
+            outline: none;
+            border-color: #ff5722;
+            box-shadow: 0 0 0 2px rgba(255, 87, 34, 0.1);
         }
 
         .header-left {
@@ -69,11 +128,12 @@
 
         .header-stat {
             text-align: center;
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(255, 87, 34, 0.1);
             padding: 8px 16px;
             border-radius: 8px;
             backdrop-filter: blur(10px);
             min-width: 90px;
+            border: 1px solid rgba(255, 87, 34, 0.2);
         }
 
         .header-stat .stat-number {
@@ -87,25 +147,46 @@
             font-size: 0.8rem;
             opacity: 0.9;
             font-weight: 500;
+            color: #ff5722;
         }
 
-        .share-btn {
-            background: rgba(255, 255, 255, 0.2);
+        .primary-btn {
+            background: #ff5722;
             color: white;
-            border: 2px solid rgba(255, 255, 255, 0.3);
-            padding: 8px 16px;
+            border: 2px solid #ff5722;
+            padding: 10px 18px;
             border-radius: 8px;
             cursor: pointer;
             font-weight: 600;
             font-size: 13px;
             transition: all 0.3s ease;
-            backdrop-filter: blur(10px);
+            text-decoration: none;
+            display: inline-block;
         }
 
-        .share-btn:hover {
-            background: rgba(255, 255, 255, 0.3);
-            border-color: rgba(255, 255, 255, 0.5);
+        .primary-btn:hover {
+            background: #e64a19;
+            border-color: #e64a19;
             transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(255, 87, 34, 0.3);
+        }
+
+        .text-btn {
+            background: none;
+            border: none;
+            color: #e2e8f0;
+            cursor: pointer;
+            font-weight: 500;
+            font-size: 14px;
+            text-decoration: none;
+            padding: 10px 12px;
+            border-radius: 6px;
+            transition: all 0.2s ease;
+        }
+
+        .text-btn:hover {
+            color: #ff5722;
+            background: rgba(255, 87, 34, 0.1);
         }
 
         .search-container {
@@ -116,23 +197,24 @@
         .search-input {
             width: 100%;
             padding: 15px 20px;
-            border: 2px solid #e2e8f0;
+            border: 2px solid #2d2d2d;
             border-radius: 50px;
             font-size: 16px;
             transition: all 0.3s ease;
-            background: white;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            background: #1a1a1a;
+            color: #e2e8f0;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
         }
 
         .search-input:focus {
             outline: none;
-            border-color: #667eea;
-            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+            border-color: #ff5722;
+            box-shadow: 0 0 0 3px rgba(255, 87, 34, 0.1);
             transform: translateY(-2px);
         }
 
         .search-input::placeholder {
-            color: #a0aec0;
+            color: #718096;
         }
 
         .namespace-grid {
@@ -143,12 +225,12 @@
         }
 
         .namespace-card {
-            background: white;
+            background: #1a1a1a;
             border-radius: 15px;
             padding: 25px;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
             transition: all 0.3s ease;
-            border: 2px solid transparent;
+            border: 1px solid #2d2d2d;
             position: relative;
             overflow: hidden;
             cursor: pointer;
@@ -161,14 +243,15 @@
             left: 0;
             right: 0;
             height: 4px;
-            background: linear-gradient(45deg, #667eea, #764ba2);
+            background: #ff5722;
             transform: scaleX(0);
             transition: transform 0.3s ease;
         }
 
         .namespace-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+            border-color: #ff5722;
         }
 
         .namespace-card:hover::before {
@@ -176,8 +259,8 @@
         }
 
         .namespace-card.selected {
-            border-color: #667eea;
-            background: linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%);
+            border-color: #ff5722;
+            background: #262626;
         }
 
         .namespace-card.selected::before {
@@ -185,7 +268,7 @@
         }
 
         .namespace-description {
-            color: #718096;
+            color: #a0aec0;
             font-size: 0.9rem;
             line-height: 1.4;
             margin-bottom: 15px;
@@ -208,14 +291,14 @@
         }
 
         .credential-badge.required {
-            background: linear-gradient(45deg, #f56565, #fc8181);
+            background: #f44336;
             color: white;
         }
 
         .credential-badge.not-required {
-            background: #e6fffa;
-            color: #00b894;
-            border: 1px solid #81e6d9;
+            background: rgba(76, 175, 80, 0.1);
+            color: #4caf50;
+            border: 1px solid rgba(76, 175, 80, 0.3);
         }
 
         .routes-preview {
@@ -225,7 +308,7 @@
         .routes-preview-toggle {
             background: none;
             border: none;
-            color: #667eea;
+            color: #ff5722;
             font-size: 0.85rem;
             cursor: pointer;
             display: flex;
@@ -236,7 +319,7 @@
         }
 
         .routes-preview-toggle:hover {
-            color: #5a67d8;
+            color: #e64a19;
         }
 
         .routes-preview-toggle .arrow {
@@ -257,7 +340,7 @@
         .namespace-name {
             font-size: 1.3rem;
             font-weight: 600;
-            color: #2d3748;
+            color: #ffffff;
             margin: 0;
         }
 
@@ -265,7 +348,7 @@
             position: relative;
             width: 90px;
             height: 35px;
-            background: #e2e8f0;
+            background: #2d2d2d;
             border-radius: 35px;
             cursor: pointer;
             transition: all 0.3s ease;
@@ -290,13 +373,13 @@
         .toggle-text {
             font-size: 11px;
             font-weight: 600;
-            color: #718096;
+            color: #a0aec0;
             z-index: 1;
             transition: all 0.3s ease;
         }
 
         .namespace-toggle.disabled {
-            background: #f56565;
+            background: #f44336;
         }
 
         .namespace-toggle.disabled .toggle-slider {
@@ -308,7 +391,7 @@
         }
 
         .namespace-toggle.manual {
-            background: linear-gradient(45deg, #ed8936, #f6ad55);
+            background: #ff5722;
         }
 
         .namespace-toggle.manual .toggle-slider {
@@ -321,7 +404,7 @@
         }
 
         .namespace-toggle.enabled {
-            background: linear-gradient(45deg, #48bb78, #68d391);
+            background: #4caf50;
         }
 
         .namespace-toggle.enabled .toggle-slider {
@@ -343,7 +426,7 @@
             overflow: hidden;
             transition: max-height 0.3s ease, padding 0.3s ease;
             border-radius: 10px;
-            background: #f8fafc;
+            background: #0f0f0f;
             padding: 0;
         }
 
@@ -359,17 +442,17 @@
             justify-content: space-between;
             padding: 10px 12px;
             margin-bottom: 6px;
-            background: white;
+            background: #1a1a1a;
             border-radius: 6px;
             transition: all 0.2s ease;
             border-left: 3px solid transparent;
-            border: 1px solid #e2e8f0;
+            border: 1px solid #2d2d2d;
         }
 
         .route-item:hover {
-            background: #f1f5f9;
-            border-left-color: #667eea;
-            border-color: #cbd5e0;
+            background: #262626;
+            border-left-color: #ff5722;
+            border-color: #404040;
             transform: translateX(2px);
         }
 
@@ -379,7 +462,7 @@
 
         .route-name {
             font-weight: 500;
-            color: #2d3748;
+            color: #e2e8f0;
             flex: 1;
         }
 
@@ -402,7 +485,7 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background-color: #cbd5e0;
+            background-color: #2d2d2d;
             transition: 0.3s;
             border-radius: 24px;
         }
@@ -421,7 +504,7 @@
         }
 
         .route-toggle input:checked + .route-toggle-slider {
-            background: linear-gradient(45deg, #48bb78, #38a169);
+            background: #4caf50;
         }
 
         .route-toggle input:checked + .route-toggle-slider:before {
@@ -429,12 +512,13 @@
         }
 
         .stats-container {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: #1a1a1a;
             color: white;
             padding: 25px;
             border-radius: 15px;
             margin-top: 30px;
             text-align: center;
+            border: 1px solid #2d2d2d;
         }
 
         .stats-grid {
@@ -445,10 +529,11 @@
         }
 
         .stat-item {
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(255, 87, 34, 0.1);
             padding: 20px;
             border-radius: 10px;
             backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 87, 34, 0.2);
         }
 
         .stat-number {
@@ -469,7 +554,7 @@
         .no-results {
             text-align: center;
             padding: 50px;
-            color: #718096;
+            color: #a0aec0;
             font-size: 1.1rem;
         }
 
@@ -540,12 +625,12 @@
         }
 
         .selected-routes-container {
-            background: white;
+            background: #1a1a1a;
             border-radius: 15px;
             padding: 30px;
             margin-top: 30px;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
-            border: 2px solid #e2e8f0;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+            border: 1px solid #2d2d2d;
         }
 
         .selected-routes-container.collapsed .selected-routes-content {
@@ -562,14 +647,14 @@
             align-items: center;
             margin-bottom: 25px;
             padding-bottom: 15px;
-            border-bottom: 2px solid #f1f5f9;
+            border-bottom: 2px solid #2d2d2d;
             cursor: pointer;
             user-select: none;
         }
 
         .selected-routes-header .collapse-indicator {
             font-size: 14px;
-            color: #718096;
+            color: #a0aec0;
             transition: transform 0.2s ease;
             margin-right: 8px;
         }
@@ -579,7 +664,7 @@
         }
 
         .selected-routes-header h2 {
-            color: #2d3748;
+            color: #ffffff;
             margin: 0;
             font-size: 1.8rem;
         }
@@ -590,9 +675,9 @@
         }
 
         .export-btn {
-            background: #f7fafc;
-            color: #4a5568;
-            border: 2px solid #e2e8f0;
+            background: #2d2d2d;
+            color: #e2e8f0;
+            border: 2px solid #404040;
             padding: 10px 16px;
             border-radius: 8px;
             cursor: pointer;
@@ -608,8 +693,8 @@
 
         .export-btn:hover {
             transform: translateY(-2px);
-            background: #edf2f7;
-            border-color: #cbd5e0;
+            background: #404040;
+            border-color: #555555;
         }
 
         .export-btn:active {
@@ -623,7 +708,7 @@
         .no-selection {
             text-align: center;
             padding: 40px;
-            color: #718096;
+            color: #a0aec0;
         }
 
         .no-selection p {
@@ -632,13 +717,13 @@
         }
 
         .no-selection small {
-            color: #a0aec0;
+            color: #718096;
             font-size: 0.9rem;
         }
 
         .namespace-group {
             margin-bottom: 20px;
-            background: #f8fafc;
+            background: #0f0f0f;
             border-radius: 12px;
             padding: 20px;
             border-left: 4px solid transparent;
@@ -659,13 +744,13 @@
         }
 
         .namespace-group.enabled {
-            border-left-color: #48bb78;
-            background: linear-gradient(135deg, #f0fff4 0%, #e6fffa 100%);
+            border-left-color: #4caf50;
+            background: rgba(76, 175, 80, 0.1);
         }
 
         .namespace-group.manual {
-            border-left-color: #ed8936;
-            background: linear-gradient(135deg, #fffaf0 0%, #fef5e7 100%);
+            border-left-color: #ff5722;
+            background: rgba(255, 87, 34, 0.1);
         }
 
         .namespace-group-header {
@@ -674,7 +759,7 @@
             justify-content: space-between;
             margin-bottom: 15px;
             padding-bottom: 10px;
-            border-bottom: 1px solid #e2e8f0;
+            border-bottom: 1px solid #2d2d2d;
             user-select: none;
         }
 
@@ -686,7 +771,7 @@
 
         .collapse-indicator {
             font-size: 12px;
-            color: #718096;
+            color: #a0aec0;
             transition: transform 0.2s ease;
         }
 
@@ -697,8 +782,8 @@
         }
 
         .route-count-badge {
-            background: rgba(102, 126, 234, 0.1);
-            color: #667eea;
+            background: rgba(255, 87, 34, 0.1);
+            color: #ff5722;
             padding: 2px 8px;
             border-radius: 12px;
             font-size: 11px;
@@ -708,7 +793,7 @@
         .namespace-group-title {
             font-size: 1.1rem;
             font-weight: 600;
-            color: #2d3748;
+            color: #ffffff;
             margin: 0;
         }
 
@@ -721,12 +806,12 @@
         }
 
         .namespace-status-badge.enabled {
-            background: #48bb78;
+            background: #4caf50;
             color: white;
         }
 
         .namespace-status-badge.manual {
-            background: #ed8936;
+            background: #ff5722;
             color: white;
         }
 
@@ -737,20 +822,20 @@
         }
 
         .route-badge {
-            background: white;
+            background: #1a1a1a;
             padding: 12px 16px;
             border-radius: 8px;
             font-family: 'Courier New', monospace;
             font-size: 13px;
-            color: #2d3748;
-            border: 1px solid #e2e8f0;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            color: #e2e8f0;
+            border: 1px solid #2d2d2d;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
             transition: all 0.2s ease;
         }
 
         .route-badge:hover {
             transform: translateY(-1px);
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
         }
 
         .route-method {
@@ -758,18 +843,18 @@
             margin-right: 8px;
         }
 
-        .route-method.get { color: #48bb78; }
-        .route-method.post { color: #4299e1; }
-        .route-method.put { color: #ed8936; }
-        .route-method.delete { color: #f56565; }
+        .route-method.get { color: #4caf50; }
+        .route-method.post { color: #2196f3; }
+        .route-method.put { color: #ff5722; }
+        .route-method.delete { color: #f44336; }
 
         .config-generator-container {
-            background: white;
+            background: #1a1a1a;
             border-radius: 15px;
             padding: 30px;
             margin-top: 30px;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
-            border: 2px solid #e2e8f0;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+            border: 1px solid #2d2d2d;
         }
 
         .config-generator-header {
@@ -778,11 +863,11 @@
             align-items: center;
             margin-bottom: 25px;
             padding-bottom: 15px;
-            border-bottom: 2px solid #f1f5f9;
+            border-bottom: 2px solid #2d2d2d;
         }
 
         .config-generator-header h2 {
-            color: #2d3748;
+            color: #ffffff;
             margin: 0;
             font-size: 1.8rem;
         }
@@ -800,9 +885,9 @@
             font-weight: 600;
             font-size: 13px;
             transition: all 0.3s ease;
-            background: #f7fafc;
-            color: #4a5568;
-            border: 2px solid #e2e8f0;
+            background: #2d2d2d;
+            color: #e2e8f0;
+            border: 2px solid #404040;
             min-width: 120px;
             height: 36px;
             display: flex;
@@ -811,10 +896,10 @@
         }
 
         .config-btn.primary {
-            background: linear-gradient(45deg, #38a169, #48bb78);
+            background: #ff5722;
             color: white;
             border-color: transparent;
-            box-shadow: 0 4px 12px rgba(56, 161, 105, 0.3);
+            box-shadow: 0 4px 12px rgba(255, 87, 34, 0.3);
         }
 
         .config-btn:hover {
@@ -822,12 +907,12 @@
         }
 
         .config-btn.primary:hover {
-            box-shadow: 0 6px 20px rgba(56, 161, 105, 0.4);
+            box-shadow: 0 6px 20px rgba(255, 87, 34, 0.4);
         }
 
         .config-btn:not(.primary):hover {
-            background: #edf2f7;
-            border-color: #cbd5e0;
+            background: #404040;
+            border-color: #555555;
         }
 
         .config-btn:active {
@@ -839,7 +924,7 @@
         }
 
         .config-preview {
-            background: #1a202c;
+            background: #0f0f0f;
             border-radius: 12px;
             padding: 25px;
             font-family: 'Courier New', monospace;
@@ -848,14 +933,14 @@
             color: #e2e8f0;
             max-height: 500px;
             overflow-y: auto;
-            border: 1px solid #2d3748;
+            border: 1px solid #2d2d2d;
             position: relative;
         }
 
         .config-placeholder {
             text-align: center;
             padding: 40px;
-            color: #a0aec0;
+            color: #718096;
         }
 
         .config-placeholder p {
@@ -865,7 +950,7 @@
         }
 
         .config-placeholder small {
-            color: #718096;
+            color: #a0aec0;
             font-size: 0.9rem;
             font-family: 'Segoe UI', sans-serif;
         }
@@ -876,32 +961,32 @@
         }
 
         .json-key {
-            color: #63b3ed;
+            color: #ff5722;
         }
 
         .json-string {
-            color: #68d391;
+            color: #4caf50;
         }
 
         .json-number {
-            color: #f6ad55;
+            color: #ffc107;
         }
 
         .json-boolean {
-            color: #fc8181;
+            color: #2196f3;
         }
 
         .config-btn.share,
         .export-btn.share {
-            background: linear-gradient(45deg, #9f7aea, #b794f6);
+            background: #9c27b0;
             color: white;
             border-color: transparent;
-            box-shadow: 0 4px 12px rgba(159, 122, 234, 0.3);
+            box-shadow: 0 4px 12px rgba(156, 39, 176, 0.3);
         }
 
         .config-btn.share:hover,
         .export-btn.share:hover {
-            box-shadow: 0 6px 20px rgba(159, 122, 234, 0.4);
+            box-shadow: 0 6px 20px rgba(156, 39, 176, 0.4);
         }
 
         .url-notification {
@@ -909,11 +994,11 @@
             top: 10px;
             left: 50%;
             transform: translateX(-50%) translateY(-100px);
-            background: linear-gradient(45deg, #48bb78, #68d391);
+            background: #4caf50;
             color: white;
             padding: 15px 25px;
             border-radius: 10px;
-            box-shadow: 0 8px 25px rgba(72, 187, 120, 0.3);
+            box-shadow: 0 8px 25px rgba(76, 175, 80, 0.3);
             z-index: 9999;
             transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
             max-width: 90vw;
@@ -951,7 +1036,7 @@
         }
 
         .config-restored-banner {
-            background: linear-gradient(45deg, #4299e1, #63b3ed);
+            background: #2196f3;
             color: white;
             padding: 15px;
             text-align: center;
@@ -996,9 +1081,15 @@
             <button class="dismiss-btn" onclick="dismissRestoredBanner()">Got it</button>
         </div>
         
-        <h1>FlowMCP Configurator</h1>
+        <header style="text-align: center; margin-bottom: 40px;">
+            <div style="display: flex; align-items: center; justify-content: center; gap: 15px; margin-bottom: 20px;">
+                <div style="width: 50px; height: 50px; background: #ff5722; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 24px; font-weight: bold; color: white;">F</div>
+                <h1 style="margin: 0;">FlowMCP Configurator</h1>
+            </div>
+            <p style="font-size: 1.2rem; color: #a0aec0; margin: 0; font-weight: 300;">Simple configuration for FlowMCP Server - Select namespaces and routes.</p>
+        </header>
         
-        <div class="sticky-header">
+        <div class="sticky-header" id="stickyHeader">
             <div class="header-left">
                 <div class="header-stat">
                     <span id="topActiveNamespaces" class="stat-number">0</span>
@@ -1009,14 +1100,17 @@
                     <span class="stat-label">Active Routes</span>
                 </div>
             </div>
+            <div class="header-search">
+                <input type="text" id="headerSearchInput" class="search-input" placeholder="Search namespaces...">
+            </div>
             <div class="header-right">
-                <button id="getConfigBtn" class="share-btn">Get Config</button>
-                <button id="shareConfigBtn" class="share-btn">Share URL</button>
+                <button id="shareConfigBtn" class="text-btn">Share Config</button>
+                <button id="getConfigBtn" class="primary-btn">Get Config</button>
             </div>
         </div>
         
         <div class="search-container">
-            <input type="text" id="searchInput" class="search-input" placeholder="🔍 Search for namespace...">
+            <input type="text" id="searchInput" class="search-input" placeholder="send messages and reach thousands of namespaces...">
         </div>
 
         <div id="namespaceContainer" class="namespace-grid"></div>
@@ -1026,7 +1120,7 @@
         </div>
 
 
-        <div class="selected-routes-container collapsed" id="selectedRoutesContainer">
+        <div class="selected-routes-container" id="selectedRoutesContainer">
             <div class="selected-routes-header" onclick="toggleSelectedRoutesOverview()">
                 <h2><span class="collapse-indicator">▼</span>Selected Routes Overview</h2>
                 <div class="export-buttons">
@@ -1035,8 +1129,8 @@
             </div>
             <div id="selectedRoutesContent" class="selected-routes-content">
                 <div class="no-selection">
-                    <p>🤷‍♂️ Keine Routen ausgewählt</p>
-                    <small>Aktivieren Sie Namespaces oder einzelne Routen, um sie hier zu sehen.</small>
+                    <p>🤷‍♂️ No routes selected</p>
+                    <small>Enable namespaces or individual routes to see them here.</small>
                 </div>
             </div>
         </div>
@@ -1051,8 +1145,8 @@
             <div class="config-content">
                 <div class="config-preview" id="configPreview">
                     <div class="config-placeholder">
-                        <p>🔧 Klicken Sie auf "Konfiguration generieren" um die MCP Server Config zu erstellen</p>
-                        <small>Die Konfiguration wird basierend auf Ihren ausgewählten Namespaces automatisch generiert.</small>
+                        <p>🔧 Click "Generate Configuration" to create the MCP Server Config</p>
+                        <small>The configuration will be automatically generated based on your selected namespaces.</small>
                     </div>
                 </div>
             </div>
@@ -1169,15 +1263,24 @@
             // Keep the routes preview expanded when toggling individual routes
             const routesContainer = document.getElementById(`routes-${namespaceName}`);
             const wasExpanded = routesContainer && routesContainer.classList.contains('expanded');
+            let scrollPosition = 0;
+            
+            // Save scroll position if container was expanded
+            if (wasExpanded) {
+                scrollPosition = routesContainer.scrollTop;
+            }
             
             updateDisplay();
             updateStats();
             
-            // Restore expanded state if it was expanded before
+            // Restore expanded state and scroll position if it was expanded before
             if (wasExpanded) {
                 const newRoutesContainer = document.getElementById(`routes-${namespaceName}`);
                 if (newRoutesContainer) {
                     newRoutesContainer.classList.add('expanded');
+                    // Restore scroll position
+                    newRoutesContainer.scrollTop = scrollPosition;
+                    
                     // Also update the button state
                     const toggleButton = newRoutesContainer.parentElement.querySelector('.routes-preview-toggle');
                     if (toggleButton) {
@@ -1359,18 +1462,18 @@
             let html = '';
             Object.entries(groupedRoutes).forEach(([namespace, data]) => {
                 const stateClass = data.state === NAMESPACE_STATES.ENABLED ? 'enabled' : 'manual';
-                const stateText = data.state === NAMESPACE_STATES.ENABLED ? 'Vollständig' : 'Manuell';
+                const stateText = data.state === NAMESPACE_STATES.ENABLED ? 'Complete' : 'Manual';
                 const routeCount = data.routes.length;
                 
                 html += `
-                    <div class="namespace-group ${stateClass}" onclick="toggleNamespaceGroup('${namespace}')">
+                    <div class="namespace-group ${stateClass} collapsed" onclick="toggleNamespaceGroup('${namespace}')">
                         <div class="namespace-group-header">
                             <div class="namespace-group-left">
-                                <span class="collapse-indicator">▼</span>
+                                <span class="collapse-indicator">▶</span>
                                 <h3 class="namespace-group-title">${namespace}</h3>
                             </div>
                             <div class="namespace-group-right">
-                                <span class="route-count-badge">${routeCount} Route${routeCount > 1 ? 'n' : ''}</span>
+                                <span class="route-count-badge">${routeCount} Route${routeCount > 1 ? 's' : ''}</span>
                                 <span class="namespace-status-badge ${stateClass}">${stateText}</span>
                             </div>
                         </div>
@@ -1582,12 +1685,12 @@
             }
         }
 
-        // Konfiguration teilen (für Routen-Bereich)
+        // Share configuration (for routes section)
         function shareConfiguration() {
             const activeNamespaces = getActiveNamespaces();
             
             if (activeNamespaces.length === 0) {
-                showUrlNotification('⚠️ Keine Namespaces ausgewählt!', 'Bitte wählen Sie mindestens einen Namespace aus, um einen Link zu generieren.');
+                showUrlNotification('⚠️ No namespaces selected!', 'Please select at least one namespace to generate a link.');
                 return;
             }
 
@@ -1600,12 +1703,12 @@
             });
         }
 
-        // URL teilen (für Config-Bereich)
+        // Share URL (for config section)
         function shareUrlConfiguration() {
             const activeNamespaces = getActiveNamespaces();
             
             if (activeNamespaces.length === 0) {
-                showUrlNotification('⚠️ Keine Namespaces ausgewählt!', 'Bitte wählen Sie mindestens einen Namespace aus, um einen Link zu generieren.');
+                showUrlNotification('⚠️ No namespaces selected!', 'Please select at least one namespace to generate a link.');
                 return;
             }
 
@@ -1894,9 +1997,93 @@
         // Search function
         function setupSearch() {
             const searchInput = document.getElementById('searchInput');
+            const headerSearchInput = document.getElementById('headerSearchInput');
+            
+            // Main search input
             searchInput.addEventListener('input', () => {
+                // Sync with header search
+                headerSearchInput.value = searchInput.value;
                 updateDisplay();
             });
+            
+            // Header search input
+            headerSearchInput.addEventListener('input', () => {
+                // Sync with main search
+                searchInput.value = headerSearchInput.value;
+                updateDisplay();
+            });
+        }
+
+        // Sticky header scroll functionality
+        function setupStickyHeader() {
+            const stickyHeader = document.getElementById('stickyHeader');
+            const searchContainer = document.querySelector('.search-container');
+            let isScrolled = false;
+            let rafId = null;
+            
+            // Detect Safari
+            const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+            
+            function updateHeader() {
+                const searchRect = searchContainer.getBoundingClientRect();
+                const shouldBeScrolled = searchRect.bottom <= 0;
+                
+                if (shouldBeScrolled !== isScrolled) {
+                    // For Safari, add a small delay to prevent jerk
+                    if (isSafari) {
+                        setTimeout(() => {
+                            if (shouldBeScrolled) {
+                                stickyHeader.classList.add('scrolled');
+                            } else {
+                                stickyHeader.classList.remove('scrolled');
+                            }
+                        }, 16); // One frame delay
+                    } else {
+                        if (shouldBeScrolled) {
+                            stickyHeader.classList.add('scrolled');
+                        } else {
+                            stickyHeader.classList.remove('scrolled');
+                        }
+                    }
+                    isScrolled = shouldBeScrolled;
+                }
+                
+                rafId = null;
+            }
+            
+            function handleScroll() {
+                if (rafId === null) {
+                    rafId = requestAnimationFrame(updateHeader);
+                }
+            }
+            
+            // For Safari 16.4, use scroll listener instead of Intersection Observer
+            if (isSafari) {
+                window.addEventListener('scroll', handleScroll, { passive: true });
+            } else {
+                // Use intersection observer for other browsers
+                const observer = new IntersectionObserver(
+                    ([entry]) => {
+                        const shouldBeScrolled = !entry.isIntersecting;
+                        if (shouldBeScrolled !== isScrolled) {
+                            if (shouldBeScrolled) {
+                                stickyHeader.classList.add('scrolled');
+                            } else {
+                                stickyHeader.classList.remove('scrolled');
+                            }
+                            isScrolled = shouldBeScrolled;
+                        }
+                    },
+                    {
+                        threshold: 0,
+                        rootMargin: '0px 0px -1px 0px'
+                    }
+                );
+                
+                observer.observe(searchContainer);
+            }
+            
+            updateHeader(); // Initial check
         }
 
         // Initialization
@@ -1922,6 +2109,7 @@
             }
 
             setupSearch();
+            setupStickyHeader();
             setupExportButtons();
             
             // Try to load state from URL
