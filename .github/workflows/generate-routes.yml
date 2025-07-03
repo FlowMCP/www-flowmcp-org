@@ -33,7 +33,7 @@ jobs:
         run: npm install
 
       - name: Run generate-routes script
-        run: node .github/workflows/generate-routes.mjs
+        run: node main.mjs
 
       - name: Check for changes
         id: verify-changed-files
