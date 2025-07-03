@@ -1,0 +1,2420 @@
+[
+    {
+        "namespace": "alternative",
+        "name": "FearGreedIndex",
+        "description": "Fetches and analyzes the Crypto Fear & Greed Index from alternative.me.",
+        "requiredCredentials": [],
+        "routes": [
+            {
+                "name": "getCurrentFng",
+                "description": "Retrieve the latest Fear & Greed Index.",
+                "categories": []
+            },
+            {
+                "name": "getHistoricalFng",
+                "description": "Get historical Fear & Greed Index values for past days.",
+                "categories": []
+            },
+            {
+                "name": "analyzeFngTrend",
+                "description": "Analyze the trend of the Fear & Greed Index over a number of days.",
+                "categories": []
+            }
+        ]
+    },
+    {
+        "namespace": "blocknative",
+        "name": "Gas Price Estimator",
+        "description": "Accurate next-block gas price predictions for Ethereum, Bitcoin, and other supported chains.",
+        "requiredCredentials": [
+            "BLOCKNATIVE_API_KEY"
+        ],
+        "routes": [
+            {
+                "name": "getGasPrices",
+                "description": "Returns a range of gas price estimates for the next block across defined confidence levels.",
+                "categories": [
+                    "ARBITRUM_ONE",
+                    "BERACHAIN_MAINNET",
+                    "BINANCE_MAINNET",
+                    "BITCOIN_MAINNET",
+                    "BLAST_MAINNET",
+                    "BOB_MAINNET",
+                    "CHILIZ_MAINNET",
+                    "CRONOS_MAINNET",
+                    "ETHEREUM_MAINNET",
+                    "FANTOM_MAINNET",
+                    "FRAXTAL_MAINNET",
+                    "GNOSIS_MAINNET",
+                    "INK_MAINNET",
+                    "LINEA_MAINNET",
+                    "LISK_MAINNET",
+                    "MANTLE_MAINNET",
+                    "METIS_MAINNET",
+                    "MODE_TESTNET",
+                    "MOONBEAM_MAINNET",
+                    "OPBNB_MAINNET",
+                    "OPTIMISN_MAINNET",
+                    "PALM_MAINNET",
+                    "POLYGON_MAINNET",
+                    "POLYGONZK_MAINNET",
+                    "RONIN_MAINNET",
+                    "RSK_MAINNET",
+                    "SCROLL_MAINNET",
+                    "SEI_MAINNET",
+                    "SNAXCHAIN_MAINNET",
+                    "SONEIUM_MAINNET",
+                    "STORY_MAINNET",
+                    "TAIKO_MAINNET",
+                    "UNICHAIN_MAINNET",
+                    "WORLDCHAIN_MAINNET",
+                    "ZETACHAIN_MAINNET",
+                    "ZKSYNC_MAINNET",
+                    "ZORA_MAINNET"
+                ]
+            }
+        ]
+    },
+    {
+        "namespace": "bscscan",
+        "name": "BSC Scan",
+        "description": "BSC Scan API",
+        "requiredCredentials": [
+            "BSCSCAN_API_KEY"
+        ],
+        "routes": [
+            {
+                "name": "getContractABI",
+                "description": "Returns the Contract ABI of a verified smart contract.",
+                "categories": []
+            },
+            {
+                "name": "getContractSourceCode",
+                "description": "Returns the Solidity source code of a verified smart contract.",
+                "categories": []
+            }
+        ]
+    },
+    {
+        "namespace": "coincap",
+        "name": "AssetsAPI",
+        "description": "Retrieve data about crypto assets and markets",
+        "requiredCredentials": [
+            "COINCAP_API_KEY"
+        ],
+        "routes": [
+            {
+                "name": "listAssets",
+                "description": "Retrieve a list of assets",
+                "categories": []
+            },
+            {
+                "name": "singleAsset",
+                "description": "Retrieve details for a specific asset",
+                "categories": []
+            },
+            {
+                "name": "assetMarkets",
+                "description": "Retrieve market data for an asset",
+                "categories": []
+            },
+            {
+                "name": "assetHistory",
+                "description": "Retrieve historical data for an asset",
+                "categories": []
+            }
+        ]
+    },
+    {
+        "namespace": "coincap",
+        "name": "CoinCapExchanges",
+        "description": "Access exchange data from CoinCap including metadata and volume",
+        "requiredCredentials": [
+            "COINCAP_API_KEY"
+        ],
+        "routes": [
+            {
+                "name": "listExchanges",
+                "description": "Retrieve a list of exchanges",
+                "categories": []
+            },
+            {
+                "name": "getExchangeById",
+                "description": "Retrieve details for a specific exchange",
+                "categories": []
+            }
+        ]
+    },
+    {
+        "namespace": "coincap",
+        "name": "CoinCapMarkets",
+        "description": "Access CoinCap market data including price, volume, and exchange metadata",
+        "requiredCredentials": [
+            "COINCAP_API_KEY"
+        ],
+        "routes": [
+            {
+                "name": "listMarkets",
+                "description": "Retrieve a list of markets with optional filters",
+                "categories": []
+            }
+        ]
+    },
+    {
+        "namespace": "coincap",
+        "name": "CoinCapRates",
+        "description": "Access fiat and crypto conversion rates from CoinCap",
+        "requiredCredentials": [
+            "COINCAP_API_KEY"
+        ],
+        "routes": [
+            {
+                "name": "listRates",
+                "description": "Retrieve all conversion rates or filter by comma-separated slugs",
+                "categories": []
+            },
+            {
+                "name": "getRateBySlug",
+                "description": "Retrieve a specific conversion rate by slug",
+                "categories": []
+            }
+        ]
+    },
+    {
+        "namespace": "coingecko",
+        "name": "CoinGeckoCoins",
+        "description": "Fetch coins list, markets, details, history, tickers, and token info from CoinGecko",
+        "requiredCredentials": [],
+        "routes": [
+            {
+                "name": "getCoinsList",
+                "description": "Fetch the list of all coins (id, symbol, name)",
+                "categories": []
+            },
+            {
+                "name": "getCoinsMarkets",
+                "description": "Fetch market data for coins",
+                "categories": []
+            },
+            {
+                "name": "getCoinById",
+                "description": "Fetch detailed info for a specific coin",
+                "categories": []
+            },
+            {
+                "name": "getCoinMarketChart",
+                "description": "Fetch historical market chart data for a coin",
+                "categories": []
+            },
+            {
+                "name": "getCoinHistory",
+                "description": "Fetch historical coin data by date",
+                "categories": []
+            },
+            {
+                "name": "getCoinTickers",
+                "description": "Fetch all trading pairs (tickers) for a coin",
+                "categories": []
+            },
+            {
+                "name": "getCoinContractInfo",
+                "description": "Fetch coin information by contract address",
+                "categories": []
+            }
+        ]
+    },
+    {
+        "namespace": "coingecko",
+        "name": "CoinGeckoDerivatives",
+        "description": "Retrieve derivatives markets and derivative exchanges from CoinGecko",
+        "requiredCredentials": [],
+        "routes": [
+            {
+                "name": "getDerivativeExchangeIds",
+                "description": "Fetch the list of derivative exchanges",
+                "categories": []
+            },
+            {
+                "name": "getDerivativeExchangesByIds",
+                "description": "Fetch the list of derivative exchanges by IDs",
+                "categories": []
+            },
+            {
+                "name": "getDerivativeProductsByExchangeId",
+                "description": "Fetch the list of derivative products by exchange ID",
+                "categories": []
+            }
+        ]
+    },
+    {
+        "namespace": "coingecko",
+        "name": "CoinGeckoExchanges",
+        "description": "Fetch exchanges list, exchange details, and exchange trading pairs from CoinGecko",
+        "requiredCredentials": [],
+        "routes": [
+            {
+                "name": "getExchangesList",
+                "description": "Fetch the list of all supported exchanges",
+                "categories": []
+            },
+            {
+                "name": "getExchangeById",
+                "description": "Fetch details of a specific exchange",
+                "categories": []
+            },
+            {
+                "name": "getExchangeTickers",
+                "description": "Fetch trading pairs (tickers) for a specific exchange",
+                "categories": []
+            }
+        ]
+    },
+    {
+        "namespace": "coingecko",
+        "name": "CoinGeckoCategories",
+        "description": "Retrieve coin categories and category names using CoinGecko public API",
+        "requiredCredentials": [],
+        "routes": [
+            {
+                "name": "getAvailableCoinCategoryIds",
+                "description": "Fetch a short list of coin category names",
+                "categories": []
+            },
+            {
+                "name": "getCoinCategoryDetailsByIds",
+                "description": "Fetch the full list of coin categories including detailed metrics",
+                "categories": []
+            }
+        ]
+    },
+    {
+        "namespace": "coingecko",
+        "name": "CoinGeckoGlobal",
+        "description": "Fetch global and DeFi global market data from CoinGecko",
+        "requiredCredentials": [],
+        "routes": [
+            {
+                "name": "getGlobalData",
+                "description": "Fetch overall global market data",
+                "categories": []
+            },
+            {
+                "name": "getDeFiGlobalData",
+                "description": "Fetch global DeFi market data",
+                "categories": []
+            }
+        ]
+    },
+    {
+        "namespace": "coingecko",
+        "name": "CoinGeckoSimplePrice",
+        "description": "Fetch current prices for coins and tokens using CoinGecko's Simple API",
+        "requiredCredentials": [],
+        "routes": [
+            {
+                "name": "getSimplePrice",
+                "description": "Fetch current price for one or more coins",
+                "categories": []
+            },
+            {
+                "name": "getTokenPrice",
+                "description": "Fetch token price by contract address and chain",
+                "categories": []
+            }
+        ]
+    },
+    {
+        "namespace": "coingecko",
+        "name": "CoinGeckoTrending",
+        "description": "Retrieve trending coins, NFTs, and categories from CoinGecko trending search",
+        "requiredCredentials": [],
+        "routes": [
+            {
+                "name": "getTrendingCoins",
+                "description": "Fetch trending coins from CoinGecko",
+                "categories": []
+            },
+            {
+                "name": "getTrendingNfts",
+                "description": "Fetch trending NFTs from CoinGecko",
+                "categories": []
+            },
+            {
+                "name": "getTrendingCategories",
+                "description": "Fetch trending categories from CoinGecko",
+                "categories": []
+            }
+        ]
+    },
+    {
+        "namespace": "coinmarketcap",
+        "name": "CoinMarketCap Categories",
+        "description": "Retrieve information about cryptocurrency categories from CoinMarketCap.",
+        "requiredCredentials": [
+            "CMC_API_KEY"
+        ],
+        "routes": [
+            {
+                "name": "getCategories",
+                "description": "Get a list of all cryptocurrency categories.",
+                "categories": []
+            },
+            {
+                "name": "getCategory",
+                "description": "Get information about a single cryptocurrency category.",
+                "categories": []
+            },
+            {
+                "name": "getIdMap",
+                "description": "Get a mapping of all cryptocurrencies to unique CoinMarketCap IDs.",
+                "categories": []
+            },
+            {
+                "name": "getMetadataV2",
+                "description": "Get static metadata for one or more cryptocurrencies including logo, description, website URLs, and social links.",
+                "categories": []
+            },
+            {
+                "name": "getQuotesLatestV2",
+                "description": "Get the latest market quote for one or more cryptocurrencies, supporting multiple conversions.",
+                "categories": []
+            }
+        ]
+    },
+    {
+        "namespace": "coinmarketcap",
+        "name": "CoinMarketCap100",
+        "description": "Retrieve historical and latest CoinMarketCap 100 Index data.",
+        "requiredCredentials": [
+            "CMC_API_KEY"
+        ],
+        "routes": [
+            {
+                "name": "getHistorical",
+                "description": "Fetch a historical range of CoinMarketCap 100 Index values.",
+                "categories": []
+            },
+            {
+                "name": "getLatest",
+                "description": "Fetch the latest CoinMarketCap 100 Index value.",
+                "categories": []
+            }
+        ]
+    },
+    {
+        "namespace": "coinmarketcap",
+        "name": "CMCCryptoFearAndGreed",
+        "description": "Retrieve historical and latest CMC Crypto Fear and Greed Index data.",
+        "requiredCredentials": [
+            "CMC_API_KEY"
+        ],
+        "routes": [
+            {
+                "name": "getFearAndGreedHistorical",
+                "description": "Fetch historical CMC Crypto Fear and Greed values.",
+                "categories": []
+            },
+            {
+                "name": "getFearAndGreedLatest",
+                "description": "Fetch the latest CMC Crypto Fear and Greed value.",
+                "categories": []
+            }
+        ]
+    },
+    {
+        "namespace": "coinmarketcap",
+        "name": "CoinMarketCapListingsLatest",
+        "description": "Returns a paginated list of all active cryptocurrencies with latest market data.",
+        "requiredCredentials": [
+            "CMC_API_KEY"
+        ],
+        "routes": [
+            {
+                "name": "listingsLatest",
+                "description": "Get latest listings of cryptocurrencies sorted and paginated.",
+                "categories": []
+            }
+        ]
+    },
+    {
+        "namespace": "cryptodata",
+        "name": "Get Coins",
+        "description": "Retrieve comprehensive data about all cryptocurrencies including prices, market cap, volume, price changes, supply info, trading metrics, and metadata.",
+        "requiredCredentials": [
+            "COINSTATS_API_KEY"
+        ],
+        "routes": [
+            {
+                "name": "getCoins",
+                "description": "Get comprehensive data about all cryptocurrencies: Price, market cap, and volume. Price changes (1h, 24h, 7d). Supply information. Trading metrics. Social links and metadata.",
+                "categories": []
+            },
+            {
+                "name": "getCoinById",
+                "description": "Get detailed information about a specific cryptocurrency based on its unique identifier.",
+                "categories": []
+            },
+            {
+                "name": "getCoinChartById",
+                "description": "Get chart data for a specific cryptocurrency based on its unique identifier, specifying different time ranges.",
+                "categories": []
+            },
+            {
+                "name": "getCoinAvgPrice",
+                "description": "Get the historical average price for a specific cryptocurrency based on its unique identifier and a specific date.",
+                "categories": []
+            },
+            {
+                "name": "getCoinExchangePrice",
+                "description": "Get the historical price data for a specific cryptocurrency on a particular exchange.",
+                "categories": []
+            },
+            {
+                "name": "getTickerExchanges",
+                "description": "Get a list of supported exchanges.",
+                "categories": []
+            },
+            {
+                "name": "getTickerMarkets",
+                "description": "Get a list of tickers for a specific cryptocurrency across different exchanges.",
+                "categories": []
+            },
+            {
+                "name": "getBlockchains",
+                "description": "Get a list of supported blockchains by CoinStats.",
+                "categories": []
+            },
+            {
+                "name": "getWalletBalance",
+                "description": "Get the balance data for a provided wallet address on a specific blockchain network.",
+                "categories": []
+            },
+            {
+                "name": "getWalletBalances",
+                "description": "Get the balance data for a provided wallet address on all CoinStats supported networks.",
+                "categories": []
+            },
+            {
+                "name": "getExchanges",
+                "description": "Get a list of supported exchange portfolio connections by CoinStats.",
+                "categories": []
+            },
+            {
+                "name": "getFiatCurrencies",
+                "description": "Get a list of fiat currencies supported by CoinStats.",
+                "categories": []
+            },
+            {
+                "name": "getNewsSources",
+                "description": "Get news sources.",
+                "categories": []
+            },
+            {
+                "name": "getNews",
+                "description": "Get news articles with pagination.",
+                "categories": []
+            },
+            {
+                "name": "getNewsByType",
+                "description": "Get news articles based on a type.",
+                "categories": []
+            },
+            {
+                "name": "getNewsById",
+                "description": "Get news by id.",
+                "categories": []
+            },
+            {
+                "name": "getMarketCap",
+                "description": "Get global market data.",
+                "categories": []
+            },
+            {
+                "name": "getCurrencies",
+                "description": "Get a list of fiat currencies supported by CoinStats.",
+                "categories": []
+            }
+        ]
+    },
+    {
+        "namespace": "cointelegraph",
+        "name": "CointelegraphRSS",
+        "description": "Fetch latest Cointelegraph news filtered by category and time range.",
+        "requiredCredentials": [],
+        "routes": [
+            {
+                "name": "getLatestNews",
+                "description": "Get the latest news articles from Cointelegraph RSS feeds by category and time range.",
+                "categories": []
+            }
+        ]
+    },
+    {
+        "namespace": "context7",
+        "name": "Context7 Library Docs",
+        "description": "Accesses searchable documentation and examples for programming libraries using Context7.",
+        "requiredCredentials": [],
+        "routes": [
+            {
+                "name": "searchLibraryId",
+                "description": "Resolves a library name into a Context7-compatible library ID and returns top matches.",
+                "categories": []
+            },
+            {
+                "name": "getLibraryDocs",
+                "description": "Fetches documentation for a specific library using its Context7-compatible library ID.",
+                "categories": []
+            }
+        ]
+    },
+    {
+        "namespace": "cryptopanic",
+        "name": "CryptoPanic",
+        "description": "Fetches cryptocurrency news headlines from CryptoPanic across different content types.",
+        "requiredCredentials": [
+            "CRYPTOPANIC_API_KEY"
+        ],
+        "routes": [
+            {
+                "name": "getCryptoCryptopanicNews",
+                "description": "Get a list of crypto news headlines from CryptoPanic.",
+                "categories": []
+            }
+        ]
+    },
+    {
+        "namespace": "defillama",
+        "name": "DeFi Llama MCP",
+        "description": "Provides access to DeFi protocol and liquidity data from DeFi Llama",
+        "requiredCredentials": [],
+        "routes": [
+            {
+                "name": "getProtocols",
+                "description": "Retrieve a list of all DeFi protocols from DeFi Llama (first 20)",
+                "categories": []
+            },
+            {
+                "name": "getProtocolTvl",
+                "description": "Get TVL data for a specific DeFi protocol",
+                "categories": []
+            },
+            {
+                "name": "getChainTvl",
+                "description": "Retrieve historical TVL data for a specific blockchain",
+                "categories": []
+            }
+        ]
+    },
+    {
+        "namespace": "defillama",
+        "name": "DeFi Llama Token Prices",
+        "description": "Provides current token price data using DeFi Llama",
+        "requiredCredentials": [],
+        "routes": [
+            {
+                "name": "getTokenPrices",
+                "description": "Get current price information for a specific token",
+                "categories": []
+            }
+        ]
+    },
+    {
+        "namespace": "defillama",
+        "name": "DeFi Llama Liquidity Pools",
+        "description": "Provides access to current DeFi Llama liquidity pool data and TVL charts",
+        "requiredCredentials": [],
+        "routes": [
+            {
+                "name": "getPools",
+                "description": "Retrieve a list of all liquidity pools from DeFi Llama (first 30)",
+                "categories": []
+            },
+            {
+                "name": "getPoolTvl",
+                "description": "Get detailed information about a specific liquidity pool by its ID",
+                "categories": []
+            }
+        ]
+    },
+    {
+        "namespace": "dexscreener",
+        "name": "dexscreener-boosted",
+        "description": "DexScreener API – Boosted token insights",
+        "requiredCredentials": [],
+        "routes": [
+            {
+                "name": "getLatestBoostedTokens",
+                "description": "Get the latest boosted tokens",
+                "categories": []
+            },
+            {
+                "name": "getMostActiveBoostedTokens",
+                "description": "Get tokens with most active boosts",
+                "categories": []
+            }
+        ]
+    },
+    {
+        "namespace": "dexscreener",
+        "name": "Dexscreener Pairs",
+        "description": "DexScreener API – Pair data and token orders by chain",
+        "requiredCredentials": [],
+        "routes": [
+            {
+                "name": "getPairByChainAndAddress",
+                "description": "Get pair by chain and pair address",
+                "categories": []
+            },
+            {
+                "name": "checkTokenOrders",
+                "description": "Check token orders by chain and token address",
+                "categories": []
+            }
+        ]
+    },
+    {
+        "namespace": "dexscreener",
+        "name": "dexscreener-tokeninfo",
+        "description": "DexScreener API – Token search and profile data",
+        "requiredCredentials": [],
+        "routes": [
+            {
+                "name": "getLatestTokenProfiles",
+                "description": "Get the latest token profiles",
+                "categories": []
+            },
+            {
+                "name": "searchPairs",
+                "description": "Search pairs by query string",
+                "categories": []
+            },
+            {
+                "name": "getPairsByToken",
+                "description": "Get pairs by token address",
+                "categories": []
+            },
+            {
+                "name": "getTokenPools",
+                "description": "Get token pools by chain and address",
+                "categories": []
+            }
+        ]
+    },
+    {
+        "namespace": "duneAnalytics",
+        "name": "FarcasterTrends",
+        "description": "Fetches trending memecoins, channels, and users from Farcaster via Dune Analytics.",
+        "requiredCredentials": [
+            "DUNE_API_KEY"
+        ],
+        "routes": [
+            {
+                "name": "farcasterGetTrendingMemecoins",
+                "description": "Get trending Farcaster memecoins from Dune Analytics.",
+                "categories": []
+            },
+            {
+                "name": "farcasterGetTrendingChannels",
+                "description": "Get trending Farcaster channels from Dune Analytics.",
+                "categories": []
+            },
+            {
+                "name": "farcasterGetTrendingUsers",
+                "description": "Get trending Farcaster users who casted in the last 14 days.",
+                "categories": []
+            }
+        ]
+    },
+    {
+        "namespace": "duneAnalytics",
+        "name": "DuneAnalytics",
+        "description": "Interface with Dune Analytics to execute and retrieve query results.",
+        "requiredCredentials": [
+            "DUNE_API_KEY"
+        ],
+        "routes": [
+            {
+                "name": "getLatestResult",
+                "description": "Fetch latest result for a Dune query ID (returns CSV string).",
+                "categories": []
+            }
+        ]
+    },
+    {
+        "namespace": "duneAnalytics",
+        "name": "DexAndContracts",
+        "description": "Provides insights into DEX trading pairs, trending contracts, and market share across chains via Dune Analytics.",
+        "requiredCredentials": [
+            "DUNE_API_KEY"
+        ],
+        "routes": [
+            {
+                "name": "getDexPairStats",
+                "description": "Get DEX pair statistics for a given blockchain.",
+                "categories": []
+            },
+            {
+                "name": "getTrendingContracts",
+                "description": "Get trending contracts deployed on EVM chains based on the last 30 days.",
+                "categories": []
+            },
+            {
+                "name": "getMarketShare",
+                "description": "Get DEX or NFT market share on a specific chain.",
+                "categories": []
+            }
+        ]
+    },
+    {
+        "namespace": "profilejump",
+        "name": "ProfileJump",
+        "description": "Schema for interacting with the ProfileJump API",
+        "requiredCredentials": [],
+        "routes": [
+            {
+                "name": "prices",
+                "description": "Fetch price data",
+                "categories": []
+            },
+            {
+                "name": "hotProfiles",
+                "description": "Fetch hot profiles",
+                "categories": []
+            },
+            {
+                "name": "tokensList",
+                "description": "Fetch list of tokens with pagination",
+                "categories": []
+            },
+            {
+                "name": "profilesList",
+                "description": "Fetch list of profiles filtered by view",
+                "categories": []
+            },
+            {
+                "name": "profileByAddress",
+                "description": "Fetch profile details by wallet address",
+                "categories": []
+            }
+        ]
+    },
+    {
+        "namespace": "etherscan",
+        "name": "Etherscan",
+        "description": "Etherscan API",
+        "requiredCredentials": [
+            "ETHERSCAN_API_KEY"
+        ],
+        "routes": [
+            {
+                "name": "getContractABI",
+                "description": "Returns the Contract ABI of a verified smart contract.",
+                "categories": []
+            },
+            {
+                "name": "getContractSourceCode",
+                "description": "Returns the Solidity source code of a verified smart contract.",
+                "categories": []
+            }
+        ]
+    },
+    {
+        "namespace": "etherscan",
+        "name": "SmartContractExplorer",
+        "description": "Provides available chains and fetches smart contract source code",
+        "requiredCredentials": [
+            "ETHERSCAN_API_KEY"
+        ],
+        "routes": [
+            {
+                "name": "getAvailableChains",
+                "description": "List available blockchain aliases",
+                "categories": []
+            },
+            {
+                "name": "getSmartContractAbi",
+                "description": "Fetch smart contract source code by alias",
+                "categories": [
+                    "ETHEREUM_MAINNET",
+                    "SEPOLIA_TESTNET",
+                    "HOLESKY_TESTNET",
+                    "ABSTRACT_MAINNET",
+                    "APECHAIN_MAINNET",
+                    "AVALANCHE_CCHAIN",
+                    "BASE_MAINNET",
+                    "BERACHAIN_MAINNET",
+                    "BITTORRENT_MAINNET",
+                    "BITTORRENT_TESTNET",
+                    "BLAST_MAINNET",
+                    "BINANCE_MAINNET",
+                    "BINANCE_TESTNET",
+                    "CELO_MAINNET",
+                    "CRONOS_MAINNET",
+                    "FRAXTAL_MAINNET",
+                    "FRAXTAL_TESTNET",
+                    "GNOSIS_MAINNET",
+                    "LINEA_MAINNET",
+                    "MANTLE_MAINNET",
+                    "MEMECORE_MAINNET",
+                    "MEMECORE_TESTNET",
+                    "MOONBEAM_MAINNET",
+                    "MOONRIVER_MAINNET",
+                    "OPTIMISN_MAINNET",
+                    "POLYGON_MAINNET",
+                    "POLYGONZK_MAINNET",
+                    "SCROLL_MAINNET",
+                    "SONIC_MAINNET",
+                    "SOPHON_MAINNET",
+                    "SWELLCHAIN_MAINNET",
+                    "SWELLCHAIN_TESTNET",
+                    "TAIKO_MAINNET",
+                    "UNICHAIN_MAINNET",
+                    "WORLD_MAINNET",
+                    "XAI_MAINNET",
+                    "XINFIN_TESTNET",
+                    "XINFIN_MAINNET",
+                    "ZKSYNC_MAINNET"
+                ]
+            },
+            {
+                "name": "getSourceCode",
+                "description": "Fetch smart contract source code by alias",
+                "categories": [
+                    "ETHEREUM_MAINNET",
+                    "SEPOLIA_TESTNET",
+                    "HOLESKY_TESTNET",
+                    "ABSTRACT_MAINNET",
+                    "APECHAIN_MAINNET",
+                    "AVALANCHE_CCHAIN",
+                    "BASE_MAINNET",
+                    "BERACHAIN_MAINNET",
+                    "BITTORRENT_MAINNET",
+                    "BITTORRENT_TESTNET",
+                    "BLAST_MAINNET",
+                    "BINANCE_MAINNET",
+                    "BINANCE_TESTNET",
+                    "CELO_MAINNET",
+                    "CRONOS_MAINNET",
+                    "FRAXTAL_MAINNET",
+                    "FRAXTAL_TESTNET",
+                    "GNOSIS_MAINNET",
+                    "LINEA_MAINNET",
+                    "MANTLE_MAINNET",
+                    "MEMECORE_MAINNET",
+                    "MEMECORE_TESTNET",
+                    "MOONBEAM_MAINNET",
+                    "MOONRIVER_MAINNET",
+                    "OPTIMISN_MAINNET",
+                    "POLYGON_MAINNET",
+                    "POLYGONZK_MAINNET",
+                    "SCROLL_MAINNET",
+                    "SONIC_MAINNET",
+                    "SOPHON_MAINNET",
+                    "SWELLCHAIN_MAINNET",
+                    "SWELLCHAIN_TESTNET",
+                    "TAIKO_MAINNET",
+                    "UNICHAIN_MAINNET",
+                    "WORLD_MAINNET",
+                    "XAI_MAINNET",
+                    "XINFIN_TESTNET",
+                    "XINFIN_MAINNET",
+                    "ZKSYNC_MAINNET"
+                ]
+            }
+        ]
+    },
+    {
+        "namespace": "etherscan",
+        "name": "SmartContractExplorer",
+        "description": "Provides available chains and fetches smart contract source code",
+        "requiredCredentials": [
+            "ETHERSCAN_API_KEY"
+        ],
+        "routes": [
+            {
+                "name": "getGasOracle",
+                "description": "Fetch current gas oracle data for a given chain",
+                "categories": [
+                    "ETHEREUM_MAINNET",
+                    "SEPOLIA_TESTNET",
+                    "POLYGON_MAINNET",
+                    "BINANCE_MAINNET",
+                    "AVALANCHE_CCHAIN"
+                ]
+            },
+            {
+                "name": "estimateGasCost",
+                "description": "Estimate gas cost using a specific gas price for a given chain",
+                "categories": [
+                    "ETHEREUM_MAINNET",
+                    "SEPOLIA_TESTNET",
+                    "POLYGON_MAINNET",
+                    "BINANCE_MAINNET",
+                    "AVALANCHE_CCHAIN"
+                ]
+            }
+        ]
+    },
+    {
+        "namespace": "jupiter",
+        "name": "Jupiter Token Price Checker",
+        "description": "Fetches token prices from Jupiter DEX aggregator, priced by default against USDC, with optional vsToken.",
+        "requiredCredentials": [],
+        "routes": [
+            {
+                "name": "getTokenPrice",
+                "description": "Returns the price of one or more tokens, optionally against a specified vsToken (defaults to USDC).",
+                "categories": []
+            },
+            {
+                "name": "getTokenInfo",
+                "description": "Get information about a token using its mint address.",
+                "categories": []
+            },
+            {
+                "name": "getTokensInMarket",
+                "description": "Get list of token mints belonging to a market address.",
+                "categories": []
+            },
+            {
+                "name": "getAllTradableTokens",
+                "description": "Retrieve a list of all tradable token mints on Jupiter.",
+                "categories": []
+            },
+            {
+                "name": "getTaggedTokens",
+                "description": "Fetch token info for tokens matching specific tags.",
+                "categories": []
+            },
+            {
+                "name": "getNewTokens",
+                "description": "Retrieve new tokens, ordered by creation timestamp.",
+                "categories": []
+            },
+            {
+                "name": "getAllTokens",
+                "description": "Fetch all tokens indexed by Jupiter. This is a large payload.",
+                "categories": []
+            }
+        ]
+    },
+    {
+        "namespace": "llama",
+        "name": "DeFiYieldsServer",
+        "description": "Fetch and analyze DeFi yield pools from yields.llama.fi",
+        "requiredCredentials": [],
+        "routes": [
+            {
+                "name": "getProjectsByName",
+                "description": "Fetch DeFi yield pools overview, optionally filtering by blockchain or project name",
+                "categories": []
+            },
+            {
+                "name": "getPools",
+                "description": "Fetch DeFi yield pools, optionally filtering by blockchain or project name",
+                "categories": []
+            }
+        ]
+    },
+    {
+        "namespace": "luksoNetwork",
+        "name": "LUKSO BlockScout Addresses",
+        "description": "All address-level endpoints for LUKSO BlockScout",
+        "requiredCredentials": [],
+        "routes": [
+            {
+                "name": "listAddresses",
+                "description": "List native coin holders",
+                "categories": [
+                    "LUKSO_MAINNET",
+                    "LUKSO_TESTNET"
+                ]
+            },
+            {
+                "name": "getAddress",
+                "description": "Basic address info",
+                "categories": [
+                    "LUKSO_MAINNET",
+                    "LUKSO_TESTNET"
+                ]
+            },
+            {
+                "name": "getAddressCounters",
+                "description": "Address usage counters",
+                "categories": [
+                    "LUKSO_MAINNET",
+                    "LUKSO_TESTNET"
+                ]
+            },
+            {
+                "name": "getAddressTransactions",
+                "description": "Get transactions by address",
+                "categories": [
+                    "LUKSO_MAINNET",
+                    "LUKSO_TESTNET"
+                ]
+            },
+            {
+                "name": "getAddressTokenTransfers",
+                "description": "Token transfers for address",
+                "categories": [
+                    "LUKSO_MAINNET",
+                    "LUKSO_TESTNET"
+                ]
+            },
+            {
+                "name": "getAddressInternalTxs",
+                "description": "Internal txs for address",
+                "categories": [
+                    "LUKSO_MAINNET",
+                    "LUKSO_TESTNET"
+                ]
+            },
+            {
+                "name": "getAddressLogs",
+                "description": "Logs emitted to/from address",
+                "categories": [
+                    "LUKSO_MAINNET",
+                    "LUKSO_TESTNET"
+                ]
+            },
+            {
+                "name": "getBlocksValidated",
+                "description": "Blocks validated by address",
+                "categories": [
+                    "LUKSO_MAINNET",
+                    "LUKSO_TESTNET"
+                ]
+            },
+            {
+                "name": "getTokenBalances",
+                "description": "Token balances grouped",
+                "categories": [
+                    "LUKSO_MAINNET",
+                    "LUKSO_TESTNET"
+                ]
+            },
+            {
+                "name": "getFlatTokenBalances",
+                "description": "All token balances (flat)",
+                "categories": [
+                    "LUKSO_MAINNET",
+                    "LUKSO_TESTNET"
+                ]
+            },
+            {
+                "name": "getCoinBalanceHistory",
+                "description": "Native coin balance history",
+                "categories": [
+                    "LUKSO_MAINNET",
+                    "LUKSO_TESTNET"
+                ]
+            },
+            {
+                "name": "getCoinBalanceByDay",
+                "description": "Daily coin balance history",
+                "categories": [
+                    "LUKSO_MAINNET",
+                    "LUKSO_TESTNET"
+                ]
+            }
+        ]
+    },
+    {
+        "namespace": "luksoNetwork",
+        "name": "LUKSO BlockScout Blocks",
+        "description": "Retrieve blocks and related data from LUKSO BlockScout",
+        "requiredCredentials": [],
+        "routes": [
+            {
+                "name": "getBlocks",
+                "description": "List recent blocks (optional filtering)",
+                "categories": [
+                    "LUKSO_MAINNET",
+                    "LUKSO_TESTNET"
+                ]
+            },
+            {
+                "name": "getBlockById",
+                "description": "Get detailed info for a block",
+                "categories": [
+                    "LUKSO_MAINNET",
+                    "LUKSO_TESTNET"
+                ]
+            },
+            {
+                "name": "getBlockTransactions",
+                "description": "Get transactions within a block",
+                "categories": [
+                    "LUKSO_MAINNET",
+                    "LUKSO_TESTNET"
+                ]
+            },
+            {
+                "name": "getBlockWithdrawals",
+                "description": "Get withdrawals from a block",
+                "categories": [
+                    "LUKSO_MAINNET",
+                    "LUKSO_TESTNET"
+                ]
+            }
+        ]
+    },
+    {
+        "namespace": "luksoNetwork",
+        "name": "LuksoMainnetSubgraph",
+        "description": "Query the Lukso Mainnet GraphQL endpoint.",
+        "requiredCredentials": [],
+        "routes": [
+            {
+                "name": "getLuksoExplorerSchema",
+                "description": "Execute a GraphQL query against the LUKSO mainnet subgraph.",
+                "categories": []
+            },
+            {
+                "name": "fectchLuksoExplorer",
+                "description": "Run a raw GraphQL query on a lukso explorer.",
+                "categories": []
+            }
+        ]
+    },
+    {
+        "namespace": "luksoNetwork",
+        "name": "LUKSO BlockScout Meta",
+        "description": "Main page, config, health and Celestia-specific endpoints",
+        "requiredCredentials": [],
+        "routes": [
+            {
+                "name": "getMainPageTransactions",
+                "description": "Latest transactions for main page",
+                "categories": [
+                    "LUKSO_MAINNET",
+                    "LUKSO_TESTNET"
+                ]
+            },
+            {
+                "name": "getMainPageBlocks",
+                "description": "Latest blocks for main page",
+                "categories": [
+                    "LUKSO_MAINNET",
+                    "LUKSO_TESTNET"
+                ]
+            }
+        ]
+    },
+    {
+        "namespace": "luksoNetwork",
+        "name": "LUKSO BlockScout NFTs",
+        "description": "Query NFTs owned by address or smart contract",
+        "requiredCredentials": [],
+        "routes": [
+            {
+                "name": "getNFTsByAddress",
+                "description": "NFTs owned by address",
+                "categories": [
+                    "LUKSO_MAINNET",
+                    "LUKSO_TESTNET"
+                ]
+            },
+            {
+                "name": "getNFTCollectionsByAddress",
+                "description": "NFTs grouped by collection",
+                "categories": [
+                    "LUKSO_MAINNET",
+                    "LUKSO_TESTNET"
+                ]
+            },
+            {
+                "name": "getNFTInstancesByContract",
+                "description": "List all NFT instances in contract",
+                "categories": [
+                    "LUKSO_MAINNET",
+                    "LUKSO_TESTNET"
+                ]
+            },
+            {
+                "name": "getNFTInstanceById",
+                "description": "Get one NFT by ID",
+                "categories": [
+                    "LUKSO_MAINNET",
+                    "LUKSO_TESTNET"
+                ]
+            },
+            {
+                "name": "getNFTInstanceTransfers",
+                "description": "Transfers of a specific NFT",
+                "categories": [
+                    "LUKSO_MAINNET",
+                    "LUKSO_TESTNET"
+                ]
+            },
+            {
+                "name": "getNFTInstanceHolders",
+                "description": "Get holders of an NFT instance",
+                "categories": [
+                    "LUKSO_MAINNET",
+                    "LUKSO_TESTNET"
+                ]
+            },
+            {
+                "name": "getNFTInstanceTransfersCount",
+                "description": "Count transfers of an NFT instance",
+                "categories": [
+                    "LUKSO_MAINNET",
+                    "LUKSO_TESTNET"
+                ]
+            }
+        ]
+    },
+    {
+        "namespace": "luksoNetwork",
+        "name": "LUKSO BlockScout Search",
+        "description": "Search and redirect endpoints from LUKSO BlockScout API",
+        "requiredCredentials": [],
+        "routes": [
+            {
+                "name": "search",
+                "description": "Search across tokens, addresses, blocks and transactions",
+                "categories": [
+                    "LUKSO_MAINNET",
+                    "LUKSO_TESTNET"
+                ]
+            },
+            {
+                "name": "searchRedirect",
+                "description": "Check if search redirects to a specific resource",
+                "categories": [
+                    "LUKSO_MAINNET",
+                    "LUKSO_TESTNET"
+                ]
+            }
+        ]
+    },
+    {
+        "namespace": "luksoNetwork",
+        "name": "Contract",
+        "description": "API for interacting with smart contract metadata and state on LUKSO chains.",
+        "requiredCredentials": [],
+        "routes": [
+            {
+                "name": "listcontracts",
+                "description": "List sorted contracts, optionally filtered.",
+                "categories": [
+                    "LUKSO_MAINNET",
+                    "LUKSO_TESTNET"
+                ]
+            },
+            {
+                "name": "getabi",
+                "description": "Get ABI for a verified contract.",
+                "categories": [
+                    "LUKSO_MAINNET",
+                    "LUKSO_TESTNET"
+                ]
+            },
+            {
+                "name": "getsourcecode",
+                "description": "Get contract source code.",
+                "categories": [
+                    "LUKSO_MAINNET",
+                    "LUKSO_TESTNET"
+                ]
+            },
+            {
+                "name": "getcontractcreation",
+                "description": "Get contract creator and creation tx hash.",
+                "categories": [
+                    "LUKSO_MAINNET",
+                    "LUKSO_TESTNET"
+                ]
+            }
+        ]
+    },
+    {
+        "namespace": "luksoNetwork",
+        "name": "LUKSO BlockScout Statistics",
+        "description": "Charts and blockchain stats from LUKSO BlockScout",
+        "requiredCredentials": [],
+        "routes": [
+            {
+                "name": "getStats",
+                "description": "General blockchain stats",
+                "categories": [
+                    "LUKSO_MAINNET",
+                    "LUKSO_TESTNET"
+                ]
+            },
+            {
+                "name": "getTransactionChart",
+                "description": "Transaction activity chart",
+                "categories": [
+                    "LUKSO_MAINNET",
+                    "LUKSO_TESTNET"
+                ]
+            },
+            {
+                "name": "getMarketChart",
+                "description": "Token market stats (price, cap, etc.)",
+                "categories": [
+                    "LUKSO_MAINNET",
+                    "LUKSO_TESTNET"
+                ]
+            }
+        ]
+    },
+    {
+        "namespace": "luksoNetwork",
+        "name": "LUKSO BlockScout Tokens",
+        "description": "Token-related endpoints for transfers, holders, and stats",
+        "requiredCredentials": [],
+        "routes": [
+            {
+                "name": "listTokens",
+                "description": "List all tokens",
+                "categories": [
+                    "LUKSO_MAINNET",
+                    "LUKSO_TESTNET"
+                ]
+            },
+            {
+                "name": "getTokenByAddress",
+                "description": "Get token metadata",
+                "categories": [
+                    "LUKSO_MAINNET",
+                    "LUKSO_TESTNET"
+                ]
+            },
+            {
+                "name": "getTokenTransfersByAddress",
+                "description": "Token transfer history",
+                "categories": [
+                    "LUKSO_MAINNET",
+                    "LUKSO_TESTNET"
+                ]
+            },
+            {
+                "name": "getTokenHolders",
+                "description": "List token holders",
+                "categories": [
+                    "LUKSO_MAINNET",
+                    "LUKSO_TESTNET"
+                ]
+            },
+            {
+                "name": "getTokenCounters",
+                "description": "Token analytics counters",
+                "categories": [
+                    "LUKSO_MAINNET",
+                    "LUKSO_TESTNET"
+                ]
+            }
+        ]
+    },
+    {
+        "namespace": "luksoNetwork",
+        "name": "LUKSO BlockScout Transactions",
+        "description": "Fetch transactions and their associated data from LUKSO BlockScout",
+        "requiredCredentials": [],
+        "routes": [
+            {
+                "name": "getTransactions",
+                "description": "List transactions (filterable)",
+                "categories": [
+                    "LUKSO_MAINNET",
+                    "LUKSO_TESTNET"
+                ]
+            },
+            {
+                "name": "getTransactionByHash",
+                "description": "Details of a transaction",
+                "categories": [
+                    "LUKSO_MAINNET",
+                    "LUKSO_TESTNET"
+                ]
+            },
+            {
+                "name": "getTokenTransfersByTransactionHash",
+                "description": "Token transfers in transaction",
+                "categories": [
+                    "LUKSO_MAINNET",
+                    "LUKSO_TESTNET"
+                ]
+            },
+            {
+                "name": "getInternalTransactions",
+                "description": "Internal txs in transaction",
+                "categories": [
+                    "LUKSO_MAINNET",
+                    "LUKSO_TESTNET"
+                ]
+            },
+            {
+                "name": "getLogs",
+                "description": "Logs from transaction",
+                "categories": [
+                    "LUKSO_MAINNET",
+                    "LUKSO_TESTNET"
+                ]
+            },
+            {
+                "name": "getRawTrace",
+                "description": "Raw trace of transaction",
+                "categories": [
+                    "LUKSO_MAINNET",
+                    "LUKSO_TESTNET"
+                ]
+            },
+            {
+                "name": "getStateChanges",
+                "description": "State changes in transaction",
+                "categories": [
+                    "LUKSO_MAINNET",
+                    "LUKSO_TESTNET"
+                ]
+            }
+        ]
+    },
+    {
+        "namespace": "memoryLol",
+        "name": "TwitterUsernameChanges",
+        "description": "Get Twitter username change history via memory.lol API.",
+        "requiredCredentials": [],
+        "routes": [
+            {
+                "name": "queryUsernameChanges",
+                "description": "Fetch username change history for a Twitter user.",
+                "categories": []
+            }
+        ]
+    },
+    {
+        "namespace": "moralis",
+        "name": "Moralis blockchainApi API",
+        "description": "Moralis blockchainApi API",
+        "requiredCredentials": [
+            "MORALIS_API_KEY"
+        ],
+        "routes": [
+            {
+                "name": "/block/:block_number_or_hash",
+                "description": "Get the contents of a block given the block hash.",
+                "categories": []
+            },
+            {
+                "name": "/dateToBlock",
+                "description": "Get the closest block given the date.",
+                "categories": []
+            },
+            {
+                "name": "/transaction/:transaction_hash/verbose",
+                "description": "Get the contents of a transaction by the given transaction hash.",
+                "categories": []
+            },
+            {
+                "name": "/:address/verbose",
+                "description": "Get native transactions and logs ordered by block number in descending order.",
+                "categories": []
+            },
+            {
+                "name": "/latestBlockNumber/:chain",
+                "description": "Returns the latest block number for the given chain.",
+                "categories": []
+            },
+            {
+                "name": "/transaction/:transaction_hash",
+                "description": "Get the contents of a transaction by the given transaction hash.",
+                "categories": []
+            },
+            {
+                "name": "/:address",
+                "description": "Get native transactions ordered by block number in descending order.",
+                "categories": []
+            }
+        ]
+    },
+    {
+        "namespace": "moralis",
+        "name": "Moralis defiApi API",
+        "description": "Moralis defiApi API",
+        "requiredCredentials": [
+            "MORALIS_API_KEY"
+        ],
+        "routes": [
+            {
+                "name": "/wallets/:address/defi/:protocol/positions",
+                "description": "Get the detailed defi positions by protocol for a wallet address.",
+                "categories": []
+            },
+            {
+                "name": "/wallets/:address/defi/positions",
+                "description": "Get the positions summary of a wallet address.",
+                "categories": []
+            },
+            {
+                "name": "/wallets/:address/defi/summary",
+                "description": "Get the defi summary of a wallet address.",
+                "categories": []
+            }
+        ]
+    },
+    {
+        "namespace": "moralis",
+        "name": "Moralis entity API",
+        "description": "Moralis entity API",
+        "requiredCredentials": [
+            "MORALIS_API_KEY"
+        ],
+        "routes": [
+            {
+                "name": "/entities/categories",
+                "description": "Get Entity Categories",
+                "categories": []
+            }
+        ]
+    },
+    {
+        "namespace": "moralis",
+        "name": "Moralis nftApi API",
+        "description": "Moralis nftApi API",
+        "requiredCredentials": [
+            "MORALIS_API_KEY"
+        ],
+        "routes": [
+            {
+                "name": "/market-data/nfts/top-collections",
+                "description": "Get the top NFT collections by market cap",
+                "categories": []
+            },
+            {
+                "name": "/market-data/nfts/hottest-collections",
+                "description": "Get the top NFT collections by trading volume",
+                "categories": []
+            },
+            {
+                "name": "/nft/:address",
+                "description": "Get NFTs for a given contract address, including metadata for all NFTs (where available).",
+                "categories": []
+            },
+            {
+                "name": "/nft/:address/stats",
+                "description": "Get the stats for a nft collection address.",
+                "categories": []
+            },
+            {
+                "name": "/nft/:address/metadata",
+                "description": "Get the collection / contract level metadata for a given contract (name, symbol, base token URI).",
+                "categories": []
+            },
+            {
+                "name": "/nft/:address/transfers",
+                "description": "Get transfers of NFTs for a given contract and other parameters.",
+                "categories": []
+            },
+            {
+                "name": "/nft/:address/:token_id",
+                "description": "Get NFT data, including metadata (where available), for the given NFT token ID and contract address.",
+                "categories": []
+            },
+            {
+                "name": "/nft/:address/owners",
+                "description": "Get owners of NFTs for a given contract.",
+                "categories": []
+            },
+            {
+                "name": "/nft/:address/:token_id/owners",
+                "description": "Get owners of a specific NFT given the contract address and token ID.",
+                "categories": []
+            },
+            {
+                "name": "/nft/:address/:token_id/trades",
+                "description": "Get trades of NFTs for a given contract and token ID.",
+                "categories": []
+            },
+            {
+                "name": "/wallets/:address/nfts/trades",
+                "description": "Get trades of NFTs for a given wallet.",
+                "categories": []
+            },
+            {
+                "name": "/nft/:address/trades",
+                "description": "Get trades of NFTs for a given contract and marketplace.",
+                "categories": []
+            },
+            {
+                "name": "/nft/:address/traits/paginate",
+                "description": "Get NFT traits for a given collection",
+                "categories": []
+            },
+            {
+                "name": "/nft/:address/traits",
+                "description": "Get NFT traits for a given collection",
+                "categories": []
+            },
+            {
+                "name": "/nft/:address/:token_id/transfers",
+                "description": "Get transfers of an NFT given a contract address and token ID.",
+                "categories": []
+            },
+            {
+                "name": "/:address/nft/collections",
+                "description": "Get NFT collections owned by a given wallet address.",
+                "categories": []
+            },
+            {
+                "name": "/:address/nft/transfers",
+                "description": "Get transfers of NFTs given the wallet and other parameters.",
+                "categories": []
+            },
+            {
+                "name": "/:address/nft",
+                "description": "Get NFTs owned by a given address.",
+                "categories": []
+            },
+            {
+                "name": "/nft/:address/:token_id/metadata/resync",
+                "description": "Resync the metadata for an NFT",
+                "categories": []
+            },
+            {
+                "name": "/nft/:address/traits/resync",
+                "description": "Resync the NFT Trait for a given contract",
+                "categories": []
+            }
+        ]
+    },
+    {
+        "namespace": "moralis",
+        "name": "Moralis priceApi API",
+        "description": "Moralis priceApi API",
+        "requiredCredentials": [
+            "MORALIS_API_KEY"
+        ],
+        "routes": [
+            {
+                "name": "/nft/:address/price",
+                "description": "Get the sold price for an NFT contract for the last x days (only trades paid in ETH).",
+                "categories": []
+            },
+            {
+                "name": "/nft/:address/floor-price",
+                "description": "Get floor price for a given contract.",
+                "categories": []
+            },
+            {
+                "name": "/nft/:address/:token_id/floor-price",
+                "description": "Get floor price for a given token.",
+                "categories": []
+            },
+            {
+                "name": "/nft/:address/floor-price/historical",
+                "description": "Get historical floor price for a given contract.",
+                "categories": []
+            },
+            {
+                "name": "/nft/:address/:token_id/price",
+                "description": "Get the sold price for an NFT token for the last x days (only trades paid in ETH).",
+                "categories": []
+            },
+            {
+                "name": "/pairs/:address/ohlcv",
+                "description": "Get the OHLCV candle stick by using pair address",
+                "categories": []
+            },
+            {
+                "name": "/erc20/:address/price",
+                "description": "Get the token price denominated in the blockchain's native token and USD. View supported exchanges here",
+                "categories": []
+            }
+        ]
+    },
+    {
+        "namespace": "moralis",
+        "name": "Moralis tokenApi API",
+        "description": "Moralis tokenApi API",
+        "requiredCredentials": [
+            "MORALIS_API_KEY"
+        ],
+        "routes": [
+            {
+                "name": "/:pair_address/reserves",
+                "description": "Get the liquidity reserves for a given pair address. Only Uniswap V2 based exchanges supported at the moment.",
+                "categories": []
+            },
+            {
+                "name": "/pairs/:address/snipers",
+                "description": "Get all snipers (wallets that quickly buy and sell tokens) for a specific token pair address.",
+                "categories": []
+            },
+            {
+                "name": "/pairs/:address/swaps",
+                "description": "Get all swap related transactions (buy, sell, add liquidity & remove liquidity)",
+                "categories": []
+            },
+            {
+                "name": "/wallets/:address/swaps",
+                "description": "Get all swap related transactions (buy, sell)",
+                "categories": []
+            },
+            {
+                "name": "/tokens/:address/analytics",
+                "description": "Get analytics for a token by token address",
+                "categories": []
+            },
+            {
+                "name": "/erc20/:token_address/owners",
+                "description": "Identify the major holders of an ERC20 token and understand their ownership percentages",
+                "categories": []
+            },
+            {
+                "name": "/erc20/metadata/symbols",
+                "description": "Get the metadata for a list of token symbols (name, symbol, decimals, logo).",
+                "categories": []
+            },
+            {
+                "name": "/erc20/metadata",
+                "description": "Get the metadata for a given token contract address (name, symbol, decimals, logo).",
+                "categories": []
+            },
+            {
+                "name": "/erc20/:address/stats",
+                "description": "Get the stats for a erc20 token",
+                "categories": []
+            },
+            {
+                "name": "/erc20/:address/transfers",
+                "description": "Get ERC20 token transactions from a contract ordered by block number in descending order.",
+                "categories": []
+            },
+            {
+                "name": "/market-data/erc20s/top-tokens",
+                "description": "Get the top ERC20 tokens by market cap",
+                "categories": []
+            },
+            {
+                "name": "/erc20/:address/top-gainers",
+                "description": "Retrieves a list of the top profitable wallets for a specific ERC20 token.",
+                "categories": []
+            },
+            {
+                "name": "/wallets/:address/approvals",
+                "description": "Retrieve active ERC20 token approvals for the specified wallet address",
+                "categories": []
+            },
+            {
+                "name": "/wallets/:address/tokens",
+                "description": "Get token balances for a specific wallet address and their token prices in USD.",
+                "categories": []
+            },
+            {
+                "name": "/:address/erc20",
+                "description": "Get token balances for a specific wallet address.",
+                "categories": []
+            },
+            {
+                "name": "/:address/erc20/transfers",
+                "description": "Get ERC20 token transactions ordered by block number in descending order.",
+                "categories": []
+            }
+        ]
+    },
+    {
+        "namespace": "moralis",
+        "name": "Moralis utils API",
+        "description": "Moralis utils API",
+        "requiredCredentials": [
+            "MORALIS_API_KEY"
+        ],
+        "routes": [
+            {
+                "name": "/info/endpointWeights",
+                "description": "Get the cost and rate limit for each API endpoint.",
+                "categories": []
+            },
+            {
+                "name": "/web3/version",
+                "description": "Get the current version of the Moralis Web3 API.",
+                "categories": []
+            }
+        ]
+    },
+    {
+        "namespace": "moralis",
+        "name": "Moralis walletApi API",
+        "description": "Moralis walletApi API",
+        "requiredCredentials": [
+            "MORALIS_API_KEY"
+        ],
+        "routes": [
+            {
+                "name": "/wallets/:address/chains",
+                "description": "Get the active chains for a wallet address.",
+                "categories": []
+            },
+            {
+                "name": "/:address/balance",
+                "description": "Get the native balance for a specific wallet address.",
+                "categories": []
+            },
+            {
+                "name": "/wallets/:address/history",
+                "description": "Retrieve the full transaction history of a specified wallet address, including sends, receives, token and NFT transfers, and contract interactions.",
+                "categories": []
+            },
+            {
+                "name": "/wallets/:address/net-worth",
+                "description": "Get the net worth of a wallet in USD. We recommend to filter out spam tokens and unverified contracts to get a more accurate result.",
+                "categories": []
+            },
+            {
+                "name": "/wallets/:address/profitability/summary",
+                "description": "Retrieves a summary of wallet profitability based on specified parameters including optional token addresses.",
+                "categories": []
+            },
+            {
+                "name": "/wallets/:address/profitability",
+                "description": "Retrieves profitability information for a specific wallet address. Can be filtered by one or more tokens.",
+                "categories": []
+            },
+            {
+                "name": "/wallets/:address/stats",
+                "description": "Get the stats for a wallet address.",
+                "categories": []
+            },
+            {
+                "name": "/resolve/:address/domain",
+                "description": "Resolve a specific address to its Unstoppable domain",
+                "categories": []
+            },
+            {
+                "name": "/resolve/:address/reverse",
+                "description": "Reverse resolve a given ETH address to its ENS domain.",
+                "categories": []
+            },
+            {
+                "name": "/resolve/:domain",
+                "description": "Resolve a specific Unstoppable domain to its address.",
+                "categories": []
+            },
+            {
+                "name": "/resolve/ens/:domain",
+                "description": "Resolve a specific ENS domain to its address.",
+                "categories": []
+            }
+        ]
+    },
+    {
+        "namespace": "newsdata",
+        "name": "CryptoNews",
+        "description": "Fetches general or topic-specific cryptocurrency news articles from NewsData.io.",
+        "requiredCredentials": [
+            "NEWSDATA_API_KEY"
+        ],
+        "routes": [
+            {
+                "name": "getLatestNewsdata",
+                "description": "Fetch the latest general crypto news from NewsData.io.",
+                "categories": []
+            },
+            {
+                "name": "getCryptoNewsdata",
+                "description": "Fetch topic-specific crypto news for a given query and max number of pages.",
+                "categories": []
+            }
+        ]
+    },
+    {
+        "namespace": "poap",
+        "name": "POAP GraphQL",
+        "description": "GraphQL endpoint for accessing POAP event data and metadata",
+        "requiredCredentials": [],
+        "routes": [
+            {
+                "name": "getTypename",
+                "description": "Simple GraphQL query to retrieve the __typename root for basic connectivity test.",
+                "categories": []
+            },
+            {
+                "name": "getSchemaDefinition",
+                "description": "Returns the full GraphQL schema via introspection",
+                "categories": []
+            },
+            {
+                "name": "getPredefinedQueryList",
+                "description": "Run a predefined GraphQL query.",
+                "categories": []
+            },
+            {
+                "name": "executePrefinedQuery",
+                "description": "Run a predefined GraphQL query.",
+                "categories": []
+            },
+            {
+                "name": "querySubgraph",
+                "description": "Run a raw GraphQL query.",
+                "categories": []
+            }
+        ]
+    },
+    {
+        "namespace": "polymarket",
+        "name": "Polymarket Predictions",
+        "description": "Access prediction market data from Polymarket via CLOB API",
+        "requiredCredentials": [],
+        "routes": [
+            {
+                "name": "getMarkets",
+                "description": "List prediction markets with optional filters",
+                "categories": []
+            },
+            {
+                "name": "getMarketInfo",
+                "description": "Get detailed information about a specific prediction market",
+                "categories": []
+            }
+        ]
+    },
+    {
+        "namespace": "polymarket",
+        "name": "Fed Rate Cuts 2025",
+        "description": "Zeigt Marktprognosen für Fed-Zinssenkungen im Jahr 2025.",
+        "requiredCredentials": [],
+        "routes": [
+            {
+                "name": "searchBySlug",
+                "description": "Get market data for Fed rate cuts in 2025 by slug",
+                "categories": []
+            }
+        ]
+    },
+    {
+        "namespace": "redditScanner",
+        "name": "Reddit Token Mention Search",
+        "description": "Searches Reddit for mentions of a token symbol or name related to crypto topics.",
+        "requiredCredentials": [],
+        "routes": [
+            {
+                "name": "getTokenMentions",
+                "description": "Search for mentions of a token symbol or name on Reddit with optional sentiment analysis.",
+                "categories": []
+            },
+            {
+                "name": "getHotMemes",
+                "description": "Retrieve hot posts from r/memes subreddit.",
+                "categories": []
+            }
+        ]
+    },
+    {
+        "namespace": "santiment",
+        "name": "SantimentAnalytics",
+        "description": "Provides sentiment and social metrics for crypto assets using the Santiment API.",
+        "requiredCredentials": [
+            "SANTIMENT_API_KEY"
+        ],
+        "routes": [
+            {
+                "name": "get_sentiment_balance",
+                "description": "Get average sentiment balance for a crypto asset over a specified number of days.",
+                "categories": []
+            },
+            {
+                "name": "get_social_volume",
+                "description": "Get total social media volume for a crypto asset.",
+                "categories": []
+            },
+            {
+                "name": "alert_social_shift",
+                "description": "Detect significant changes in social media volume for a crypto asset.",
+                "categories": []
+            },
+            {
+                "name": "get_trending_words",
+                "description": "Retrieve top trending words in crypto discussions.",
+                "categories": []
+            },
+            {
+                "name": "get_social_dominance",
+                "description": "Get average social dominance for a crypto asset.",
+                "categories": []
+            }
+        ]
+    },
+    {
+        "namespace": "solanatracker",
+        "name": "TokenStatsAPI",
+        "description": "Provides detailed statistics for tokens and token-pool pairs over multiple time intervals.",
+        "requiredCredentials": [
+            "SOLANA_TRACKER_API_KEY"
+        ],
+        "routes": [
+            {
+                "name": "tokenStats",
+                "description": "Get detailed stats for a token over various time intervals.",
+                "categories": []
+            },
+            {
+                "name": "tokenStatsByPool",
+                "description": "Get detailed stats for a token-pool pair over various time intervals.",
+                "categories": []
+            }
+        ]
+    },
+    {
+        "namespace": "solanatracker",
+        "name": "TokenChartAPI",
+        "description": "Schema for accessing OHLCV and holder chart data for specific tokens and pools.",
+        "requiredCredentials": [
+            "SOLANA_TRACKER_API_KEY"
+        ],
+        "routes": [
+            {
+                "name": "chartData",
+                "description": "Get OHLCV (Open, High, Low, Close, Volume) chart data for a token.",
+                "categories": []
+            },
+            {
+                "name": "chartDataByPool",
+                "description": "Get OHLCV chart data for a specific token in a specific pool.",
+                "categories": []
+            }
+        ]
+    },
+    {
+        "namespace": "solanatracker",
+        "name": "PnL Analytics API",
+        "description": "API to retrieve profit and loss data for wallets and tokens on-chain.",
+        "requiredCredentials": [
+            "SOLANA_TRACKER_API_KEY"
+        ],
+        "routes": [
+            {
+                "name": "profitAndLossData",
+                "description": "Get Profit and Loss data for all positions of a wallet.",
+                "categories": []
+            },
+            {
+                "name": "pnlForSpecificToken",
+                "description": "Get Profit and Loss data for a specific token in a wallet.",
+                "categories": []
+            },
+            {
+                "name": "firstBuyers",
+                "description": "Get the first 100 buyers of a token, with full PnL breakdown per wallet.",
+                "categories": []
+            }
+        ]
+    },
+    {
+        "namespace": "solanatracker",
+        "name": "TokenPriceAPI",
+        "description": "Provides real-time and historical token price information",
+        "requiredCredentials": [
+            "SOLANA_TRACKER_API_KEY"
+        ],
+        "routes": [
+            {
+                "name": "priceInformation",
+                "description": "Get price information for a single token.",
+                "categories": []
+            },
+            {
+                "name": "postPrice",
+                "description": "Similar to GET /price, but accepts token address in the request body.",
+                "categories": []
+            },
+            {
+                "name": "multiPriceInformation",
+                "description": "Get price information for multiple tokens (up to 100).",
+                "categories": []
+            },
+            {
+                "name": "getHistoricPrice",
+                "description": "Get historic price points for a token (3d, 5d, 7d, 14d, 30d).",
+                "categories": []
+            },
+            {
+                "name": "getPriceAtTimestamp",
+                "description": "Get price at a specific timestamp for a token.",
+                "categories": []
+            },
+            {
+                "name": "getPriceRange",
+                "description": "Get lowest and highest prices for a token within a time range.",
+                "categories": []
+            },
+            {
+                "name": "postMultiPrice",
+                "description": "Get price info for multiple tokens (POST version).",
+                "categories": []
+            }
+        ]
+    },
+    {
+        "namespace": "solanatracker",
+        "name": "TokenAPI",
+        "description": "Provides endpoints for retrieving information about tokens, their holders, search capabilities, and statistical metrics like volume and trending status.",
+        "requiredCredentials": [
+            "SOLANA_TRACKER_API_KEY"
+        ],
+        "routes": [
+            {
+                "name": "tokenInformation",
+                "description": "Retrieve all information for a specific token.",
+                "categories": []
+            },
+            {
+                "name": "tokenHolders",
+                "description": "Get the top 100 holders for a specific token.",
+                "categories": []
+            },
+            {
+                "name": "topTokenHolders",
+                "description": "Get top 20 token holders",
+                "categories": []
+            },
+            {
+                "name": "allTimeHighPrice",
+                "description": "Get all-time high price of a token",
+                "categories": []
+            },
+            {
+                "name": "tokensByDeployer",
+                "description": "Get all tokens deployed by a specific wallet",
+                "categories": []
+            },
+            {
+                "name": "search",
+                "description": "Advanced token search with filtering and pagination.",
+                "categories": []
+            },
+            {
+                "name": "latestTokens",
+                "description": "Retrieve the latest 100 tokens.",
+                "categories": []
+            },
+            {
+                "name": "multipleTokens",
+                "description": "Get multiple tokens by array of addresses (max 20)",
+                "categories": []
+            },
+            {
+                "name": "trendingTokens",
+                "description": "Get the top 100 trending tokens based on transaction volume in the past hour.",
+                "categories": []
+            },
+            {
+                "name": "tokensByVolume",
+                "description": "Get top 100 tokens by volume (default timeframe)",
+                "categories": []
+            },
+            {
+                "name": "tokenOverview",
+                "description": "Overview of latest, graduating, and graduated tokens",
+                "categories": []
+            },
+            {
+                "name": "graduatedTokens",
+                "description": "Overview of all graduated tokens (Pumpvision/Moonshot)",
+                "categories": []
+            },
+            {
+                "name": "tokenByPool",
+                "description": "Get token by pool address.",
+                "categories": []
+            },
+            {
+                "name": "trendingTokensByTimeframe",
+                "description": "Get trending tokens by specific timeframe (e.g., 5m, 24h).",
+                "categories": []
+            },
+            {
+                "name": "tokensByVolumeTimeframe",
+                "description": "Get top 100 tokens by volume for a specific timeframe.",
+                "categories": []
+            }
+        ]
+    },
+    {
+        "namespace": "solanatracker",
+        "name": "TopTradersAPI",
+        "description": "Provides access to the most profitable traders across all tokens, with support for pagination and token-specific queries.",
+        "requiredCredentials": [
+            "SOLANA_TRACKER_API_KEY"
+        ],
+        "routes": [
+            {
+                "name": "topTradersAll",
+                "description": "Get the most profitable traders across all tokens.",
+                "categories": []
+            },
+            {
+                "name": "topTradersAllPaged",
+                "description": "Get the most profitable traders across all tokens, paginated by page number.",
+                "categories": []
+            },
+            {
+                "name": "topTradersByToken",
+                "description": "Get the top 100 most profitable traders for a specific token.",
+                "categories": []
+            }
+        ]
+    },
+    {
+        "namespace": "solanatracker",
+        "name": "TokenTradeTracker",
+        "description": "API zur Ermittlung von Handelsdaten für Token, Pools und Wallets.",
+        "requiredCredentials": [
+            "SOLANA_TRACKER_API_KEY"
+        ],
+        "routes": [
+            {
+                "name": "tokenTrades",
+                "description": "Get the latest trades for a token across all pools.",
+                "categories": []
+            },
+            {
+                "name": "tradesByWallet",
+                "description": "Get the latest trades for a specific token and wallet address.",
+                "categories": []
+            },
+            {
+                "name": "tokenPoolTrades",
+                "description": "Get the latest trades for a specific token and pool.",
+                "categories": []
+            },
+            {
+                "name": "userPoolTrades",
+                "description": "Get the latest trades for a specific token, pool, and user.",
+                "categories": []
+            }
+        ]
+    },
+    {
+        "namespace": "solanatracker",
+        "name": "WalletExplorer",
+        "description": "API zur Abfrage von Token-Balances und Handelsdaten für Wallets.",
+        "requiredCredentials": [
+            "SOLANA_TRACKER_API_KEY"
+        ],
+        "routes": [
+            {
+                "name": "walletInformation",
+                "description": "Get all tokens in a wallet with current value in USD.",
+                "categories": []
+            },
+            {
+                "name": "walletTokensBasic",
+                "description": "Lightweight version: token balances and values without full metadata.",
+                "categories": []
+            },
+            {
+                "name": "walletTokensPaged",
+                "description": "Paginated version: fetch wallet tokens page by page (250 per page).",
+                "categories": []
+            },
+            {
+                "name": "walletTrades",
+                "description": "Get the latest trades of a wallet.",
+                "categories": []
+            }
+        ]
+    },
+    {
+        "namespace": "solscan",
+        "name": "SolscanChainInfo",
+        "description": "Fetches general blockchain information from Solana via Solscan public API.",
+        "requiredCredentials": [
+            "SOLSCAN_API_KEY"
+        ],
+        "routes": [
+            {
+                "name": "chainInfo",
+                "description": "Returns Solana blockchain information such as block height and transaction count.",
+                "categories": []
+            }
+        ]
+    },
+    {
+        "namespace": "solsniffer",
+        "name": "SolSniffer",
+        "description": "Analyzes Solana tokens using the Solsniffer API to assess risks and metadata.",
+        "requiredCredentials": [
+            "SOLSNIFFER_API_KEY"
+        ],
+        "routes": [
+            {
+                "name": "analysisToken",
+                "description": "Analyze a Solana token using its address and return risk and token metadata.",
+                "categories": []
+            }
+        ]
+    },
+    {
+        "namespace": "thegraph",
+        "name": "UniswapPools",
+        "description": "Fetches recently created Uniswap V3 trading pools across multiple blockchains.",
+        "requiredCredentials": [
+            "THEGRAPH_API_KEY"
+        ],
+        "routes": [
+            {
+                "name": "getNewPools",
+                "description": "List new Uniswap V3 pools by chain and order criteria within a time range.",
+                "categories": []
+            }
+        ]
+    },
+    {
+        "namespace": "thegraph",
+        "name": "TheGraphSubgraphTools",
+        "description": "Introspect and query The Graph subgraphs.",
+        "requiredCredentials": [
+            "THEGRAPH_API_KEY"
+        ],
+        "routes": [
+            {
+                "name": "getSubgraphSchema",
+                "description": "Fetch the schema of a subgraph via introspection query.",
+                "categories": []
+            },
+            {
+                "name": "querySubgraph",
+                "description": "Run a raw GraphQL query on a subgraph.",
+                "categories": []
+            }
+        ]
+    },
+    {
+        "namespace": "twitter",
+        "name": "Twitter Recent Search",
+        "description": "Search for Tweets from the last 7 days using Twitter's recent search endpoint",
+        "requiredCredentials": [
+            "TWITTER_BEARER_TOKEN"
+        ],
+        "routes": [
+            {
+                "name": "searchRecentTweets",
+                "description": "Search for recent tweets matching a given query",
+                "categories": []
+            }
+        ]
+    },
+    {
+        "namespace": "x402",
+        "name": "x402 Experimental MCP Interface",
+        "description": "A test schema for verifying free and paid route behavior under FlowMCP v1.2.0",
+        "requiredCredentials": [],
+        "routes": [
+            {
+                "name": "free_ping",
+                "description": "Simple free route to verify server responsiveness",
+                "categories": []
+            },
+            {
+                "name": "paid_ping",
+                "description": "Simulated paid route to test vault access",
+                "categories": []
+            }
+        ]
+    }
+]

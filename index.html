@@ -1104,6 +1104,7 @@
                 <input type="text" id="headerSearchInput" class="search-input" placeholder="Search namespaces...">
             </div>
             <div class="header-right">
+                <button id="resetAllBtn" class="text-btn">Reset All</button>
                 <button id="shareConfigBtn" class="text-btn">Share Config</button>
                 <button id="getConfigBtn" class="primary-btn">Get Config</button>
             </div>
@@ -1159,6 +1160,10 @@
 
         // State for each namespace and its routes
         let namespaceStates = {};
+        
+        // Track current display order to maintain stability
+        let currentDisplayOrder = [];
+        let hasInitialSortBeenApplied = false;
 
         // Namespace state types
         const NAMESPACE_STATES = {
@@ -1416,6 +1421,53 @@
             let filteredNamespaces = namespacesData.filter(namespace => 
                 namespace.name.toLowerCase().includes(searchTerm)
             );
+            
+            // EXPERIMENT: Apply smart sorting
+            if (!hasInitialSortBeenApplied) {
+                // First time: Sort active namespaces first
+                filteredNamespaces.sort((a, b) => {
+                    const aState = namespaceStates[a.name].state;
+                    const bState = namespaceStates[b.name].state;
+                    
+                    const aIsActive = aState === NAMESPACE_STATES.ENABLED || aState === NAMESPACE_STATES.MANUAL;
+                    const bIsActive = bState === NAMESPACE_STATES.ENABLED || bState === NAMESPACE_STATES.MANUAL;
+                    
+                    // If one is active and the other isn't, active comes first
+                    if (aIsActive && !bIsActive) return -1;
+                    if (!aIsActive && bIsActive) return 1;
+                    
+                    // If both have same active status, sort alphabetically
+                    return a.name.localeCompare(b.name);
+                });
+                
+                // Save this order as the reference
+                currentDisplayOrder = filteredNamespaces.map(ns => ns.name);
+                hasInitialSortBeenApplied = true;
+            } else {
+                // Subsequent times: Maintain existing order but move individual items as needed
+                filteredNamespaces.sort((a, b) => {
+                    const aState = namespaceStates[a.name].state;
+                    const bState = namespaceStates[b.name].state;
+                    
+                    const aIsActive = aState === NAMESPACE_STATES.ENABLED || aState === NAMESPACE_STATES.MANUAL;
+                    const bIsActive = bState === NAMESPACE_STATES.ENABLED || bState === NAMESPACE_STATES.MANUAL;
+                    
+                    const aIndex = currentDisplayOrder.indexOf(a.name);
+                    const bIndex = currentDisplayOrder.indexOf(b.name);
+                    
+                    // If both are in current order, maintain that order
+                    if (aIndex !== -1 && bIndex !== -1) {
+                        return aIndex - bIndex;
+                    }
+                    
+                    // If one is active and other isn't, active comes first
+                    if (aIsActive && !bIsActive) return -1;
+                    if (!aIsActive && bIsActive) return 1;
+                    
+                    // Otherwise alphabetical
+                    return a.name.localeCompare(b.name);
+                });
+            }
             
             if (filteredNamespaces.length === 0) {
                 container.innerHTML = '';
@@ -1815,12 +1867,35 @@
             }
         }
 
+        // Reset all selections
+        function resetAllSelections() {
+            // Reset all namespace states to disabled
+            namespacesData.forEach(namespace => {
+                namespaceStates[namespace.name].state = NAMESPACE_STATES.DISABLED;
+                Object.keys(namespaceStates[namespace.name].routes).forEach(route => {
+                    namespaceStates[namespace.name].routes[route] = false;
+                });
+            });
+            
+            // Reset display order for future sorting
+            currentDisplayOrder = [];
+            hasInitialSortBeenApplied = false;
+            
+            // Update display and stats
+            updateDisplay();
+            updateStats();
+            
+            // Clear URL hash
+            window.history.replaceState(null, null, window.location.pathname);
+        }
+
         // Event Listeners for Export-Buttons
         function setupExportButtons() {
             document.getElementById('copyListBtn').addEventListener('click', copyToClipboard);
             document.getElementById('copyConfigBtn').addEventListener('click', copyMcpConfig);
             document.getElementById('shareConfigBtn').addEventListener('click', shareConfiguration);
             document.getElementById('getConfigBtn').addEventListener('click', scrollToConfig);
+            document.getElementById('resetAllBtn').addEventListener('click', resetAllSelections);
         }
 
         // Smooth scroll to configuration section
