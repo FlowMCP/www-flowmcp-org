@@ -14,8 +14,18 @@ const arrayOfSchemas = await SchemaImporter
         'outputType': 'onlySchema'
     } )
 
-const { routes } = Generator.generateRoutes( { arrayOfSchemas } )
-console.log( routes )
+const { routes } = Generator
+    .generateRoutes( { arrayOfSchemas } )
+const { mergedRoutes } = Generator
+    .mergeRoutes( { routes } )
+
+const { categories } = Generator
+    .generateCategories( { routes:  mergedRoutes } )
+const result = { categories, routes: mergedRoutes }
 
 
-fs.writeFileSync(  'routes2.json', JSON.stringify( routes, null, 4 ), 'utf8' )
+fs.writeFileSync( 
+    'routes-v2.json', 
+    JSON.stringify( result, null, 4 ), 
+    'utf8' 
+)

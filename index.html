@@ -82,6 +82,149 @@
                 -moz-osx-font-smoothing: grayscale;
             }
         }
+        
+        /* EXPERIMENT: Advanced Search Styles */
+        .category-filter-container {
+            background: #1a1a1a;
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 30px;
+            border: 1px solid #2d2d2d;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+        }
+        
+        .category-filter-container.collapsed {
+            padding-bottom: 20px;
+        }
+        
+        .category-filter-container.collapsed .category-content {
+            display: none;
+        }
+        
+        .category-filter-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            cursor: pointer;
+            user-select: none;
+        }
+        
+        .category-filter-container.collapsed .category-filter-header {
+            margin-bottom: 0;
+        }
+        
+        .category-filter-header h3 {
+            color: #ffffff;
+            margin: 0;
+            font-size: 1.3rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .category-filter-header .collapse-indicator {
+            font-size: 12px;
+            color: #a0aec0;
+            transition: transform 0.2s ease;
+        }
+        
+        .category-filter-container.collapsed .collapse-indicator {
+            transform: rotate(-90deg);
+        }
+        
+        .selection-indicator {
+            background: #ff5722;
+            color: white;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 600;
+            margin-left: 8px;
+            display: none;
+        }
+        
+        .selection-indicator.active {
+            display: inline-block;
+        }
+        
+        .header-buttons {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .category-content {
+            transition: all 0.3s ease;
+        }
+        
+        .clear-categories-btn {
+            background: #f44336;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 12px;
+            font-weight: 600;
+            transition: all 0.2s ease;
+        }
+        
+        .clear-categories-btn:hover {
+            background: #d32f2f;
+            transform: translateY(-1px);
+        }
+        
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 12px;
+        }
+        
+        .category-item {
+            background: #0f0f0f;
+            border: 2px solid #2d2d2d;
+            border-radius: 8px;
+            padding: 12px 16px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-align: center;
+            user-select: none;
+        }
+        
+        .category-item:hover {
+            border-color: #ff5722;
+            background: #262626;
+        }
+        
+        .category-item.selected {
+            border-color: #ff5722;
+            background: rgba(255, 87, 34, 0.1);
+        }
+        
+        .category-name {
+            color: #ffffff;
+            font-weight: 600;
+            font-size: 14px;
+            margin-bottom: 4px;
+        }
+        
+        .category-network {
+            color: #a0aec0;
+            font-size: 12px;
+        }
+        
+        @media (max-width: 768px) {
+            .category-grid {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+                gap: 8px;
+            }
+            
+            .category-filter-header {
+                flex-direction: column;
+                gap: 15px;
+            }
+        }
 
         .sticky-header.scrolled .header-search {
             display: flex;
@@ -106,12 +249,60 @@
             background: #1a1a1a;
             color: #e2e8f0;
             transition: all 0.3s ease;
+            min-width: 200px;
         }
 
         .header-search .search-input:focus {
             outline: none;
             border-color: #ff5722;
             box-shadow: 0 0 0 2px rgba(255, 87, 34, 0.1);
+        }
+
+        @media (max-width: 480px) {
+            .sticky-header {
+                padding: 12px 15px;
+            }
+            
+            .header-left {
+                gap: 6px;
+            }
+            
+            .header-right {
+                gap: 8px;
+            }
+            
+            .header-stat {
+                flex: 1;
+                min-width: 60px;
+                max-width: 80px;
+                padding: 5px 6px;
+                min-height: 50px;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+            }
+            
+            .header-stat .stat-number {
+                font-size: 0.95rem;
+            }
+            
+            .header-stat .stat-label {
+                font-size: 0.6rem;
+                line-height: 1.1;
+            }
+            
+            .primary-btn, .text-btn {
+                padding: 6px 10px;
+                font-size: 11px;
+                min-width: 70px;
+            }
+            
+            .header-search .search-input {
+                min-width: 150px;
+                padding: 8px 12px;
+                font-size: 13px;
+            }
         }
 
         .header-left {
@@ -134,6 +325,11 @@
             backdrop-filter: blur(10px);
             min-width: 90px;
             border: 1px solid rgba(255, 87, 34, 0.2);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 60px;
         }
 
         .header-stat .stat-number {
@@ -447,6 +643,8 @@
             transition: all 0.2s ease;
             border-left: 3px solid transparent;
             border: 1px solid #2d2d2d;
+            min-height: 44px;
+            gap: 12px;
         }
 
         .route-item:hover {
@@ -464,12 +662,19 @@
             font-weight: 500;
             color: #e2e8f0;
             flex: 1;
+            word-break: break-word;
+            overflow-wrap: break-word;
+            hyphens: auto;
+            min-width: 0;
+            line-height: 1.3;
         }
 
         .route-toggle {
             position: relative;
             width: 44px;
             height: 24px;
+            flex-shrink: 0;
+            margin-left: auto;
         }
 
         .route-toggle input {
@@ -586,26 +791,57 @@
                 flex-direction: column;
                 gap: 15px;
                 text-align: center;
+                padding: 15px 20px;
             }
 
             .header-left {
-                flex-direction: column;
-                gap: 15px;
+                flex-direction: row;
+                flex-wrap: nowrap;
+                justify-content: center;
+                gap: 8px;
+                width: 100%;
             }
 
             .header-right {
-                flex-direction: column;
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: center;
                 gap: 10px;
                 width: 100%;
             }
 
             .header-stat {
-                min-width: auto;
+                flex: 1;
+                min-width: 70px;
+                max-width: 90px;
+                font-size: 0.9rem;
+                padding: 6px 8px;
+                min-height: 55px;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
             }
 
-            .share-btn {
-                width: 100%;
-                max-width: 200px;
+            .header-stat .stat-number {
+                font-size: 1.1rem;
+            }
+
+            .header-stat .stat-label {
+                font-size: 0.65rem;
+                line-height: 1.2;
+            }
+
+            .primary-btn, .text-btn {
+                padding: 8px 12px;
+                font-size: 12px;
+                min-width: 80px;
+            }
+
+            .header-search {
+                order: -1;
+                max-width: 100%;
+                margin: 0;
             }
 
             .namespace-group-header {
@@ -1099,9 +1335,13 @@
                     <span id="topActiveRoutes" class="stat-number">0</span>
                     <span class="stat-label">Active Routes</span>
                 </div>
+                <div class="header-stat">
+                    <span id="topAvailableRoutes" class="stat-number">0</span>
+                    <span class="stat-label">Available Routes</span>
+                </div>
             </div>
             <div class="header-search">
-                <input type="text" id="headerSearchInput" class="search-input" placeholder="Search namespaces...">
+                <input type="text" id="headerSearchInput" class="search-input" placeholder="Search namespaces and services...">
             </div>
             <div class="header-right">
                 <button id="resetAllBtn" class="text-btn">Reset All</button>
@@ -1110,8 +1350,27 @@
             </div>
         </div>
         
+        <!-- EXPERIMENT: Advanced Search UI -->
+        <div class="category-filter-container collapsed" id="advancedSearchContainer">
+            <div class="category-filter-header" onclick="toggleAdvancedSearch()">
+                <h3>
+                    <span class="collapse-indicator">▶</span>
+                    Advanced Search
+                    <span class="selection-indicator" id="selectionIndicator"></span>
+                </h3>
+                <div class="header-buttons">
+                    <button id="clearCategoriesBtn" class="clear-categories-btn" onclick="event.stopPropagation()">Clear All</button>
+                </div>
+            </div>
+            <div class="category-content" id="categoryContent">
+                <div class="category-grid" id="categoryGrid">
+                    <!-- Categories will be populated here -->
+                </div>
+            </div>
+        </div>
+        
         <div class="search-container">
-            <input type="text" id="searchInput" class="search-input" placeholder="send messages and reach thousands of namespaces...">
+            <input type="text" id="searchInput" class="search-input" placeholder="Search namespaces and services...">
         </div>
 
         <div id="namespaceContainer" class="namespace-grid"></div>
@@ -1155,8 +1414,9 @@
     </div>
 
     <script>
-        // Data will be loaded from routes.json
-        let namespacesData = [];
+        // EXPERIMENT: Data will be loaded from routes-v2.json with categories
+        let routesData = {}; // Will contain {categories: [], routes: []}
+        let namespacesData = []; // Filtered/processed data for display
 
         // State for each namespace and its routes
         let namespaceStates = {};
@@ -1164,6 +1424,9 @@
         // Track current display order to maintain stability
         let currentDisplayOrder = [];
         let hasInitialSortBeenApplied = false;
+        
+        // EXPERIMENT: Category filtering state
+        let selectedCategories = [];
 
         // Namespace state types
         const NAMESPACE_STATES = {
@@ -1172,14 +1435,15 @@
             ENABLED: 'enabled'
         };
 
-        // Load routes data from JSON file
+        // EXPERIMENT: Load routes data from routes-v2.json
         async function loadRoutesData() {
             try {
-                const response = await fetch('./routes.json');
+                const response = await fetch('./routes-v2.json');
                 if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status}`);
                 }
-                namespacesData = await response.json();
+                routesData = await response.json();
+                processRoutesData();
                 initializeStates();
                 return true;
             } catch (error) {
@@ -1194,6 +1458,51 @@
                 `;
                 return false;
             }
+        }
+        
+        // EXPERIMENT: Process routes data and apply category filtering
+        function processRoutesData() {
+            if (!routesData.routes) {
+                namespacesData = [];
+                return;
+            }
+            
+            // Convert new format to old format, applying category filter
+            const processedNamespaces = [];
+            
+            routesData.routes.forEach(routeObj => {
+                // Filter routes based on selected categories
+                let filteredRoutes = routeObj.routes || [];
+                
+                if (selectedCategories.length > 0) {
+                    // STRICT FILTERING: Only show routes that explicitly support selected chains
+                    // NO universal services when filtering by chain - user wants chain-specific functionality
+                    
+                    filteredRoutes = filteredRoutes.filter(route => {
+                        // Route must have categories and at least one must match selection
+                        return route.categories && route.categories.length > 0 && 
+                               route.categories.some(cat => selectedCategories.includes(cat));
+                    });
+                    
+                    // Skip namespace if no routes match the filter
+                    if (filteredRoutes.length === 0) {
+                        return; // Skip this namespace entirely
+                    }
+                }
+                
+                // Only add namespace if it has routes
+                if (filteredRoutes.length > 0) {
+                    processedNamespaces.push({
+                        name: routeObj.namespace,
+                        description: routeObj.description,
+                        requiresCredential: routeObj.requiredCredentials && routeObj.requiredCredentials.length > 0,
+                        requiredCredentials: routeObj.requiredCredentials || [],
+                        routes: filteredRoutes.map(route => route.name)
+                    });
+                }
+            });
+            
+            namespacesData = processedNamespaces;
         }
 
         // Initialize states
@@ -1419,7 +1728,8 @@
             const searchTerm = document.getElementById('searchInput').value.toLowerCase();
             
             let filteredNamespaces = namespacesData.filter(namespace => 
-                namespace.name.toLowerCase().includes(searchTerm)
+                namespace.name.toLowerCase().includes(searchTerm) ||
+                namespace.description.toLowerCase().includes(searchTerm)
             );
             
             // EXPERIMENT: Apply smart sorting
@@ -1496,6 +1806,7 @@
             // Update header statistics
             document.getElementById('topActiveNamespaces').textContent = activeNamespaces;
             document.getElementById('topActiveRoutes').textContent = activeRoutes;
+            document.getElementById('topAvailableRoutes').textContent = totalRoutes;
             
             // Update selected routes
             updateSelectedRoutes();
@@ -1867,7 +2178,79 @@
             }
         }
 
-        // Reset all selections
+        // EXPERIMENT: Toggle Advanced Search collapse/expand
+        function toggleAdvancedSearch() {
+            const container = document.getElementById('advancedSearchContainer');
+            container.classList.toggle('collapsed');
+        }
+        
+        // EXPERIMENT: Update selection indicator
+        function updateSelectionIndicator() {
+            const indicator = document.getElementById('selectionIndicator');
+            if (!indicator) return;
+            
+            if (selectedCategories.length > 0) {
+                indicator.textContent = `${selectedCategories.length} selected`;
+                indicator.classList.add('active');
+            } else {
+                indicator.classList.remove('active');
+            }
+        }
+        
+        // EXPERIMENT: Render category filter UI
+        function renderCategoryFilter() {
+            const categoryGrid = document.getElementById('categoryGrid');
+            if (!categoryGrid || !routesData.categories) return;
+            
+            const categories = routesData.categories.sort((a, b) => {
+                // Sort by name, then by network
+                if (a.name !== b.name) {
+                    return a.name.localeCompare(b.name);
+                }
+                return a.network.localeCompare(b.network);
+            });
+            
+            categoryGrid.innerHTML = categories.map(category => `
+                <div class="category-item ${selectedCategories.includes(category.categoryId) ? 'selected' : ''}" 
+                     onclick="toggleCategory('${category.categoryId}')">
+                    <div class="category-name">${category.name}</div>
+                    <div class="category-network">${category.network}</div>
+                </div>
+            `).join('');
+            
+            updateSelectionIndicator();
+        }
+        
+        // EXPERIMENT: Toggle category selection
+        function toggleCategory(categoryId) {
+            const index = selectedCategories.indexOf(categoryId);
+            if (index === -1) {
+                selectedCategories.push(categoryId);
+            } else {
+                selectedCategories.splice(index, 1);
+            }
+            
+            // Re-process data with new category filter
+            processRoutesData();
+            initializeStates();
+            
+            // Update UI
+            renderCategoryFilter();
+            updateDisplay();
+            updateStats();
+        }
+        
+        // EXPERIMENT: Clear all categories (only categories, keep selections)
+        function clearAllCategories() {
+            selectedCategories = [];
+            processRoutesData();
+            initializeStates();
+            renderCategoryFilter();
+            updateDisplay();
+            updateStats();
+        }
+        
+        // Reset all selections (complete reset of everything)
         function resetAllSelections() {
             // Reset all namespace states to disabled
             namespacesData.forEach(namespace => {
@@ -1877,11 +2260,16 @@
                 });
             });
             
+            // EXPERIMENT: Also clear categories
+            selectedCategories = [];
+            processRoutesData();
+            
             // Reset display order for future sorting
             currentDisplayOrder = [];
             hasInitialSortBeenApplied = false;
             
             // Update display and stats
+            renderCategoryFilter();
             updateDisplay();
             updateStats();
             
@@ -1896,6 +2284,8 @@
             document.getElementById('shareConfigBtn').addEventListener('click', shareConfiguration);
             document.getElementById('getConfigBtn').addEventListener('click', scrollToConfig);
             document.getElementById('resetAllBtn').addEventListener('click', resetAllSelections);
+            // EXPERIMENT: Category filter buttons
+            document.getElementById('clearCategoriesBtn').addEventListener('click', clearAllCategories);
         }
 
         // Smooth scroll to configuration section
@@ -1941,8 +2331,11 @@
                 const state = namespaceStates[namespace.name].state;
                 if ((state === NAMESPACE_STATES.ENABLED || state === NAMESPACE_STATES.MANUAL) && 
                     namespace.requiresCredential && 
-                    namespace.credentialKey) {
-                    credentials[namespace.credentialKey] = "";
+                    namespace.requiredCredentials) {
+                    // Add all required credentials from the array
+                    namespace.requiredCredentials.forEach(credentialKey => {
+                        credentials[credentialKey] = "";
+                    });
                 }
             });
 
@@ -2216,6 +2609,9 @@
             setupSearch();
             setupStickyHeader();
             setupExportButtons();
+            
+            // EXPERIMENT: Render category filter
+            renderCategoryFilter();
             
             // Try to load state from URL
             const configLoaded = loadStateFromUrl();
