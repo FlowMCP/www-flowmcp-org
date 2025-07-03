@@ -1,0 +1,511 @@
+[
+  {
+    "name": "alternative",
+    "description": "Fetches and analyzes the Crypto Fear & Greed Index from alternative.me.",
+    "requiresCredential": false,
+    "routes": [
+      "analyzeFngTrend",
+      "getCurrentFng",
+      "getHistoricalFng"
+    ]
+  },
+  {
+    "name": "blocknative",
+    "description": "Accurate next-block gas price predictions for Ethereum, Bitcoin, and other supported chains.",
+    "requiresCredential": true,
+    "routes": [
+      "getGasPrices"
+    ]
+  },
+  {
+    "name": "bscscan",
+    "description": "BSC Scan API",
+    "requiresCredential": true,
+    "routes": [
+      "getContractABI",
+      "getContractSourceCode"
+    ]
+  },
+  {
+    "name": "coincap",
+    "description": "Retrieve data about crypto assets and markets",
+    "requiresCredential": true,
+    "routes": [
+      "assetHistory",
+      "assetMarkets",
+      "getExchangeById",
+      "getRateBySlug",
+      "listAssets",
+      "listExchanges",
+      "listMarkets",
+      "listRates",
+      "singleAsset"
+    ]
+  },
+  {
+    "name": "coingecko",
+    "description": "Fetch coins list, markets, details, history, tickers, and token info from CoinGecko",
+    "requiresCredential": false,
+    "routes": [
+      "getAvailableCoinCategoryIds",
+      "getCoinById",
+      "getCoinCategoryDetailsByIds",
+      "getCoinContractInfo",
+      "getCoinHistory",
+      "getCoinMarketChart",
+      "getCoinTickers",
+      "getCoinsList",
+      "getCoinsMarkets",
+      "getDeFiGlobalData",
+      "getDerivativeExchangeIds",
+      "getDerivativeExchangesByIds",
+      "getDerivativeProductsByExchangeId",
+      "getExchangeById",
+      "getExchangeTickers",
+      "getExchangesList",
+      "getGlobalData",
+      "getSimplePrice",
+      "getTokenPrice",
+      "getTrendingCategories",
+      "getTrendingCoins",
+      "getTrendingNfts"
+    ]
+  },
+  {
+    "name": "coinmarketcap",
+    "description": "Retrieve information about cryptocurrency categories from CoinMarketCap.",
+    "requiresCredential": true,
+    "routes": [
+      "getCategories",
+      "getCategory",
+      "getFearAndGreedHistorical",
+      "getFearAndGreedLatest",
+      "getHistorical",
+      "getIdMap",
+      "getLatest",
+      "getMetadataV2",
+      "getQuotesLatestV2",
+      "listingsLatest"
+    ]
+  },
+  {
+    "name": "cryptodata",
+    "description": "Retrieve comprehensive data about all cryptocurrencies including prices, market cap, volume, price changes, supply info, trading metrics, and metadata.",
+    "requiresCredential": true,
+    "routes": [
+      "getBlockchains",
+      "getCoinAvgPrice",
+      "getCoinById",
+      "getCoinChartById",
+      "getCoinExchangePrice",
+      "getCoins",
+      "getCurrencies",
+      "getExchanges",
+      "getFiatCurrencies",
+      "getMarketCap",
+      "getNews",
+      "getNewsById",
+      "getNewsByType",
+      "getNewsSources",
+      "getTickerExchanges",
+      "getTickerMarkets",
+      "getWalletBalance",
+      "getWalletBalances"
+    ]
+  },
+  {
+    "name": "cointelegraph",
+    "description": "Fetch latest Cointelegraph news filtered by category and time range.",
+    "requiresCredential": false,
+    "routes": [
+      "getLatestNews"
+    ]
+  },
+  {
+    "name": "context7",
+    "description": "Accesses searchable documentation and examples for programming libraries using Context7.",
+    "requiresCredential": false,
+    "routes": [
+      "getLibraryDocs",
+      "searchLibraryId"
+    ]
+  },
+  {
+    "name": "cryptopanic",
+    "description": "Fetches cryptocurrency news headlines from CryptoPanic across different content types.",
+    "requiresCredential": true,
+    "routes": [
+      "getCryptoCryptopanicNews"
+    ]
+  },
+  {
+    "name": "defillama",
+    "description": "Provides access to DeFi protocol and liquidity data from DeFi Llama",
+    "requiresCredential": false,
+    "routes": [
+      "getChainTvl",
+      "getPoolTvl",
+      "getPools",
+      "getProtocolTvl",
+      "getProtocols",
+      "getTokenPrices"
+    ]
+  },
+  {
+    "name": "dexscreener",
+    "description": "DexScreener API – Boosted token insights",
+    "requiresCredential": false,
+    "routes": [
+      "checkTokenOrders",
+      "getLatestBoostedTokens",
+      "getLatestTokenProfiles",
+      "getMostActiveBoostedTokens",
+      "getPairByChainAndAddress",
+      "getPairsByToken",
+      "getTokenPools",
+      "searchPairs"
+    ]
+  },
+  {
+    "name": "duneAnalytics",
+    "description": "Fetches trending memecoins, channels, and users from Farcaster via Dune Analytics.",
+    "requiresCredential": true,
+    "routes": [
+      "farcasterGetTrendingChannels",
+      "farcasterGetTrendingMemecoins",
+      "farcasterGetTrendingUsers",
+      "getDexPairStats",
+      "getLatestResult",
+      "getMarketShare",
+      "getTrendingContracts"
+    ]
+  },
+  {
+    "name": "profilejump",
+    "description": "Schema for interacting with the ProfileJump API",
+    "requiresCredential": false,
+    "routes": [
+      "hotProfiles",
+      "prices",
+      "profileByAddress",
+      "profilesList",
+      "tokensList"
+    ]
+  },
+  {
+    "name": "etherscan",
+    "description": "Etherscan API",
+    "requiresCredential": true,
+    "routes": [
+      "estimateGasCost",
+      "getAvailableChains",
+      "getContractABI",
+      "getContractSourceCode",
+      "getGasOracle",
+      "getSmartContractAbi",
+      "getSourceCode"
+    ]
+  },
+  {
+    "name": "jupiter",
+    "description": "Fetches token prices from Jupiter DEX aggregator, priced by default against USDC, with optional vsToken.",
+    "requiresCredential": false,
+    "routes": [
+      "getAllTokens",
+      "getAllTradableTokens",
+      "getNewTokens",
+      "getTaggedTokens",
+      "getTokenInfo",
+      "getTokenPrice",
+      "getTokensInMarket"
+    ]
+  },
+  {
+    "name": "llama",
+    "description": "Fetch and analyze DeFi yield pools from yields.llama.fi",
+    "requiresCredential": false,
+    "routes": [
+      "getPools",
+      "getProjectsByName"
+    ]
+  },
+  {
+    "name": "luksoNetwork",
+    "description": "All address-level endpoints for LUKSO BlockScout",
+    "requiresCredential": false,
+    "routes": [
+      "fectchLuksoExplorer",
+      "getAddress",
+      "getAddressCounters",
+      "getAddressInternalTxs",
+      "getAddressLogs",
+      "getAddressTokenTransfers",
+      "getAddressTransactions",
+      "getBlockById",
+      "getBlockTransactions",
+      "getBlockWithdrawals",
+      "getBlocks",
+      "getBlocksValidated",
+      "getCoinBalanceByDay",
+      "getCoinBalanceHistory",
+      "getFlatTokenBalances",
+      "getInternalTransactions",
+      "getLogs",
+      "getLuksoExplorerSchema",
+      "getMainPageBlocks",
+      "getMainPageTransactions",
+      "getMarketChart",
+      "getNFTCollectionsByAddress",
+      "getNFTInstanceById",
+      "getNFTInstanceHolders",
+      "getNFTInstanceTransfers",
+      "getNFTInstanceTransfersCount",
+      "getNFTInstancesByContract",
+      "getNFTsByAddress",
+      "getRawTrace",
+      "getStateChanges",
+      "getStats",
+      "getTokenBalances",
+      "getTokenByAddress",
+      "getTokenCounters",
+      "getTokenHolders",
+      "getTokenTransfersByAddress",
+      "getTokenTransfersByTransactionHash",
+      "getTransactionByHash",
+      "getTransactionChart",
+      "getTransactions",
+      "getabi",
+      "getcontractcreation",
+      "getsourcecode",
+      "listAddresses",
+      "listTokens",
+      "listcontracts",
+      "search",
+      "searchRedirect"
+    ]
+  },
+  {
+    "name": "memoryLol",
+    "description": "Get Twitter username change history via memory.lol API.",
+    "requiresCredential": false,
+    "routes": [
+      "queryUsernameChanges"
+    ]
+  },
+  {
+    "name": "moralis",
+    "description": "Moralis blockchainApi API",
+    "requiresCredential": true,
+    "routes": [
+      "/:address",
+      "/:address/balance",
+      "/:address/erc20",
+      "/:address/erc20/transfers",
+      "/:address/nft",
+      "/:address/nft/collections",
+      "/:address/nft/transfers",
+      "/:address/verbose",
+      "/:pair_address/reserves",
+      "/block/:block_number_or_hash",
+      "/dateToBlock",
+      "/entities/categories",
+      "/erc20/:address/price",
+      "/erc20/:address/stats",
+      "/erc20/:address/top-gainers",
+      "/erc20/:address/transfers",
+      "/erc20/:token_address/owners",
+      "/erc20/metadata",
+      "/erc20/metadata/symbols",
+      "/info/endpointWeights",
+      "/latestBlockNumber/:chain",
+      "/market-data/erc20s/top-tokens",
+      "/market-data/nfts/hottest-collections",
+      "/market-data/nfts/top-collections",
+      "/nft/:address",
+      "/nft/:address/:token_id",
+      "/nft/:address/:token_id/floor-price",
+      "/nft/:address/:token_id/metadata/resync",
+      "/nft/:address/:token_id/owners",
+      "/nft/:address/:token_id/price",
+      "/nft/:address/:token_id/trades",
+      "/nft/:address/:token_id/transfers",
+      "/nft/:address/floor-price",
+      "/nft/:address/floor-price/historical",
+      "/nft/:address/metadata",
+      "/nft/:address/owners",
+      "/nft/:address/price",
+      "/nft/:address/stats",
+      "/nft/:address/trades",
+      "/nft/:address/traits",
+      "/nft/:address/traits/paginate",
+      "/nft/:address/traits/resync",
+      "/nft/:address/transfers",
+      "/pairs/:address/ohlcv",
+      "/pairs/:address/snipers",
+      "/pairs/:address/swaps",
+      "/resolve/:address/domain",
+      "/resolve/:address/reverse",
+      "/resolve/:domain",
+      "/resolve/ens/:domain",
+      "/tokens/:address/analytics",
+      "/transaction/:transaction_hash",
+      "/transaction/:transaction_hash/verbose",
+      "/wallets/:address/approvals",
+      "/wallets/:address/chains",
+      "/wallets/:address/defi/:protocol/positions",
+      "/wallets/:address/defi/positions",
+      "/wallets/:address/defi/summary",
+      "/wallets/:address/history",
+      "/wallets/:address/net-worth",
+      "/wallets/:address/nfts/trades",
+      "/wallets/:address/profitability",
+      "/wallets/:address/profitability/summary",
+      "/wallets/:address/stats",
+      "/wallets/:address/swaps",
+      "/wallets/:address/tokens",
+      "/web3/version"
+    ]
+  },
+  {
+    "name": "newsdata",
+    "description": "Fetches general or topic-specific cryptocurrency news articles from NewsData.io.",
+    "requiresCredential": true,
+    "routes": [
+      "getCryptoNewsdata",
+      "getLatestNewsdata"
+    ]
+  },
+  {
+    "name": "poap",
+    "description": "GraphQL endpoint for accessing POAP event data and metadata",
+    "requiresCredential": false,
+    "routes": [
+      "executePrefinedQuery",
+      "getPredefinedQueryList",
+      "getSchemaDefinition",
+      "getTypename",
+      "querySubgraph"
+    ]
+  },
+  {
+    "name": "polymarket",
+    "description": "Access prediction market data from Polymarket via CLOB API",
+    "requiresCredential": false,
+    "routes": [
+      "getMarketInfo",
+      "getMarkets",
+      "searchBySlug"
+    ]
+  },
+  {
+    "name": "redditScanner",
+    "description": "Searches Reddit for mentions of a token symbol or name related to crypto topics.",
+    "requiresCredential": false,
+    "routes": [
+      "getHotMemes",
+      "getTokenMentions"
+    ]
+  },
+  {
+    "name": "santiment",
+    "description": "Provides sentiment and social metrics for crypto assets using the Santiment API.",
+    "requiresCredential": true,
+    "routes": [
+      "alert_social_shift",
+      "get_sentiment_balance",
+      "get_social_dominance",
+      "get_social_volume",
+      "get_trending_words"
+    ]
+  },
+  {
+    "name": "solanatracker",
+    "description": "Provides detailed statistics for tokens and token-pool pairs over multiple time intervals.",
+    "requiresCredential": true,
+    "routes": [
+      "allTimeHighPrice",
+      "chartData",
+      "chartDataByPool",
+      "firstBuyers",
+      "getHistoricPrice",
+      "getPriceAtTimestamp",
+      "getPriceRange",
+      "graduatedTokens",
+      "latestTokens",
+      "multiPriceInformation",
+      "multipleTokens",
+      "pnlForSpecificToken",
+      "postMultiPrice",
+      "postPrice",
+      "priceInformation",
+      "profitAndLossData",
+      "search",
+      "tokenByPool",
+      "tokenHolders",
+      "tokenInformation",
+      "tokenOverview",
+      "tokenPoolTrades",
+      "tokenStats",
+      "tokenStatsByPool",
+      "tokenTrades",
+      "tokensByDeployer",
+      "tokensByVolume",
+      "tokensByVolumeTimeframe",
+      "topTokenHolders",
+      "topTradersAll",
+      "topTradersAllPaged",
+      "topTradersByToken",
+      "tradesByWallet",
+      "trendingTokens",
+      "trendingTokensByTimeframe",
+      "userPoolTrades",
+      "walletInformation",
+      "walletTokensBasic",
+      "walletTokensPaged",
+      "walletTrades"
+    ]
+  },
+  {
+    "name": "solscan",
+    "description": "Fetches general blockchain information from Solana via Solscan public API.",
+    "requiresCredential": true,
+    "routes": [
+      "chainInfo"
+    ]
+  },
+  {
+    "name": "solsniffer",
+    "description": "Analyzes Solana tokens using the Solsniffer API to assess risks and metadata.",
+    "requiresCredential": true,
+    "routes": [
+      "analysisToken"
+    ]
+  },
+  {
+    "name": "thegraph",
+    "description": "Fetches recently created Uniswap V3 trading pools across multiple blockchains.",
+    "requiresCredential": true,
+    "routes": [
+      "getNewPools",
+      "getSubgraphSchema",
+      "querySubgraph"
+    ]
+  },
+  {
+    "name": "twitter",
+    "description": "Search for Tweets from the last 7 days using Twitter's recent search endpoint",
+    "requiresCredential": true,
+    "routes": [
+      "searchRecentTweets"
+    ]
+  },
+  {
+    "name": "x402",
+    "description": "A test schema for verifying free and paid route behavior under FlowMCP v1.2.0",
+    "requiresCredential": false,
+    "routes": [
+      "free_ping",
+      "paid_ping"
+    ]
+  }
+]

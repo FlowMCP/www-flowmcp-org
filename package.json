@@ -1,0 +1,24 @@
+{
+  "name": "1-website",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FlowMCP/website.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/FlowMCP/website/issues"
+  },
+  "homepage": "https://github.com/FlowMCP/website#readme",
+  "dependencies": {
+    "schemaimporter": "github:flowmcp/flowmcp-schemas#befaad1f1dfc0b3bf6668eb0f6cdda4528ab6c26"
+  }
+}
