@@ -131,7 +131,11 @@
         }
         
         .category-filter-container.collapsed .collapse-indicator {
-            transform: rotate(-90deg);
+            transform: rotate(0deg);
+        }
+        
+        .category-filter-container:not(.collapsed) .collapse-indicator {
+            transform: rotate(90deg);
         }
         
         .selection-indicator {
@@ -896,13 +900,17 @@
         }
 
         .selected-routes-container.collapsed .collapse-indicator {
-            transform: rotate(-90deg);
+            transform: rotate(0deg);
+        }
+        
+        .selected-routes-container:not(.collapsed) .collapse-indicator {
+            transform: rotate(90deg);
         }
 
         .selected-routes-header h2 {
             color: #ffffff;
             margin: 0;
-            font-size: 1.8rem;
+            font-size: 1.3rem;
         }
 
         .export-buttons {
@@ -976,7 +984,11 @@
         }
 
         .namespace-group.collapsed .collapse-indicator {
-            transform: rotate(-90deg);
+            transform: rotate(0deg);
+        }
+        
+        .namespace-group:not(.collapsed) .collapse-indicator {
+            transform: rotate(90deg);
         }
 
         .namespace-group.enabled {
@@ -1027,7 +1039,7 @@
         }
 
         .namespace-group-title {
-            font-size: 1.1rem;
+            font-size: 1.3rem;
             font-weight: 600;
             color: #ffffff;
             margin: 0;
@@ -1105,7 +1117,7 @@
         .config-generator-header h2 {
             color: #ffffff;
             margin: 0;
-            font-size: 1.8rem;
+            font-size: 1.3rem;
         }
 
         .config-buttons {
@@ -1363,6 +1375,7 @@
                 </div>
             </div>
             <div class="category-content" id="categoryContent">
+                <h4 style="color: #ffffff; margin-bottom: 20px; font-size: 1.1rem; font-weight: 600;">Select chains</h4>
                 <div class="category-grid" id="categoryGrid">
                     <!-- Categories will be populated here -->
                 </div>
@@ -1380,9 +1393,9 @@
         </div>
 
 
-        <div class="selected-routes-container" id="selectedRoutesContainer">
+        <div class="selected-routes-container collapsed" id="selectedRoutesContainer">
             <div class="selected-routes-header" onclick="toggleSelectedRoutesOverview()">
-                <h2><span class="collapse-indicator">▼</span>Selected Routes Overview</h2>
+                <h2><span class="collapse-indicator">▶</span>Current Selection</h2>
                 <div class="export-buttons">
                     <button id="copyListBtn" class="export-btn" onclick="event.stopPropagation()">📋 Copy List</button>
                 </div>
