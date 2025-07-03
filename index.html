@@ -371,7 +371,7 @@
         }
 
         .toggle-text {
-            font-size: 11px;
+            font-size: 10px;
             font-weight: 600;
             color: #a0aec0;
             z-index: 1;
@@ -391,7 +391,7 @@
         }
 
         .namespace-toggle.manual {
-            background: #ff5722;
+            background: #9c27b0;
         }
 
         .namespace-toggle.manual .toggle-slider {
@@ -749,8 +749,8 @@
         }
 
         .namespace-group.manual {
-            border-left-color: #ff5722;
-            background: rgba(255, 87, 34, 0.1);
+            border-left-color: #9c27b0;
+            background: rgba(156, 39, 176, 0.1);
         }
 
         .namespace-group-header {
@@ -811,7 +811,7 @@
         }
 
         .namespace-status-badge.manual {
-            background: #ff5722;
+            background: #9c27b0;
             color: white;
         }
 
@@ -1224,6 +1224,16 @@
             const currentState = namespaceStates[namespaceName].state;
             let newState;
             
+            // Check if routes are currently expanded to preserve state
+            const routesContainer = document.getElementById(`routes-${namespaceName}`);
+            const wasExpanded = routesContainer && routesContainer.classList.contains('expanded');
+            let scrollPosition = 0;
+            
+            // Save scroll position if container was expanded
+            if (wasExpanded) {
+                scrollPosition = routesContainer.scrollTop;
+            }
+            
             switch (currentState) {
                 case NAMESPACE_STATES.DISABLED:
                     newState = NAMESPACE_STATES.ENABLED;
@@ -1251,6 +1261,26 @@
             namespaceStates[namespaceName].state = newState;
             updateDisplay();
             updateStats();
+            
+            // Restore expanded state and scroll position if it was expanded before
+            if (wasExpanded) {
+                const newRoutesContainer = document.getElementById(`routes-${namespaceName}`);
+                if (newRoutesContainer) {
+                    newRoutesContainer.classList.add('expanded');
+                    // Restore scroll position
+                    newRoutesContainer.scrollTop = scrollPosition;
+                    
+                    // Also update the button state
+                    const toggleButton = newRoutesContainer.parentElement.querySelector('.routes-preview-toggle');
+                    if (toggleButton) {
+                        toggleButton.classList.add('expanded');
+                        const arrow = toggleButton.querySelector('.arrow');
+                        const text = toggleButton.querySelector('span:last-child');
+                        if (arrow) arrow.style.transform = 'rotate(90deg)';
+                        if (text) text.textContent = 'Hide routes';
+                    }
+                }
+            }
         }
 
         // Route toggle handler
@@ -1308,7 +1338,7 @@
                     stateClass = 'disabled';
                     break;
                 case NAMESPACE_STATES.MANUAL:
-                    stateText = 'MANUAL';
+                    stateText = 'SELECTION';
                     stateClass = 'manual';
                     break;
                 case NAMESPACE_STATES.ENABLED:
@@ -1462,7 +1492,7 @@
             let html = '';
             Object.entries(groupedRoutes).forEach(([namespace, data]) => {
                 const stateClass = data.state === NAMESPACE_STATES.ENABLED ? 'enabled' : 'manual';
-                const stateText = data.state === NAMESPACE_STATES.ENABLED ? 'Complete' : 'Manual';
+                const stateText = data.state === NAMESPACE_STATES.ENABLED ? 'Complete' : 'Selection';
                 const routeCount = data.routes.length;
                 
                 html += `
