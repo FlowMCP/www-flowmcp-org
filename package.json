@@ -6,7 +6,7 @@
   "scripts": {
     "test": "node tests/test.mjs",
     "test:html": "node tests/validate-html.mjs",
-    "test:coverage": "node --experimental-vm-modules node_modules/.bin/c8 --reporter=lcov --reporter=text node tests/test.mjs"
+    "test:coverage": "node --experimental-vm-modules node_modules/.bin/c8 --reporter=lcov --reporter=text --include='tests/**' --include='*.mjs' node tests/test.mjs"
   },
   "repository": {
     "type": "git",
