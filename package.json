@@ -4,7 +4,9 @@
   "description": "",
   "main": ".src/index.mjs",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node tests/test.mjs",
+    "test:html": "node tests/validate-html.mjs",
+    "test:coverage": "node --experimental-vm-modules node_modules/.bin/c8 --reporter=lcov --reporter=text node tests/test.mjs"
   },
   "repository": {
     "type": "git",
@@ -20,5 +22,9 @@
   "homepage": "https://github.com/FlowMCP/website#readme",
   "dependencies": {
     "schemaimporter": "github:flowmcp/flowmcp-schemas#befaad1f1dfc0b3bf6668eb0f6cdda4528ab6c26"
+  },
+  "devDependencies": {
+    "c8": "^10.1.2",
+    "node-html-parser": "^6.1.12"
   }
 }
